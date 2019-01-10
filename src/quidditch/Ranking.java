@@ -5,6 +5,12 @@
  */
 package quidditch;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Elater
@@ -285,7 +291,7 @@ public class Ranking extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        
+        fillData();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void rankTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rankTableMouseClicked
@@ -305,6 +311,19 @@ public class Ranking extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_modifyButton2ActionPerformed
 
+  
+    public void fillData() {
+                
+		DefaultTableModel defaultTableModel = new DefaultTableModel();
+		defaultTableModel.addColumn("Nazwa");
+		defaultTableModel.addColumn("Narodowość");
+		defaultTableModel.addColumn("Stadion");
+		defaultTableModel.addColumn("Punkty");
+                    //System.out.println("robimy coś");
+		defaultTableModel.addRow(new Object[] {"HAHA","LOL","XD","LOLL"});
+                //JTable rankTable;
+                rankTable.setModel(defaultTableModel);
+            }  
     /**
      * @param args the command line arguments
      */
@@ -314,6 +333,7 @@ public class Ranking extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+                        //in.wyswietl();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -330,13 +350,16 @@ public class Ranking extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
+        //</editor-fold>        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new Ranking().setVisible(true);
+                
+                //Ranking.rankTable.add("J","K","L","O");
             }
+
         });
     }
 
