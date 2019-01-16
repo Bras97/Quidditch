@@ -23,6 +23,9 @@ public class Znicz {
     private Float predkosc;
     private String producent;
     private static ArrayList<Znicz> listaZnicz; 
+
+    public Znicz() {
+    }
     
     public Znicz(Integer id_znicza, String nazwa, Float masa, Float predkosc, String producent) {
         this.id_znicza = (id_znicza == null) ? null : id_znicza;
@@ -32,7 +35,7 @@ public class Znicz {
         this.producent = (producent == null) ? null : producent;
     }
 
-    public static ArrayList<Znicz> getListaZnicz() throws SQLException {
+    public static ArrayList<Znicz> getLista() throws SQLException {
         listaZnicz = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
         ResultSet rs=stmt.executeQuery("select * from znicz;");  
@@ -41,7 +44,7 @@ public class Znicz {
         return listaZnicz;
     }
 
-    public void addQuery(Integer id_znicza, String nazwa, Float masa, Float predkosc, String producent) throws SQLException {
+    public void addQuery() throws SQLException {
         String query = "insert into znicz ( id_znicza, nazwa, masa, predkosc, producent) values (" 
                 + id_znicza + ",\""
                 + nazwa + "\","
@@ -53,10 +56,10 @@ public class Znicz {
         stmt.executeUpdate(query);
     }
     
-    public void delQuery() throws SQLException {
+    public void delQuery(Integer id) throws SQLException {
         String query = "delete from znicz where id = ?";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
-        preparedStmt.setInt(1, 3); //TO DO
+        preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
     }
     

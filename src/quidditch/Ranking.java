@@ -7,6 +7,7 @@ package quidditch;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Elater
  */
 public class Ranking extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Ranking
      */
@@ -352,6 +353,7 @@ public class Ranking extends javax.swing.JFrame {
         }
         //</editor-fold>        
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 

@@ -34,7 +34,7 @@ public class Stadion {
         this.parking = (parking == null) ? null : parking;
     }
 
-    public static ArrayList<Stadion> getListaStadion() throws SQLException {
+    public static ArrayList<Stadion> getLista() throws SQLException {
         listaStadion = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
         ResultSet rs=stmt.executeQuery("select * from stadion;");  
@@ -43,7 +43,7 @@ public class Stadion {
         return listaStadion;
     }
 
-    public void addQuery(Integer id_stadionu, String nazwa, String adres, Integer pojemnosc, Boolean parking) throws SQLException {
+    public void addQuery() throws SQLException {
         String query = "insert into stadion ( id_stadionu, nazwa, adres, pojemnosc, parking) values (" 
                 + id_stadionu + ",\""
                 + nazwa + "\",\""
@@ -55,10 +55,10 @@ public class Stadion {
         stmt.executeUpdate(query);
     }
     
-    public void delQuery() throws SQLException {
+    public void delQuery(Integer id) throws SQLException {
         String query = "delete from stadion where id = ?";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
-        preparedStmt.setInt(1, 3); //TO DO
+        preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
     }
 

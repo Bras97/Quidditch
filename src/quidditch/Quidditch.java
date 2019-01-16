@@ -29,11 +29,8 @@ public class Quidditch {
         //String query = "insert into znicz values (1,\"SuperZnicz2\",2,12,\"POL\");";
         //Statement statement = con.createStatement();
         //statement.executeUpdate(query);
-        Statement stmt=con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select * from znicz;");  
-        while(rs.next())  
-            System.out.println(rs.getString("nazwa")+"  dz"); 
         Ranking ranking = new Ranking();
+        ranking.fillData();
         ranking.setVisible(true);
         //con.close();  
         }catch(Exception e){ System.out.println(e);} 
