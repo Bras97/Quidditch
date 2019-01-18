@@ -42,15 +42,14 @@ public class Miotla {
     public static ArrayList<Miotla> getLista() throws SQLException {
         listaMiotla = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select * from znicz;");  
+        ResultSet rs=stmt.executeQuery("select * from miotla;");  
         while(rs.next())
             listaMiotla.add(new Miotla(rs.getInt("id_miotly"),rs.getString("model"),rs.getFloat("predkosc"),rs.getString("tworzywo"),rs.getFloat("masa"),rs.getString("kolor"),rs.getInt("zawodnik_id_zawodnika")));
         return listaMiotla;
     }
 
     public void addQuery() throws SQLException {
-        String query = "insert into miotla ( id_miotly, model, predkosc, tworzywo, masa, kolor, zawodnik_id_zawodnika) values (" 
-                + id_miotly + ",\""
+        String query = "insert into miotla ( model, predkosc, tworzywo, masa, kolor, zawodnik_id_zawodnika) values (\""
                 + model + "\","
                 + predkosc + ",\""
                 + tworzywo + "\","
@@ -63,7 +62,7 @@ public class Miotla {
     }
     
     public void delQuery(Integer id) throws SQLException {
-        String query = "delete from miotla where id = ?";
+        String query = "delete from miotla where id_miotly = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();

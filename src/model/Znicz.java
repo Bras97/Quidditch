@@ -45,8 +45,7 @@ public class Znicz {
     }
 
     public void addQuery() throws SQLException {
-        String query = "insert into znicz ( id_znicza, nazwa, masa, predkosc, producent) values (" 
-                + id_znicza + ",\""
+        String query = "insert into znicz ( nazwa, masa, predkosc, producent) values (\""
                 + nazwa + "\","
                 + masa + ","
                 + predkosc + ",\""
@@ -57,7 +56,7 @@ public class Znicz {
     }
     
     public void delQuery(Integer id) throws SQLException {
-        String query = "delete from znicz where id = ?";
+        String query = "delete from znicz where id_znicza = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();

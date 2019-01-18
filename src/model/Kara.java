@@ -36,15 +36,14 @@ public class Kara {
     public static ArrayList<Kara> getLista() throws SQLException {
         listaKara = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select * from znicz;");  
+        ResultSet rs=stmt.executeQuery("select * from kara;");  
         while(rs.next())
             listaKara.add(new Kara(rs.getInt("id_kary"),rs.getString("typ_kary"),rs.getInt("okres_wykluczenia"),rs.getInt("zawodnik_id_zawodnika")));
         return listaKara;
     }
 
     public void addQuery() throws SQLException {
-        String query = "insert into kara ( id_kary, typ_kary, okres_wykluczenia,zawodnik_id_zawodnika) values (" 
-                + id_kary + ",\""
+        String query = "insert into kara ( typ_kary, okres_wykluczenia,zawodnik_id_zawodnika) values (\""
                 + typ_kary + "\","
                 + okres_wykluczenia +","
                 + zawodnik_id_zawodnika
@@ -54,7 +53,7 @@ public class Kara {
     }
     
     public void delQuery(Integer id) throws SQLException {
-        String query = "delete from kara where id = ?";
+        String query = "delete from kara where id_kary = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();

@@ -44,8 +44,7 @@ public class Stadion {
     }
 
     public void addQuery() throws SQLException {
-        String query = "insert into stadion ( id_stadionu, nazwa, adres, pojemnosc, parking) values (" 
-                + id_stadionu + ",\""
+        String query = "insert into stadion ( nazwa, adres, pojemnosc, parking) values (\""
                 + nazwa + "\",\""
                 + adres + "\","
                 + pojemnosc + ","
@@ -56,7 +55,7 @@ public class Stadion {
     }
     
     public void delQuery(Integer id) throws SQLException {
-        String query = "delete from stadion where id = ?";
+        String query = "delete from stadion where id_stadionu = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();

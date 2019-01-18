@@ -17,6 +17,7 @@ import quidditch.Quidditch;
  * @author Marcin
  */
 public class Relation_9 {
+    private Integer id_rel;
     private Integer pracownicy_id_pracownika;
     private Integer druzyna_id_druzyny;
     private static ArrayList<Relation_9> listaRel; 
@@ -24,7 +25,8 @@ public class Relation_9 {
     public Relation_9() {
     }
     
-    public Relation_9(Integer pracownicy_id_pracownika, Integer druzyna_id_druzyny) {
+    public Relation_9(Integer id_rel, Integer pracownicy_id_pracownika, Integer druzyna_id_druzyny) {
+        this.id_rel = (id_rel == null) ? null : id_rel;
         this.pracownicy_id_pracownika = (pracownicy_id_pracownika == null) ? null : pracownicy_id_pracownika;
         this.druzyna_id_druzyny = (druzyna_id_druzyny == null) ? null : druzyna_id_druzyny;
     }
@@ -34,7 +36,7 @@ public class Relation_9 {
         Statement stmt= Quidditch.con.createStatement();  
         ResultSet rs=stmt.executeQuery("select * from relation_9;");  
         while(rs.next())
-            listaRel.add(new Relation_9(rs.getInt("pracownicy_id_pracownika"),rs.getInt("druzyna_id_druzyny")));
+            listaRel.add(new Relation_9(rs.getInt("id_rel"),rs.getInt("pracownicy_id_pracownika"),rs.getInt("druzyna_id_druzyny")));
         return listaRel;
     }
 
@@ -48,7 +50,7 @@ public class Relation_9 {
     }
     
     public void delQuery(Integer id) throws SQLException {
-        String query = "delete from relation_9 where id = ?";
+        String query = "delete from relation_9 where id_rel = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();

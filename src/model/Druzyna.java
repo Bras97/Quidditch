@@ -45,8 +45,7 @@ public class Druzyna {
     }
 
     public void addQuery() throws SQLException {
-        String query = "insert into druzyna ( id_pracownika, imie, nazwisko, funkcja, zarobki, stadion_id_stadionu) values (" 
-                + id_druzyny + ","
+        String query = "insert into druzyna ( id_stadionu, nazwa, narodowosc, stadion_id_stadionu) values ("
                 + id_stadionu + ",\""
                 + nazwa + "\",\""
                 + narodowosc + "\","
@@ -57,7 +56,7 @@ public class Druzyna {
     }
     
     public void delQuery(Integer id) throws SQLException {
-        String query = "delete from druzyna where id = ?";
+        String query = "delete from druzyna where id_druzyny = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();

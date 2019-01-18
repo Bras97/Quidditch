@@ -45,15 +45,14 @@ public class Rozgrywka {
     public static ArrayList<Rozgrywka> getLista() throws SQLException {
         listaRozgrywka = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select * from znicz;");  
+        ResultSet rs=stmt.executeQuery("select * from rozgrywka;");  
         while(rs.next())
-            listaRozgrywka.add(new Rozgrywka(rs.getInt("id_rozgrywki"),rs.getString("punkty_druzyna1"),rs.getString("punkty_druzyna2"),rs.getDate("data"),rs.getInt("druzyna_id_druzyny"),rs.getInt("druzyna_id_druzyny1"),rs.getInt("znicz_id_znicza"),rs.getInt("sedzia_id_sedzi")));
+            listaRozgrywka.add(new Rozgrywka(rs.getInt("id_rozgrywki"),rs.getString("punkty_druzyna1"),rs.getString("punkty_druzyna2"),rs.getDate("data"),rs.getInt("druzyna_id_druzyny1"),rs.getInt("druzyna_id_druzyny2"),rs.getInt("znicz_id_znicza"),rs.getInt("sedzia_id_sedzi")));
         return listaRozgrywka;
     }
 
     public void addQuery() throws SQLException {
-        String query = "insert into rozgrywka ( id_rozgrywki, punkty_druzyna1, punkty_druzyna2, data, druzyna_id_druzyny, druzyna_id_druzyny1, znicz_id_znicza, sedzia_id_sedzi) values (" 
-                + id_rozgrywki + ","
+        String query = "insert into rozgrywka ( punkty_druzyna1, punkty_druzyna2, data, druzyna_id_druzyny1, druzyna_id_druzyny2, znicz_id_znicza, sedzia_id_sedzi) values ("
                 + punkty_druzyna1 + ","
                 + punkty_druzyna2 + ","
                 + data + ","
@@ -67,7 +66,7 @@ public class Rozgrywka {
     }
     
     public void delQuery(Integer id) throws SQLException {
-        String query = "delete from rozgrywka where id = ?";
+        String query = "delete from rozgrywka where id_rozgrywki = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
