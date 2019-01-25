@@ -18,7 +18,6 @@ import quidditch.Quidditch;
  */
 public class Druzyna {
     private Integer id_druzyny;
-    private Integer id_stadionu;
     private String nazwa;
     private String narodowosc;
     private Integer stadion_id_stadionu;
@@ -27,9 +26,8 @@ public class Druzyna {
     public Druzyna() {
     }
     
-    public Druzyna(Integer id_druzyny, Integer id_stadionu, String nazwa, String narodowosc, Integer stadion_id_stadionu) {
+    public Druzyna(Integer id_druzyny, String nazwa, String narodowosc, Integer stadion_id_stadionu) {
         this.id_druzyny = (id_druzyny == null) ? null : id_druzyny;
-        this.id_stadionu = (id_stadionu == null) ? null : id_stadionu;
         this.nazwa = (nazwa == null) ? null : nazwa;
         this.narodowosc = (narodowosc == null) ? null : narodowosc;
         this.stadion_id_stadionu = (stadion_id_stadionu == null) ? null : stadion_id_stadionu;
@@ -40,13 +38,12 @@ public class Druzyna {
         Statement stmt= Quidditch.con.createStatement();  
         ResultSet rs=stmt.executeQuery("select * from druzyna;");  
         while(rs.next())
-            listaDruzyna.add(new Druzyna(rs.getInt("id_druzyny"),rs.getInt("id_stadionu"),rs.getString("nazwa"),rs.getString("narodowosc"),rs.getInt("stadion_id_stadionu")));
+            listaDruzyna.add(new Druzyna(rs.getInt("id_druzyny"),rs.getString("nazwa"),rs.getString("narodowosc"),rs.getInt("stadion_id_stadionu")));
         return listaDruzyna;
     }
 
     public void addQuery() throws SQLException {
-        String query = "insert into druzyna ( id_stadionu, nazwa, narodowosc, stadion_id_stadionu) values ("
-                + id_stadionu + ",\""
+        String query = "insert into druzyna ( nazwa, narodowosc, stadion_id_stadionu) values (\""
                 + nazwa + "\",\""
                 + narodowosc + "\","
                 + stadion_id_stadionu + ","
