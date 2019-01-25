@@ -5,6 +5,12 @@
  */
 package quidditch;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Elater
@@ -14,8 +20,9 @@ public class Sklad extends javax.swing.JFrame {
     /**
      * Creates new form Zawodnicy
      */
-    public Sklad() {
+    public Sklad(String nazwa) throws SQLException {
         initComponents();
+        fillData();
     }
 
     /**
@@ -26,12 +33,12 @@ public class Sklad extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        squadTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        squadTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Howdy", "Ho", "Obrońca", "10.12.1993", "M"}
             },
@@ -47,13 +54,13 @@ public class Sklad extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setEnabled(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(10);
+        squadTable.setEnabled(false);
+        jScrollPane1.setViewportView(squadTable);
+        if (squadTable.getColumnModel().getColumnCount() > 0) {
+            squadTable.getColumnModel().getColumn(0).setResizable(false);
+            squadTable.getColumnModel().getColumn(0).setPreferredWidth(20);
+            squadTable.getColumnModel().getColumn(5).setResizable(false);
+            squadTable.getColumnModel().getColumn(5).setPreferredWidth(10);
         }
 
         jLabel1.setText("Skład drużyny");
@@ -84,6 +91,26 @@ public class Sklad extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void fillData() throws SQLException {
+                
+                setResizable(false);
+		DefaultTableModel defaultTableModel = new DefaultTableModel();
+		defaultTableModel.addColumn("Nazwa");
+		defaultTableModel.addColumn("Narodowość");
+		defaultTableModel.addColumn("Stadion");
+		defaultTableModel.addColumn("Punkty");
+                    //System.out.println("robimy coś");
+//                Druzyna d = new Druzyna();
+//                ArrayList<Druzyna> listaDruzyn = d.getLista();
+//                for(Druzyna dr: listaDruzyn)
+//                {
+//                    //defaultTableModel.addRow(new Object[] {dr});
+//                }
+                
+		defaultTableModel.addRow(new Object[] {"HAHA","LOL","XD","LOLL"});
+                //JTable rankTable;
+                squadTable.setModel(defaultTableModel);
+            }
     /**
      * @param args the command line arguments
      */
@@ -115,7 +142,11 @@ public class Sklad extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sklad().setVisible(true);
+                try {
+                    new Sklad("").setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Sklad.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -123,6 +154,6 @@ public class Sklad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable squadTable;
     // End of variables declaration//GEN-END:variables
 }

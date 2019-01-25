@@ -30,10 +30,7 @@ public class Quidditch {
         //Statement statement = con.createStatement();
         //statement.executeUpdate(query);
         Ranking ranking = new Ranking();
-        ranking.fillData();
-        ranking.setVisible(true);
-        //con.close();  
-        }catch(Exception e){ System.out.println(e);} 
+        }catch(Exception e){ System.out.println("Nie połączono\n");} 
     }
     
 }
