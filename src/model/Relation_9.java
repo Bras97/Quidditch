@@ -55,4 +55,38 @@ public class Relation_9 {
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
     }
+
+    public Integer getId_rel() {
+        return id_rel;
+    }
+
+    public void setId_rel(Integer id_rel) {
+        this.id_rel = id_rel;
+    }
+
+    public Integer getPracownicy_id_pracownika() {
+        return pracownicy_id_pracownika;
+    }
+
+    public void setPracownicy_id_pracownika(Integer pracownicy_id_pracownika) {
+        this.pracownicy_id_pracownika = pracownicy_id_pracownika;
+    }
+
+    public Integer getDruzyna_id_druzyny() {
+        return druzyna_id_druzyny;
+    }
+
+    public void setDruzyna_id_druzyny(Integer druzyna_id_druzyny) {
+        this.druzyna_id_druzyny = druzyna_id_druzyny;
+    }
+
+    public static ArrayList<Relation_9> getListaRel() {
+        return listaRel;
+    }
+
+    public static void setListaRel(ArrayList<Relation_9> listaRel) {
+        Relation_9.listaRel = listaRel;
+    }
+    
+    
 }

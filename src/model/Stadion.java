@@ -20,13 +20,61 @@ public class Stadion {
     private String nazwa;
     private String adres;
     private Integer pojemnosc;
-    private Boolean parking;
+    private String parking;
     private static ArrayList<Stadion> listaStadion; 
     
     public Stadion() {
     }
 
-    public Stadion(Integer id_stadionu, String nazwa, String adres, Integer pojemnosc, Boolean parking) {
+    public Integer getId_stadionu() {
+        return id_stadionu;
+    }
+
+    public void setId_stadionu(Integer id_stadionu) {
+        this.id_stadionu = id_stadionu;
+    }
+
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
+    }
+
+    public String getAdres() {
+        return adres;
+    }
+
+    public void setAdres(String adres) {
+        this.adres = adres;
+    }
+
+    public Integer getPojemnosc() {
+        return pojemnosc;
+    }
+
+    public void setPojemnosc(Integer pojemnosc) {
+        this.pojemnosc = pojemnosc;
+    }
+
+    public String getParking() {
+        return parking;
+    }
+
+    public void setParking(String parking) {
+        this.parking = parking;
+    }
+
+    public static ArrayList<Stadion> getListaStadion() {
+        return listaStadion;
+    }
+
+    public static void setListaStadion(ArrayList<Stadion> listaStadion) {
+        Stadion.listaStadion = listaStadion;
+    }
+
+    public Stadion(Integer id_stadionu, String nazwa, String adres, Integer pojemnosc, String parking) {
         this.id_stadionu = (id_stadionu == null) ? null : id_stadionu;
         this.nazwa = (nazwa == null) ? null : nazwa;
         this.adres = (adres == null) ? null : adres;
@@ -37,9 +85,10 @@ public class Stadion {
     public static ArrayList<Stadion> getLista() throws SQLException {
         listaStadion = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select * from stadion;");  
+        ResultSet rs=stmt.executeQuery("select * from stadion;"); 
         while(rs.next())
-            listaStadion.add(new Stadion(rs.getInt("id_stadionu"),rs.getString("nazwa"),rs.getString("adres"),rs.getInt("pojemnosc"),rs.getBoolean("parking")));
+            listaStadion.add(new Stadion(rs.getInt("id_stadionu"),rs.getString("nazwa"),rs.getString("adres"),rs.getInt("pojemnosc"),rs.getString("parking")));
+                     
         return listaStadion;
     }
 

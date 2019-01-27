@@ -25,6 +25,46 @@ public class Druzyna {
     
     public Druzyna() {
     }
+
+    public Integer getId_druzyny() {
+        return id_druzyny;
+    }
+
+    public void setId_druzyny(Integer id_druzyny) {
+        this.id_druzyny = id_druzyny;
+    }
+
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
+    }
+
+    public String getNarodowosc() {
+        return narodowosc;
+    }
+
+    public void setNarodowosc(String narodowosc) {
+        this.narodowosc = narodowosc;
+    }
+
+    public Integer getStadion_id_stadionu() {
+        return stadion_id_stadionu;
+    }
+
+    public void setStadion_id_stadionu(Integer stadion_id_stadionu) {
+        this.stadion_id_stadionu = stadion_id_stadionu;
+    }
+
+    public static ArrayList<Druzyna> getListaDruzyna() {
+        return listaDruzyna;
+    }
+
+    public static void setListaDruzyna(ArrayList<Druzyna> listaDruzyna) {
+        Druzyna.listaDruzyna = listaDruzyna;
+    }
     
     public Druzyna(Integer id_druzyny, String nazwa, String narodowosc, Integer stadion_id_stadionu) {
         this.id_druzyny = (id_druzyny == null) ? null : id_druzyny;
@@ -43,6 +83,9 @@ public class Druzyna {
     }
 
     public void addQuery() throws SQLException {
+        System.out.println(nazwa);
+        System.out.println(narodowosc);
+        System.out.println(stadion_id_stadionu.toString());
         String query = "insert into druzyna ( nazwa, narodowosc, stadion_id_stadionu) values (\""
                 + nazwa + "\",\""
                 + narodowosc + "\","

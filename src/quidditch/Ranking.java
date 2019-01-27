@@ -5,12 +5,20 @@
  */
 package quidditch;
 
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import model.*;
 
 /**
@@ -19,6 +27,9 @@ import model.*;
  */
 public class Ranking extends javax.swing.JFrame {
     
+    Boolean pozycjaZaznaczona=false;
+    Integer idZespolu;
+    Integer idStadionu;
     /**
      * Creates new form Ranking
      */
@@ -45,14 +56,14 @@ public class Ranking extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 40), new java.awt.Dimension(0, 40), new java.awt.Dimension(32767, 40));
-        button1 = new java.awt.Button();
-        button2 = new java.awt.Button();
-        button3 = new java.awt.Button();
+        jDodajButton = new java.awt.Button();
+        jModyfikujButton = new java.awt.Button();
+        jUsunButton = new java.awt.Button();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30), new java.awt.Dimension(32767, 30));
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         jButtonZawodnicy = new javax.swing.JButton();
@@ -123,26 +134,26 @@ public class Ranking extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Punktacja:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        button1.setActionCommand("Dodaj");
-        button1.setLabel("Dodaj");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        jDodajButton.setActionCommand("Dodaj");
+        jDodajButton.setLabel("Dodaj");
+        jDodajButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                jDodajButtonActionPerformed(evt);
             }
         });
 
-        button2.setLabel("Modyfikuj");
-        button2.setName(""); // NOI18N
-        button2.setPreferredSize(new java.awt.Dimension(50, 24));
-        button2.addActionListener(new java.awt.event.ActionListener() {
+        jModyfikujButton.setLabel("Modyfikuj");
+        jModyfikujButton.setName(""); // NOI18N
+        jModyfikujButton.setPreferredSize(new java.awt.Dimension(50, 24));
+        jModyfikujButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button2ActionPerformed(evt);
+                jModyfikujButtonActionPerformed(evt);
             }
         });
 
-        button3.setLabel("Usuń");
+        jUsunButton.setLabel("Usuń");
 
         jButtonZawodnicy.setText("Zawodnicy");
         jButtonZawodnicy.setMargin(new java.awt.Insets(2, 2, 2, 2));
@@ -221,7 +232,7 @@ public class Ranking extends javax.swing.JFrame {
                             .addComponent(jObraz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDodajButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 196, Short.MAX_VALUE)))
                         .addContainerGap())
@@ -234,12 +245,12 @@ public class Ranking extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jModyfikujButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jUsunButton, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTextField1)
                             .addComponent(jTextField2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, 173, Short.MAX_VALUE)
+                            .addComponent(jComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 173, Short.MAX_VALUE)
                             .addComponent(jTextField4))
                         .addGap(16, 16, 16))
                     .addGroup(layout.createSequentialGroup()
@@ -273,7 +284,7 @@ public class Ranking extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
@@ -284,9 +295,9 @@ public class Ranking extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(button3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(button1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jUsunButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDodajButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jModyfikujButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(21, 21, 21)
                         .addComponent(jObraz, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -310,34 +321,118 @@ public class Ranking extends javax.swing.JFrame {
         jTextField2.setText(rankTable.getValueAt(currentRow, 1).toString());
         //jTextField3.setText(rankTable.getValueAt(currentRow, 2).toString());
         jTextField4.setText(rankTable.getValueAt(currentRow, 3).toString());
+        //idZespolu= dr.getId_druzyny();
+        pozycjaZaznaczona=true;
         
+        idStadionu  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString());
+        jComboBox.setEnabled(true);
+        jComboBox.removeAllItems();
+        
+        String stadion = rankTable.getValueAt(currentRow, 2).toString();
+        jComboBox.addItem(stadion); 
+        
+        Stadion s = new Stadion();
+        try {
+            ArrayList<Stadion> listaStadionow = s.getLista();
+            for(Stadion st: listaStadionow)
+            {
+                if(idStadionu!=st.getId_stadionu())
+                   jComboBox.addItem(st.getNazwa());
+            }
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_rankTableMouseClicked
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button1ActionPerformed
+    private void jDodajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDodajButtonActionPerformed
+        Druzyna druzyna = new Druzyna();
+        
+        druzyna.setNazwa(jTextField1.getText());
+        druzyna.setNarodowosc(jTextField2.getText());
+        druzyna.setId_druzyny(rankTable.getRowCount()+1);
+        String nazwaStadionu =(String)jComboBox.getSelectedItem();
+        
+        Stadion s = new Stadion();
+        ArrayList<Stadion> listaStadionow = new ArrayList<>();
+        System.out.println("Nazwa: " + nazwaStadionu);
+        
+        try {
+            listaStadionow = s.getLista();
+        
+        for(Stadion st: listaStadionow)
+        {
+            System.out.println(st.getNazwa());
+            if (nazwaStadionu.equals(st.getNazwa()))
+            {
+                System.out.println("ZNALEZIONO");
+                druzyna.setStadion_id_stadionu(st.getId_stadionu());
+                System.out.println(druzyna.getStadion_id_stadionu());
+                break;
+            }
+        }
+        
+        
+        druzyna.addQuery();
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        rankTable.repaint();
+    }//GEN-LAST:event_jDodajButtonActionPerformed
 
-    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+    private void jModyfikujButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModyfikujButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_button2ActionPerformed
+    }//GEN-LAST:event_jModyfikujButtonActionPerformed
 
     private void jButtonZawodnicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZawodnicyActionPerformed
                                
-        int currentRow = rankTable.getSelectedRow();
-        try {
-            Sklad sklad = new Sklad(rankTable.getValueAt(currentRow, 0).toString());
-        } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Nie można utworzyć klasy Skład\n");
+        if(pozycjaZaznaczona)
+        {
+            int currentRow = rankTable.getSelectedRow();
+            try {
+                Sklad sklad = new Sklad(rankTable.getModel().getValueAt(currentRow, 4).toString());
+            } catch (SQLException ex) {
+                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Nie można utworzyć klasy Skład\n");
+            }            
         }
+        else
+            JOptionPane.showMessageDialog(new Frame(), "Wybierz z listy drużynę, której chcesz podejrzeć skład.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonZawodnicyActionPerformed
 
     private void jButtonStadionyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStadionyActionPerformed
-        // TODO add your handling code here:
+        
+        if(pozycjaZaznaczona)
+        {
+            int currentRow = rankTable.getSelectedRow();
+            try {
+                InfoStadion infoStadion = new InfoStadion(rankTable.getModel().getValueAt(currentRow, 5).toString());
+            } catch (SQLException ex) {
+                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Nie można utworzyć klasy Stadion\n");
+            }            
+        }
+        else
+            JOptionPane.showMessageDialog(new Frame(), "Wybierz z listy drużynę, której chcesz zobaczyć stadion.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_jButtonStadionyActionPerformed
 
     private void jButtonPracownicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPracownicyActionPerformed
-        // TODO add your handling code here:
+        
+        if(pozycjaZaznaczona)
+        {
+            int currentRow = rankTable.getSelectedRow();
+            try {
+                InfoPracownicy infoPracownicy = new InfoPracownicy(rankTable.getModel().getValueAt(currentRow, 4).toString());
+            } catch (SQLException ex) {
+                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Nie można utworzyć klasy infoPracownicy\n");
+            }            
+        }
+        else
+            JOptionPane.showMessageDialog(new Frame(), "Wybierz z listy drużynę, której chcesz zobaczyć pracowników.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_jButtonPracownicyActionPerformed
 
   
@@ -347,6 +442,14 @@ public class Ranking extends javax.swing.JFrame {
 //                // iconURL is null when not found
 //                ImageIcon icon = new ImageIcon(iconURL);
 //                jObraz.setIconImage(icon.getImage());
+
+                //Wysrodkuj
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                this.setLocation((dim.width-this.getSize().width)/2, (dim.height-this.getSize().height)/2); 
+        
+                jTextField1.setColumns(10);
+                jTextField2.setColumns(10);
+                jTextField4.setColumns(10);
                 try{
                     jObraz.setIcon(new ImageIcon(getClass().getResource("/img/puchar.png")));
                 }catch(Exception e){ System.out.println("Nie znaleziono zdjęcia\n");} 
@@ -357,17 +460,41 @@ public class Ranking extends javax.swing.JFrame {
 		defaultTableModel.addColumn("Narodowość");
 		defaultTableModel.addColumn("Stadion");
 		defaultTableModel.addColumn("Punkty");
-                    //System.out.println("robimy coś");
+		defaultTableModel.addColumn("Id_druzyny");
+		defaultTableModel.addColumn("Id_stadionu");
+                
                 Druzyna d = new Druzyna();
                 ArrayList<Druzyna> listaDruzyn = d.getLista();
+                Stadion s = new Stadion();
+                ArrayList<Stadion> listaStadionow = s.getLista();
                 for(Druzyna dr: listaDruzyn)
                 {
-                    //defaultTableModel.addRow(new Object[] {dr});
+                    String stadion=null;
+                    for(Stadion st: listaStadionow)
+                    {
+                        if(dr.getStadion_id_stadionu()==st.getId_stadionu())
+                            stadion=st.getNazwa().toString();
+                    }
+                    defaultTableModel.addRow(new Object[] {dr.getNazwa(),dr.getNarodowosc(),stadion, "0", dr.getId_druzyny().toString(), dr.getStadion_id_stadionu().toString()});
                 }
                 
-		defaultTableModel.addRow(new Object[] {"HAHA","LOL","XD","LOLL"});
-                //JTable rankTable;
                 rankTable.setModel(defaultTableModel);
+                rankTable.getColumnModel().getColumn(3).setPreferredWidth(15);
+                
+                rankTable.setAutoCreateRowSorter(true);
+                
+                TableRowSorter<TableModel> sorter = new TableRowSorter<>(rankTable.getModel());
+                rankTable.setRowSorter(sorter);
+                ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+                
+                sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+                sorter.setSortKeys(sortKeys);
+                sorter.sort();
+
+                rankTable.removeColumn(rankTable.getColumnModel().getColumn(5));
+                rankTable.removeColumn(rankTable.getColumnModel().getColumn(4));
+                
             }  
     /**
      * @param args the command line arguments
@@ -414,9 +541,6 @@ public class Ranking extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
-    private java.awt.Button button2;
-    private java.awt.Button button3;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
@@ -424,7 +548,8 @@ public class Ranking extends javax.swing.JFrame {
     private javax.swing.JButton jButtonStadiony;
     private javax.swing.JButton jButtonZawodnicy;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox;
+    private java.awt.Button jDodajButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -443,11 +568,13 @@ public class Ranking extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private java.awt.Button jModyfikujButton;
     private javax.swing.JLabel jObraz;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
+    private java.awt.Button jUsunButton;
     private javax.swing.JTable rankTable;
     // End of variables declaration//GEN-END:variables
 }

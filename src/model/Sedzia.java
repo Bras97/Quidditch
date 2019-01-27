@@ -59,5 +59,45 @@ public class Sedzia {
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
     }
+
+    public Integer getId_sedzi() {
+        return id_sedzi;
+    }
+
+    public void setId_sedzi(Integer id_sedzi) {
+        this.id_sedzi = id_sedzi;
+    }
+
+    public String getImie() {
+        return imie;
+    }
+
+    public void setImie(String imie) {
+        this.imie = imie;
+    }
+
+    public String getNazwisko() {
+        return nazwisko;
+    }
+
+    public void setNazwisko(String nazwisko) {
+        this.nazwisko = nazwisko;
+    }
+
+    public Date getData_urodzenia() {
+        return data_urodzenia;
+    }
+
+    public void setData_urodzenia(Date data_urodzenia) {
+        this.data_urodzenia = data_urodzenia;
+    }
+
+    public static ArrayList<Sedzia> getListaSedzia() {
+        return listaSedzia;
+    }
+
+    public static void setListaSedzia(ArrayList<Sedzia> listaSedzia) {
+        Sedzia.listaSedzia = listaSedzia;
+    }
     
 }

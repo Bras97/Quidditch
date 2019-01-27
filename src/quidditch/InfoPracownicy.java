@@ -20,15 +20,15 @@ import model.*;
  *
  * @author Elater
  */
-public class Sklad extends javax.swing.JFrame {
+public class InfoPracownicy extends javax.swing.JFrame {
 
-    Integer id_zesp;
-    /**
-     * Creates new form Zawodnicy
-     */
-    public Sklad(String id) throws SQLException {
-        super("Skład drużyny");
-        id_zesp=Integer.parseInt(id);
+    Integer idZespolu;
+    
+    
+    public InfoPracownicy(String id) throws SQLException {
+        
+        super("Lista pracowników");
+        idZespolu=Integer.parseInt(id);
         initComponents();
         fillData();
         setVisible(true);
@@ -53,11 +53,11 @@ public class Sklad extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        squadTable = new javax.swing.JTable();
+        employeesTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        squadTable.setModel(new javax.swing.table.DefaultTableModel(
+        employeesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Howdy", "Ho", "Obrońca", "10.12.1993", "M"}
             },
@@ -73,13 +73,13 @@ public class Sklad extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        squadTable.setEnabled(false);
-        jScrollPane1.setViewportView(squadTable);
-        if (squadTable.getColumnModel().getColumnCount() > 0) {
-            squadTable.getColumnModel().getColumn(0).setResizable(false);
-            squadTable.getColumnModel().getColumn(0).setPreferredWidth(20);
-            squadTable.getColumnModel().getColumn(5).setResizable(false);
-            squadTable.getColumnModel().getColumn(5).setPreferredWidth(10);
+        employeesTable.setEnabled(false);
+        jScrollPane1.setViewportView(employeesTable);
+        if (employeesTable.getColumnModel().getColumnCount() > 0) {
+            employeesTable.getColumnModel().getColumn(0).setResizable(false);
+            employeesTable.getColumnModel().getColumn(0).setPreferredWidth(20);
+            employeesTable.getColumnModel().getColumn(5).setResizable(false);
+            employeesTable.getColumnModel().getColumn(5).setPreferredWidth(10);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,7 +95,7 @@ public class Sklad extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -104,7 +104,7 @@ public class Sklad extends javax.swing.JFrame {
 
     public void fillData() throws SQLException {
                 
-        
+                
                 //Wysrodkuj
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
                 this.setLocation((dim.width-this.getSize().width)/2, (dim.height-this.getSize().height)/2); 
@@ -113,24 +113,28 @@ public class Sklad extends javax.swing.JFrame {
 		DefaultTableModel defaultTableModel = new DefaultTableModel();
 		defaultTableModel.addColumn("Imię");
 		defaultTableModel.addColumn("Nazwisko");
-		defaultTableModel.addColumn("Pozyja");
-		defaultTableModel.addColumn("Data urodzenia");
-		defaultTableModel.addColumn("Płeć");
+		defaultTableModel.addColumn("Funkcja");
+		defaultTableModel.addColumn("Zarobki");
                 
-                Zawodnik z = new Zawodnik();
-                ArrayList<Zawodnik> listaZawodnikow = z.getLista();
-                for(Zawodnik za: listaZawodnikow)
+                Relation_9 relacja = new Relation_9();
+                ArrayList<Relation_9> listaRelacji = relacja.getLista();
+                
+                Pracownik p = new Pracownik();
+                ArrayList<Pracownik> listaPracownikow = p.getLista();
+                for(Relation_9 re: listaRelacji)
                 {
-                    if(za.getDruzyna_id_druzyny()==id_zesp)
-                        defaultTableModel.addRow(new Object[] {za.getImie(),za.getNazwisko(),za.getPozycja(),za.getData_urodzenia().toString(),za.getPlec()});
-                        
+                    if(re.getDruzyna_id_druzyny()==idZespolu)
+                        for(Pracownik pr: listaPracownikow)
+                            if(pr.getId_pracownika()==re.getPracownicy_id_pracownika())
+                            {
+                                defaultTableModel.addRow(new Object[] {pr.getImie(),pr.getNazwisko(),pr.getFunkcja(), pr.getZarobki()});
+                                break;
+                            }
                 }
                 
 		//defaultTableModel.addRow(new Object[] {"HAHA","LOL","XD","LOLL"});
                 //JTable rankTable;
-                squadTable.setModel(defaultTableModel);
-                squadTable.getColumnModel().getColumn(4).setPreferredWidth(15);
-                squadTable.getColumnModel().getColumn(4).setMinWidth(10);
+                employeesTable.setModel(defaultTableModel);
             }
     /**
      * @param args the command line arguments
@@ -149,14 +153,16 @@ public class Sklad extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sklad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfoPracownicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sklad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfoPracownicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sklad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfoPracownicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sklad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfoPracownicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -164,16 +170,16 @@ public class Sklad extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Sklad("").setVisible(true);
+                    new InfoPracownicy("").setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(Sklad.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(InfoPracownicy.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable employeesTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable squadTable;
     // End of variables declaration//GEN-END:variables
 }

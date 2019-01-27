@@ -62,5 +62,53 @@ public class Pracownik {
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
     }
+
+    public Integer getId_pracownika() {
+        return id_pracownika;
+    }
+
+    public void setId_pracownika(Integer id_pracownika) {
+        this.id_pracownika = id_pracownika;
+    }
+
+    public String getImie() {
+        return imie;
+    }
+
+    public void setImie(String imie) {
+        this.imie = imie;
+    }
+
+    public String getNazwisko() {
+        return nazwisko;
+    }
+
+    public void setNazwisko(String nazwisko) {
+        this.nazwisko = nazwisko;
+    }
+
+    public String getFunkcja() {
+        return funkcja;
+    }
+
+    public void setFunkcja(String funkcja) {
+        this.funkcja = funkcja;
+    }
+
+    public Float getZarobki() {
+        return zarobki;
+    }
+
+    public void setZarobki(Float zarobki) {
+        this.zarobki = zarobki;
+    }
+
+    public static ArrayList<Pracownik> getListaPracownik() {
+        return listaPracownik;
+    }
+
+    public static void setListaPracownik(ArrayList<Pracownik> listaPracownik) {
+        Pracownik.listaPracownik = listaPracownik;
+    }
     
 }

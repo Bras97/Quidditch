@@ -71,4 +71,78 @@ public class Rozgrywka {
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
     }
+
+    public Integer getId_rozgrywki() {
+        return id_rozgrywki;
+    }
+
+    public void setId_rozgrywki(Integer id_rozgrywki) {
+        this.id_rozgrywki = id_rozgrywki;
+    }
+
+    public String getPunkty_druzyna1() {
+        return punkty_druzyna1;
+    }
+
+    public void setPunkty_druzyna1(String punkty_druzyna1) {
+        this.punkty_druzyna1 = punkty_druzyna1;
+    }
+
+    public String getPunkty_druzyna2() {
+        return punkty_druzyna2;
+    }
+
+    public void setPunkty_druzyna2(String punkty_druzyna2) {
+        this.punkty_druzyna2 = punkty_druzyna2;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public Integer getDruzyna_id_druzyny() {
+        return druzyna_id_druzyny;
+    }
+
+    public void setDruzyna_id_druzyny(Integer druzyna_id_druzyny) {
+        this.druzyna_id_druzyny = druzyna_id_druzyny;
+    }
+
+    public Integer getDruzyna_id_druzyny1() {
+        return druzyna_id_druzyny1;
+    }
+
+    public void setDruzyna_id_druzyny1(Integer druzyna_id_druzyny1) {
+        this.druzyna_id_druzyny1 = druzyna_id_druzyny1;
+    }
+
+    public Integer getZnicz_id_znicza() {
+        return znicz_id_znicza;
+    }
+
+    public void setZnicz_id_znicza(Integer znicz_id_znicza) {
+        this.znicz_id_znicza = znicz_id_znicza;
+    }
+
+    public Integer getSedzia_id_sedzi() {
+        return sedzia_id_sedzi;
+    }
+
+    public void setSedzia_id_sedzi(Integer sedzia_id_sedzi) {
+        this.sedzia_id_sedzi = sedzia_id_sedzi;
+    }
+
+    public static ArrayList<Rozgrywka> getListaRozgrywka() {
+        return listaRozgrywka;
+    }
+
+    public static void setListaRozgrywka(ArrayList<Rozgrywka> listaRozgrywka) {
+        Rozgrywka.listaRozgrywka = listaRozgrywka;
+    }
+    
+    
 }

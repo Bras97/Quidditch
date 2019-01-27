@@ -67,4 +67,69 @@ public class Miotla {
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
     }
+
+    public Integer getId_miotly() {
+        return id_miotly;
+    }
+
+    public void setId_miotly(Integer id_miotly) {
+        this.id_miotly = id_miotly;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public Float getPredkosc() {
+        return predkosc;
+    }
+
+    public void setPredkosc(Float predkosc) {
+        this.predkosc = predkosc;
+    }
+
+    public String getTworzywo() {
+        return tworzywo;
+    }
+
+    public void setTworzywo(String tworzywo) {
+        this.tworzywo = tworzywo;
+    }
+
+    public Float getMasa() {
+        return masa;
+    }
+
+    public void setMasa(Float masa) {
+        this.masa = masa;
+    }
+
+    public String getKolor() {
+        return kolor;
+    }
+
+    public void setKolor(String kolor) {
+        this.kolor = kolor;
+    }
+
+    public Integer getZawodnik_id_zawodnika() {
+        return zawodnik_id_zawodnika;
+    }
+
+    public void setZawodnik_id_zawodnika(Integer zawodnik_id_zawodnika) {
+        this.zawodnik_id_zawodnika = zawodnik_id_zawodnika;
+    }
+
+    public static ArrayList<Miotla> getListaMiotla() {
+        return listaMiotla;
+    }
+
+    public static void setListaMiotla(ArrayList<Miotla> listaMiotla) {
+        Miotla.listaMiotla = listaMiotla;
+    }
+    
 }

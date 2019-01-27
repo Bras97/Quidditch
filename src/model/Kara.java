@@ -58,4 +58,47 @@ public class Kara {
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
     }
+
+    public Integer getId_kary() {
+        return id_kary;
+    }
+
+    public void setId_kary(Integer id_kary) {
+        this.id_kary = id_kary;
+    }
+
+    public String getTyp_kary() {
+        return typ_kary;
+    }
+
+    public void setTyp_kary(String typ_kary) {
+        this.typ_kary = typ_kary;
+    }
+
+    public Integer getOkres_wykluczenia() {
+        return okres_wykluczenia;
+    }
+
+    public void setOkres_wykluczenia(Integer okres_wykluczenia) {
+        this.okres_wykluczenia = okres_wykluczenia;
+    }
+
+    public Integer getZawodnik_id_zawodnika() {
+        return zawodnik_id_zawodnika;
+    }
+
+    public void setZawodnik_id_zawodnika(Integer zawodnik_id_zawodnika) {
+        this.zawodnik_id_zawodnika = zawodnik_id_zawodnika;
+    }
+
+    public static ArrayList<Kara> getListaKara() {
+        return listaKara;
+    }
+
+    public static void setListaKara(ArrayList<Kara> listaKara) {
+        Kara.listaKara = listaKara;
+    }
+    
+    
+    
 }

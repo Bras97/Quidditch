@@ -61,5 +61,53 @@ public class Znicz {
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
     }
+
+    public Integer getId_znicza() {
+        return id_znicza;
+    }
+
+    public void setId_znicza(Integer id_znicza) {
+        this.id_znicza = id_znicza;
+    }
+
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
+    }
+
+    public Float getMasa() {
+        return masa;
+    }
+
+    public void setMasa(Float masa) {
+        this.masa = masa;
+    }
+
+    public Float getPredkosc() {
+        return predkosc;
+    }
+
+    public void setPredkosc(Float predkosc) {
+        this.predkosc = predkosc;
+    }
+
+    public String getProducent() {
+        return producent;
+    }
+
+    public void setProducent(String producent) {
+        this.producent = producent;
+    }
+
+    public static ArrayList<Znicz> getListaZnicz() {
+        return listaZnicz;
+    }
+
+    public static void setListaZnicz(ArrayList<Znicz> listaZnicz) {
+        Znicz.listaZnicz = listaZnicz;
+    }
     
 }
