@@ -10,6 +10,8 @@ import java.awt.Frame;
 import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -315,6 +317,8 @@ public class Ranking extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+  
+    
     private void rankTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rankTableMouseClicked
         int currentRow = rankTable.getSelectedRow();
         jTextField1.setText(rankTable.getValueAt(currentRow, 0).toString());
@@ -324,8 +328,10 @@ public class Ranking extends javax.swing.JFrame {
         //idZespolu= dr.getId_druzyny();
         pozycjaZaznaczona=true;
         
+        
         idStadionu  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString());
-        jComboBox.setEnabled(true);
+        
+        
         jComboBox.removeAllItems();
         
         String stadion = rankTable.getValueAt(currentRow, 2).toString();
@@ -334,6 +340,13 @@ public class Ranking extends javax.swing.JFrame {
         Stadion s = new Stadion();
         try {
             ArrayList<Stadion> listaStadionow = s.getLista();
+            
+            Collections.sort(listaStadionow, new Comparator<Stadion>() {
+                public int compare(Stadion o1, Stadion o2) {
+                    return o1.getNazwa().compareTo(o2.getNazwa());
+                    }
+                });
+            
             for(Stadion st: listaStadionow)
             {
                 if(idStadionu!=st.getId_stadionu())
@@ -347,38 +360,57 @@ public class Ranking extends javax.swing.JFrame {
 
     private void jDodajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDodajButtonActionPerformed
         Druzyna druzyna = new Druzyna();
-        
+        ArrayList<Druzyna> listaDruzyn = new ArrayList<>();
         druzyna.setNazwa(jTextField1.getText());
-        druzyna.setNarodowosc(jTextField2.getText());
-        druzyna.setId_druzyny(rankTable.getRowCount()+1);
-        String nazwaStadionu =(String)jComboBox.getSelectedItem();
-        
-        Stadion s = new Stadion();
-        ArrayList<Stadion> listaStadionow = new ArrayList<>();
-        System.out.println("Nazwa: " + nazwaStadionu);
         
         try {
-            listaStadionow = s.getLista();
-        
-        for(Stadion st: listaStadionow)
-        {
-            System.out.println(st.getNazwa());
-            if (nazwaStadionu.equals(st.getNazwa()))
-            {
-                System.out.println("ZNALEZIONO");
-                druzyna.setStadion_id_stadionu(st.getId_stadionu());
-                System.out.println(druzyna.getStadion_id_stadionu());
-                break;
-            }
-        }
-        
-        
-        druzyna.addQuery();
-        
+            listaDruzyn = druzyna.getLista();
         } catch (SQLException ex) {
             Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        Boolean utworzDruzyne=true;
+        for(Druzyna dr: listaDruzyn)
+        {
+            if(dr.getNazwa().equals(jTextField1.getText()))
+            {
+                JOptionPane.showMessageDialog(new Frame(), "Drużyna z taką nazwą już istnieje!", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                return;
+                //utworzDruzyne=false;
+                //break;
+            }
+        }
+        druzyna.setNarodowosc(jTextField2.getText());
+
+        String nazwaStadionu =(String)jComboBox.getSelectedItem();
+
+        Stadion s = new Stadion();
+        ArrayList<Stadion> listaStadionow = new ArrayList<>();
+
+        try {
+            listaStadionow = s.getLista();
+
+        for(Stadion st: listaStadionow)
+        {
+            if (nazwaStadionu.equals(st.getNazwa()))
+            {
+                druzyna.setStadion_id_stadionu(st.getId_stadionu());
+                break;
+            }
+        }
+
+
+        druzyna.addQuery();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
+        model.fireTableDataChanged();
         rankTable.repaint();
+
+        
     }//GEN-LAST:event_jDodajButtonActionPerformed
 
     private void jModyfikujButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModyfikujButtonActionPerformed
@@ -451,9 +483,33 @@ public class Ranking extends javax.swing.JFrame {
                 jTextField2.setColumns(10);
                 jTextField4.setColumns(10);
                 try{
+//                    ImageIcon img = new ImageIcon(getClass().getResource("/img/pracownicy.png"));
+//                    Image image = img.getImage(); // transform it 
+//                    Image newimg = image.getScaledInstance(271, 190,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+//                    img = new ImageIcon(newimg);
+//                    jObraz.setIcon(img);
                     jObraz.setIcon(new ImageIcon(getClass().getResource("/img/puchar.png")));
                 }catch(Exception e){ System.out.println("Nie znaleziono zdjęcia\n");} 
                 setResizable(false);
+                
+                //uzupelnij comboBox
+                Stadion s = new Stadion();
+                ArrayList<Stadion> listaStadionow = s.getLista();
+                
+                Collections.sort(listaStadionow, new Comparator<Stadion>() {
+                    public int compare(Stadion o1, Stadion o2) {
+                        return o1.getNazwa().compareTo(o2.getNazwa());
+                        }
+                    });
+            
+                jComboBox.removeAllItems();
+                for(Stadion st: listaStadionow)
+                {
+                    if(idStadionu!=st.getId_stadionu())
+                        jComboBox.addItem(st.getNazwa());
+                }
+                //jComboBox.
+                
                 //jObraz.setIcon((Icon) Toolkit.getDefaultToolkit().getImage("src/img/znicz.jpg"));
 		DefaultTableModel defaultTableModel = new DefaultTableModel();
 		defaultTableModel.addColumn("Nazwa");
@@ -465,8 +521,7 @@ public class Ranking extends javax.swing.JFrame {
                 
                 Druzyna d = new Druzyna();
                 ArrayList<Druzyna> listaDruzyn = d.getLista();
-                Stadion s = new Stadion();
-                ArrayList<Stadion> listaStadionow = s.getLista();
+                
                 for(Druzyna dr: listaDruzyn)
                 {
                     String stadion=null;

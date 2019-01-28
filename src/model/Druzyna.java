@@ -89,7 +89,7 @@ public class Druzyna {
         String query = "insert into druzyna ( nazwa, narodowosc, stadion_id_stadionu) values (\""
                 + nazwa + "\",\""
                 + narodowosc + "\","
-                + stadion_id_stadionu + ","
+                + stadion_id_stadionu
                 +");";
         Statement stmt= Quidditch.con.createStatement(); 
         stmt.executeUpdate(query);
