@@ -103,11 +103,19 @@ public class Stadion {
         stmt.executeUpdate(query);
     }
     
-    public void delQuery(Integer id) throws SQLException {
+    public int delQuery(Integer id) throws SQLException {
+        Druzyna x = new Druzyna();
+        ArrayList<Druzyna> lista = x.getLista();
+        for(Druzyna y: lista)
+        {
+            if(y.getStadion_id_stadionu() == id)
+                return -1;
+        }
         String query = "delete from stadion where id_stadionu = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
+        return 1;
     }
 
        

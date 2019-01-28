@@ -65,11 +65,12 @@ public class Rozgrywka {
         stmt.executeUpdate(query);
     }
     
-    public void delQuery(Integer id) throws SQLException {
+    public int delQuery(Integer id) throws SQLException {
         String query = "delete from rozgrywka where id_rozgrywki = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
+        return 1;
     }
 
     public Integer getId_rozgrywki() {

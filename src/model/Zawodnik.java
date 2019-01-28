@@ -126,11 +126,26 @@ public class Zawodnik {
         stmt.executeUpdate(query);
     }
     
-    public void delQuery(Integer id) throws SQLException {
+    public int delQuery(Integer id) throws SQLException {
+        Miotla x1 = new Miotla();
+        ArrayList<Miotla> lista1 = x1.getLista();
+        for(Miotla y1: lista1)
+        {
+            if(y1.getZawodnik_id_zawodnika() == id)
+                return -1;
+        }
+        Kara x2 = new Kara();
+        ArrayList<Kara> lista2 = x2.getLista();
+        for(Kara y2: lista2)
+        {
+            if(y2.getZawodnik_id_zawodnika() == id)
+                return -1;
+        }
         String query = "delete from zawodnik where id_zawodnika = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
+        return 1;
     }
     
 }

@@ -53,11 +53,19 @@ public class Sedzia {
         stmt.executeUpdate(query);
     }
     
-    public void delQuery(Integer id) throws SQLException {
+    public int delQuery(Integer id) throws SQLException {
+        Rozgrywka x = new Rozgrywka();
+        ArrayList<Rozgrywka> lista = x.getLista();
+        for(Rozgrywka y: lista)
+        {
+            if(y.getSedzia_id_sedzi() == id)
+                return -1;
+        }
         String query = "delete from sedzia where id_sedzi = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
+        return 1;
     }
 
     public Integer getId_sedzi() {

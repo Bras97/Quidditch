@@ -95,11 +95,36 @@ public class Druzyna {
         stmt.executeUpdate(query);
     }
     
-    public void delQuery(Integer id) throws SQLException {
-        String query = "delete from druzyna where id_druzyny = ?;";
-        PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
-        preparedStmt.setInt(1, id); //TO DO
-        preparedStmt.execute();
+    public void updateQuery(){
+        
+    }
+    
+    public int delQuery(Integer id) throws SQLException {
+        Zawodnik x1 = new Zawodnik();
+        ArrayList<Zawodnik> lista1 = x1.getLista();
+        for(Zawodnik y1: lista1)
+        {
+            if(y1.getDruzyna_id_druzyny() == id)
+                return -1;
+        }
+        Rozgrywka x2 = new Rozgrywka();
+        ArrayList<Rozgrywka> lista2 = x2.getLista();
+        for(Rozgrywka y2: lista2)
+        {
+            if(y2.getDruzyna_id_druzyny() == id)
+                return -1;
+            if(y2.getDruzyna_id_druzyny1() == id)
+                return -1;
+        }
+        String query1 = "delete from relation_9 where druzyna_id_druzyny = ?;";
+        PreparedStatement preparedStmt1 = Quidditch.con.prepareStatement(query1);
+        preparedStmt1.setInt(1, id); //TO DO
+        preparedStmt1.execute();
+        String query2 = "delete from druzyna where id_druzyny = ?;";
+        PreparedStatement preparedStmt2 = Quidditch.con.prepareStatement(query2);
+        preparedStmt2.setInt(1, id); //TO DO
+        preparedStmt2.execute();
+        return 1;
     }
     
 }
