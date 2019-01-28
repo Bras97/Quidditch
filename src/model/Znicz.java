@@ -55,6 +55,15 @@ public class Znicz {
         stmt.executeUpdate(query);
     }
     
+    public void updateQuery(Integer id, String nazwa, Float masa, Float predkosc, String producent) throws SQLException{
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE znicz SET nazwa = ?, masa = ?, predkosc = ?, producent = ? WHERE id = ?");
+        ps.setString(1,nazwa);
+        ps.setFloat(2,masa);
+        ps.setFloat(3,predkosc);
+        ps.setString(4,producent);
+        ps.setInt(5,id);
+    }
+    
     public int delQuery(Integer id) throws SQLException {
         Rozgrywka x = new Rozgrywka();
         ArrayList<Rozgrywka> lista = x.getLista();

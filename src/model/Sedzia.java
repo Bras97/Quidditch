@@ -53,6 +53,14 @@ public class Sedzia {
         stmt.executeUpdate(query);
     }
     
+    public void updateQuery(Integer id, String imie, String nazwisko, Date data_urodzenia) throws SQLException{
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE sedzia SET imie = ?, nazwisko = ?, data_urodzenia = ? WHERE id = ?");
+        ps.setString(1,imie);
+        ps.setString(2,nazwisko);
+        ps.setDate(3,data_urodzenia);
+        ps.setInt(4,id);
+    }
+    
     public int delQuery(Integer id) throws SQLException {
         Rozgrywka x = new Rozgrywka();
         ArrayList<Rozgrywka> lista = x.getLista();

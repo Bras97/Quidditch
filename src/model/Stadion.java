@@ -103,6 +103,15 @@ public class Stadion {
         stmt.executeUpdate(query);
     }
     
+    public void updateQuery(Integer id, String nazwa, String adres, Integer pojemnosc, String parking) throws SQLException{
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE stadion SET nazwa = ?, adres = ?, pojemnosc = ?, parking = ? WHERE id = ?");
+        ps.setString(1,nazwa);
+        ps.setString(2,adres);
+        ps.setInt(3,pojemnosc);
+        ps.setString(4,parking);
+        ps.setInt(5,id);
+    }
+    
     public int delQuery(Integer id) throws SQLException {
         Druzyna x = new Druzyna();
         ArrayList<Druzyna> lista = x.getLista();

@@ -95,8 +95,12 @@ public class Druzyna {
         stmt.executeUpdate(query);
     }
     
-    public void updateQuery(){
-        
+    public void updateQuery(Integer id, String nazwa, String narodowosc, Integer stadion_id_stadionu) throws SQLException{
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE druzyna SET nazwa = ?, narodowosc = ?, stadion_id_stadionu = ? WHERE id = ?");
+        ps.setString(1,nazwa);
+        ps.setString(2,narodowosc);
+        ps.setInt(3,stadion_id_stadionu);
+        ps.setInt(4,id);
     }
     
     public int delQuery(Integer id) throws SQLException {

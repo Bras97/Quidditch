@@ -61,6 +61,17 @@ public class Miotla {
         stmt.executeUpdate(query);
     }
     
+    public void updateQuery(Integer id, String model, Float predkosc, String tworzywo, Float masa, String kolor, Integer zawodnik_id_zawodnika) throws SQLException{
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE miotla SET model = ?, predkosc = ?, tworzywo = ?, masa = ?, kolor = ?, zawodnik_id_zawodnika = ? WHERE id = ?");
+        ps.setString(1,model);
+        ps.setFloat(2,predkosc);
+        ps.setString(3,tworzywo);
+        ps.setFloat(4,masa);
+        ps.setString(5,kolor);
+        ps.setInt(6,zawodnik_id_zawodnika);
+        ps.setInt(7,id);
+    }
+    
     public int delQuery(Integer id) throws SQLException {
         String query = "delete from miotla where id_miotly = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);

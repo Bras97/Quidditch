@@ -56,11 +56,25 @@ public class Pracownik {
         stmt.executeUpdate(query);
     }
     
-    public void delQuery(Integer id) throws SQLException {
-        String query = "delete from pracownik where id_pracownika = ?;";
-        PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
-        preparedStmt.setInt(1, id); //TO DO
-        preparedStmt.execute();
+    public void updateQuery(Integer id, String imie, String nazwisko, String funkcja, Float zarobki) throws SQLException{
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE pracownik SET imie = ?, nazwisko = ?, funkcja = ?, zarobki = ? WHERE id = ?");
+        ps.setString(1,imie);
+        ps.setString(2,nazwisko);
+        ps.setString(3,funkcja);
+        ps.setFloat(4,zarobki);
+        ps.setInt(5,id);
+    }
+    
+    public int delQuery(Integer id) throws SQLException {
+        String query1 = "delete from relation_9 where pracownicy_id_pracownika = ?;";
+        PreparedStatement preparedStmt1 = Quidditch.con.prepareStatement(query1);
+        preparedStmt1.setInt(1, id); //TO DO
+        preparedStmt1.execute();
+        String query2 = "delete from pracownik where id_pracownika = ?;";
+        PreparedStatement preparedStmt2 = Quidditch.con.prepareStatement(query2);
+        preparedStmt2.setInt(1, id); //TO DO
+        preparedStmt2.execute();
+        return 1;
     }
 
     public Integer getId_pracownika() {

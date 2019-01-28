@@ -65,12 +65,18 @@ public class Rozgrywka {
         stmt.executeUpdate(query);
     }
     
-    public int delQuery(Integer id) throws SQLException {
-        String query = "delete from rozgrywka where id_rozgrywki = ?;";
-        PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
-        preparedStmt.setInt(1, id); //TO DO
-        preparedStmt.execute();
-        return 1;
+    
+    
+    public void updateQuery(Integer id, Integer punkty_druzyna1, Integer punkty_druzyna2, Date data, Integer druzyna_id_druzyny, Integer druzyna_id_druzyny1, Integer znicz_id_znicza, Integer sedzia_id_sedzi) throws SQLException{
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE rozgrywka SET punkty_druzyna1 = ?, punkty_druzyna2 = ?, data = ?, druzyna_id_druzyny1 = ?, druzyna_id_druzyny2 = ?, znicz_id_znicza = ?, sedzia_id_sedzi = ? WHERE id = ?");
+        ps.setInt(1,punkty_druzyna1);
+        ps.setInt(2,punkty_druzyna2);
+        ps.setDate(3,data);
+        ps.setInt(4,druzyna_id_druzyny);
+        ps.setInt(5,druzyna_id_druzyny1);
+        ps.setInt(6,znicz_id_znicza);
+        ps.setInt(7,sedzia_id_sedzi);
+        ps.setInt(8,id);
     }
 
     public Integer getId_rozgrywki() {

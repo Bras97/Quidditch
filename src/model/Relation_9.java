@@ -49,11 +49,19 @@ public class Relation_9 {
         stmt.executeUpdate(query);
     }
     
-    public void delQuery(Integer id) throws SQLException {
+    public void updateQuery(Integer id, Integer pracownicy_id_pracownika, Integer druzyna_id_druzyny) throws SQLException{
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE relation_9 SET pracownicy_id_pracownika = ?, druzyna_id_druzyny = ? WHERE id = ?");
+        ps.setInt(1,pracownicy_id_pracownika);
+        ps.setInt(2,druzyna_id_druzyny);
+        ps.setInt(3,id);
+    }
+    
+    public int delQuery(Integer id) throws SQLException {
         String query = "delete from relation_9 where id_rel = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
         preparedStmt.setInt(1, id); //TO DO
         preparedStmt.execute();
+        return 1;
     }
 
     public Integer getId_rel() {
