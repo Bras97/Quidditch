@@ -8,6 +8,8 @@ package quidditch;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,6 +17,7 @@ import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
@@ -33,6 +36,7 @@ public class Ranking extends javax.swing.JFrame {
     Boolean pozycjaZaznaczona=false;
     Integer idZespolu;
     Integer idStadionu;
+    Boolean wyszukiwanie=false;
     /**
      * Creates new form Ranking
      */
@@ -40,6 +44,16 @@ public class Ranking extends javax.swing.JFrame {
         initComponents();
         fillData();
         setVisible(true);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                int odp = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz zamknąć aplikację?", "Zamknąć?", JOptionPane.YES_NO_OPTION);
+                if (odp ==JOptionPane.YES_OPTION)
+                    System.exit(0);
+            }
+            
+});
     }
 
     /**
@@ -53,19 +67,18 @@ public class Ranking extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jComboBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         rankTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 40), new java.awt.Dimension(0, 40), new java.awt.Dimension(32767, 40));
         jDodajButton = new java.awt.Button();
-        jModyfikujButton = new java.awt.Button();
         jUsunButton = new java.awt.Button();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30), new java.awt.Dimension(32767, 30));
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
@@ -73,6 +86,10 @@ public class Ranking extends javax.swing.JFrame {
         jButtonStadiony = new javax.swing.JButton();
         jButtonPracownicy = new javax.swing.JButton();
         jObraz = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jWyszukajButton1 = new javax.swing.JToggleButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jModyfikujButton = new java.awt.Button();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
@@ -96,6 +113,8 @@ public class Ranking extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quidditch rank");
+
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         rankTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,22 +156,11 @@ public class Ranking extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Punktacja:");
 
-        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jDodajButton.setActionCommand("Dodaj");
         jDodajButton.setLabel("Dodaj");
         jDodajButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jDodajButtonActionPerformed(evt);
-            }
-        });
-
-        jModyfikujButton.setLabel("Modyfikuj");
-        jModyfikujButton.setName(""); // NOI18N
-        jModyfikujButton.setPreferredSize(new java.awt.Dimension(50, 24));
-        jModyfikujButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jModyfikujButtonActionPerformed(evt);
             }
         });
 
@@ -187,6 +195,23 @@ public class Ranking extends javax.swing.JFrame {
         jButtonPracownicy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPracownicyActionPerformed(evt);
+            }
+        });
+
+        jWyszukajButton1.setText("Wyszukaj");
+        jWyszukajButton1.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        jWyszukajButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jWyszukajButton1ActionPerformed(evt);
+            }
+        });
+
+        jModyfikujButton.setLabel("Modyfikuj");
+        jModyfikujButton.setName(""); // NOI18N
+        jModyfikujButton.setPreferredSize(new java.awt.Dimension(50, 24));
+        jModyfikujButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jModyfikujButtonActionPerformed(evt);
             }
         });
 
@@ -240,9 +265,9 @@ public class Ranking extends javax.swing.JFrame {
                             .addComponent(jObraz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDodajButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDodajButton, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                                     .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 196, Short.MAX_VALUE)))
+                                .addGap(196, 196, 196)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,11 +276,11 @@ public class Ranking extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jModyfikujButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jUsunButton, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jModyfikujButton, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                                .addGap(24, 24, 24)
+                                .addComponent(jUsunButton, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
                             .addComponent(jTextField1)
                             .addComponent(jTextField2)
                             .addComponent(jComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 173, Short.MAX_VALUE)
@@ -264,12 +289,20 @@ public class Ranking extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonZawodnicy, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonStadiony, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonPracownicy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jWyszukajButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator1)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -311,6 +344,12 @@ public class Ranking extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jWyszukajButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonZawodnicy, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonStadiony, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -525,40 +564,54 @@ public class Ranking extends javax.swing.JFrame {
 
     private void jUsunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsunButtonActionPerformed
         
-        if(!pozycjaZaznaczona)
-        {
-            JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać drużynę z tabeli, którą chcesz usunąć.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        int currentRow = rankTable.getSelectedRow();
-        if (JOptionPane.showConfirmDialog(null, 
-            "Czy na pewno chcesz nieodwracalnie usunąć zaznaczoną drużynę?", "Usunąć?", 
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-            Druzyna d = new Druzyna();
-            int czyUsunieto=-1;
-            try {
-                czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 5).toString()));
-            } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            switch(czyUsunieto)
+        try {
+            if(!pozycjaZaznaczona)
             {
-                case -3: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć drużyny, ponieważ istnieje rozgrywka w której brała udział.", "Usuń najpierw powiązane rozgrywki", JOptionPane.INFORMATION_MESSAGE);
-                         break;
-                case -2: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć drużyny, ponieważ istnieją zawodnicy powiązani z tą drużyną.", "Usuń najpierw powiązanych zawodników", JOptionPane.INFORMATION_MESSAGE);
-                         break;
-                case 1:  JOptionPane.showMessageDialog(new Frame(), "Pomyślnie usunięto drużynę.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
-                         break;
-                default: JOptionPane.showMessageDialog(new Frame(), "Coś poszło nie tak.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
-                         break;
+                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać drużynę z tabeli, którą chcesz usunąć.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
+            int currentRow = rankTable.getSelectedRow();
+            if (JOptionPane.showConfirmDialog(null,
+                    "Czy na pewno chcesz nieodwracalnie usunąć zaznaczoną drużynę?", "Usunąć?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                Druzyna d = new Druzyna();
+                int czyUsunieto=-1;
+                
+                    czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString()));
+                    
+                switch(czyUsunieto)
+                {
+                    case -3: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć drużyny, ponieważ istnieje rozgrywka w której brała udział.", "Usuń najpierw powiązane rozgrywki", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                    case -2: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć drużyny, ponieważ istnieją zawodnicy powiązani z tą drużyną.", "Usuń najpierw powiązanych zawodników", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                    case 1:  JOptionPane.showMessageDialog(new Frame(), "Pomyślnie usunięto drużynę.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                    default: JOptionPane.showMessageDialog(new Frame(), "Coś poszło nie tak.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                }
+            }
+            pozycjaZaznaczona=false;
+//        DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
+//        model.fireTableDataChanged();
+//        rankTable.repaint();
+            wypelnijTabele();
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
-        model.fireTableDataChanged();
-        rankTable.repaint();
     }//GEN-LAST:event_jUsunButtonActionPerformed
+
+    private void jWyszukajButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWyszukajButton1ActionPerformed
+        try {
+            Druzyna d = new Druzyna();
+            wyszukiwanie=true;
+            wypelnijTabele();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jWyszukajButton1ActionPerformed
 
     public Boolean czyNazwaPusta()
     {
@@ -582,7 +635,11 @@ public class Ranking extends javax.swing.JFrame {
         defaultTableModel.addColumn("Id_stadionu");
 
         Druzyna d = new Druzyna();
-        ArrayList<Druzyna> listaDruzyn = d.getLista();
+        ArrayList<Druzyna> listaDruzyn = new ArrayList<>();
+        if(!wyszukiwanie)
+            listaDruzyn = d.getLista();
+        else
+            listaDruzyn = d.wyszukaj(jTextField3.getText());
 
          Collections.sort(listaDruzyn, new Comparator<Druzyna>() {
             public int compare(Druzyna o1, Druzyna o2) {
@@ -616,12 +673,6 @@ public class Ranking extends javax.swing.JFrame {
     
     
     public void fillData() throws SQLException {
-                
-//                URL iconURL = getClass().getResource("/src/img/znicz.png");
-//                // iconURL is null when not found
-//                ImageIcon icon = new ImageIcon(iconURL);
-//                jObraz.setIconImage(icon.getImage());
-
 
                 //Wysrodkuj
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -651,6 +702,7 @@ public class Ranking extends javax.swing.JFrame {
                     });
             
                 jComboBox.removeAllItems();
+                jComboBox.setEnabled(true);
                 for(Stadion st: listaStadionow)
                 {
                     if(idStadionu!=st.getId_stadionu())
@@ -665,7 +717,7 @@ public class Ranking extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-           
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -740,10 +792,13 @@ public class Ranking extends javax.swing.JFrame {
     private java.awt.Button jModyfikujButton;
     private javax.swing.JLabel jObraz;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private java.awt.Button jUsunButton;
+    private javax.swing.JToggleButton jWyszukajButton1;
     private javax.swing.JTable rankTable;
     // End of variables declaration//GEN-END:variables
 }
