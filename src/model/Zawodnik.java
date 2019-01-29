@@ -26,6 +26,7 @@ public class Zawodnik {
     private Date data_urodzenia;
     private String plec;
     private Integer druzyna_id_druzyny;
+    private String  dataString;
     private static ArrayList<Zawodnik> listaZawodnik; 
     
     public Zawodnik() {
@@ -95,7 +96,7 @@ public class Zawodnik {
         Zawodnik.listaZawodnik = listaZawodnik;
     }
     
-    public Zawodnik(Integer id_zawodnika, String imie, String nazwisko, String pozycja, Date data_urodzenia, String plec, Integer druzyna_id_druzyny) {
+    public Zawodnik(Integer id_zawodnika, String imie, String nazwisko, String pozycja, Date data_urodzenia, String plec, Integer druzyna_id_druzyny, String dataString) {
         this.id_zawodnika = (id_zawodnika == null) ? null : id_zawodnika;
         this.imie = (imie == null) ? null : imie;
         this.nazwisko = (nazwisko == null) ? null : nazwisko;
@@ -103,14 +104,15 @@ public class Zawodnik {
         this.data_urodzenia = (data_urodzenia == null) ? null : data_urodzenia;
         this.plec = (plec == null) ? null : plec;
         this.druzyna_id_druzyny = (druzyna_id_druzyny == null) ? null : druzyna_id_druzyny;
+        this.dataString = (data_urodzenia == null) ? null : dataString;
     }
 
     public static ArrayList<Zawodnik> getLista() throws SQLException {
         listaZawodnik = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select * from zawodnik;");  
+        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS function from zawodnik;");  
         while(rs.next())
-            listaZawodnik.add(new Zawodnik(rs.getInt("id_zawodnika"),rs.getString("imie"),rs.getString("nazwisko"),rs.getString("pozycja"),rs.getDate("data_urodzenia"), rs.getString("plec"),rs.getInt("druzyna_id_druzyny")));
+            listaZawodnik.add(new Zawodnik(rs.getInt("id_zawodnika"),rs.getString("imie"),rs.getString("nazwisko"),rs.getString("pozycja"),rs.getDate("data_urodzenia"), rs.getString("plec"),rs.getInt("druzyna_id_druzyny"),rs.getString("function")));
         return listaZawodnik;
     }
 
