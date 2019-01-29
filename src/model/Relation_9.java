@@ -54,7 +54,7 @@ public class Relation_9 {
         ps.setInt(1,pracownicy_id_pracownika);
         ps.setInt(2,druzyna_id_druzyny);
         ps.setInt(3,id);
-        ps.execute();
+        ps.executeUpdate();
     }
     
     public int delQuery(Integer id) throws SQLException {

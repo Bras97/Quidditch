@@ -58,7 +58,7 @@ public class Kara {
         ps.setInt(2,okres_wykluczenia);
         ps.setInt(3,zawodnik_id_zawodnika);
         ps.setInt(4,id);
-        ps.execute();
+        ps.executeUpdate();
     }
     
     public int delQuery(Integer id) throws SQLException {

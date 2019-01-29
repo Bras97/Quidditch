@@ -59,7 +59,7 @@ public class Sedzia {
         ps.setString(2,nazwisko);
         ps.setDate(3,data_urodzenia);
         ps.setInt(4,id);
-        ps.execute();
+        ps.executeUpdate();
     }
     
     public int delQuery(Integer id) throws SQLException {

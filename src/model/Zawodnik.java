@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import quidditch.Quidditch;
 
@@ -135,7 +136,19 @@ public class Zawodnik {
         ps.setString(5,plec);
         ps.setInt(6,druzyna_id_druzyny);
         ps.setInt(7,id);
-        ps.execute();
+        ps.executeUpdate();
+    }
+    
+    public int checkQuery(Integer id) throws SQLException {
+        //Sprawdza czy jest jakas powiazana Kara
+        Kara x2 = new Kara();
+        ArrayList<Kara> lista2 = x2.getLista();
+        for(Kara y2: lista2)
+        {
+            if(y2.getZawodnik_id_zawodnika() == id)
+                return -1;
+        }
+        return 1;
     }
     
     public int delQuery(Integer id) throws SQLException {
@@ -153,10 +166,18 @@ public class Zawodnik {
             if(y2.getZawodnik_id_zawodnika() == id)
                 return -1;
         }
-        String query = "delete from zawodnik where id_zawodnika = ?;";
-        PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
-        preparedStmt.setInt(1, id); //TO DO
-        preparedStmt.execute();
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE miotla SET zawodnik_id_zawodnika = ? WHERE zawodnik_id_zawodnika = ?;");
+        ps.setNull(1, Types.INTEGER);
+        ps.setInt(2,id);
+        ps.executeUpdate();
+        String query1 = "delete from kara where zawodnik_id_zawodnika = ?;";
+        PreparedStatement preparedStmt1 = Quidditch.con.prepareStatement(query1);
+        preparedStmt1.setInt(1, id); //TO DO
+        preparedStmt1.execute();
+        String query2 = "delete from zawodnik where id_zawodnika = ?;";
+        PreparedStatement preparedStmt2 = Quidditch.con.prepareStatement(query2);
+        preparedStmt2.setInt(1, id); //TO DO
+        preparedStmt2.execute();
         return 1;
     }
     

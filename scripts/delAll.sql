@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS `quidditch`.`rozgrywka`;
+DROP TABLE IF EXISTS `quidditch`.`znicz`;
+DROP TABLE IF EXISTS `quidditch`.`sedzia`;
+DROP TABLE IF EXISTS `quidditch`.`miotla`;
+DROP TABLE IF EXISTS `quidditch`.`kara`;
+DROP TABLE IF EXISTS `quidditch`.`zawodnik`;
+DROP TABLE IF EXISTS `quidditch`.`relation_9`;
+DROP TABLE IF EXISTS `quidditch`.`druzyna`;
+DROP TABLE IF EXISTS `quidditch`.`pracownik`;
+DROP TABLE IF EXISTS `quidditch`.`stadion`;

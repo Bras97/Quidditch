@@ -110,7 +110,7 @@ public class Stadion {
         ps.setInt(3,pojemnosc);
         ps.setString(4,parking);
         ps.setInt(5,id);
-        ps.execute();
+        ps.executeUpdate();
     }
     
     public int delQuery(Integer id) throws SQLException {

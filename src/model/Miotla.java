@@ -70,7 +70,7 @@ public class Miotla {
         ps.setString(5,kolor);
         ps.setInt(6,zawodnik_id_zawodnika);
         ps.setInt(7,id);
-        ps.execute();
+        ps.executeUpdate();
     }
     
     public int delQuery(Integer id) throws SQLException {

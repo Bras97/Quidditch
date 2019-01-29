@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import quidditch.Quidditch;
 
@@ -122,6 +123,10 @@ public class Druzyna {
             if(y2.getDruzyna_id_druzyny1() == id)
                 return -1;
         }
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE zawdnik SET druzyna_id_druzyny = ? WHERE druzyna_id_druzyny = ?;");
+        ps.setNull(1, Types.INTEGER);
+        ps.setInt(2,id);
+        ps.executeUpdate();
         String query1 = "delete from relation_9 where druzyna_id_druzyny = ?;";
         PreparedStatement preparedStmt1 = Quidditch.con.prepareStatement(query1);
         preparedStmt1.setInt(1, id); //TO DO

@@ -63,7 +63,7 @@ public class Pracownik {
         ps.setString(3,funkcja);
         ps.setFloat(4,zarobki);
         ps.setInt(5,id);
-        ps.execute();
+        ps.executeUpdate();
     }
     
     public int delQuery(Integer id) throws SQLException {

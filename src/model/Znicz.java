@@ -62,7 +62,7 @@ public class Znicz {
         ps.setFloat(3,predkosc);
         ps.setString(4,producent);
         ps.setInt(5,id);
-        ps.execute();
+        ps.executeUpdate();
     }
     
     public int delQuery(Integer id) throws SQLException {

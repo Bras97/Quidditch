@@ -340,7 +340,7 @@ CREATE TABLE `zawodnik` (
   `pozycja` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `data_urodzenia` date NOT NULL,
   `plec` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
-  `druzyna_id_druzyny` int(11) NOT NULL,
+  `druzyna_id_druzyny` int(11) NULL,
   PRIMARY KEY (`id_zawodnika`),
   KEY `zawodnik_druzyna_fk` (`druzyna_id_druzyny`),
   CONSTRAINT `zawodnik_druzyna_fk` FOREIGN KEY (`druzyna_id_druzyny`) REFERENCES `druzyna` (`id_druzyny`)
@@ -2517,7 +2517,7 @@ CREATE TABLE `miotla` (
   `tworzywo` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
   `masa` float NOT NULL,
   `kolor` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `zawodnik_id_zawodnika` int(11) NOT NULL,
+  `zawodnik_id_zawodnika` int(11) NULL,
   PRIMARY KEY (`id_miotly`),
   KEY `miotla_zawodnik_fk` (`zawodnik_id_zawodnika`),
   CONSTRAINT `miotla_zawodnik_fk` FOREIGN KEY (`zawodnik_id_zawodnika`) REFERENCES `zawodnik` (`id_zawodnika`)

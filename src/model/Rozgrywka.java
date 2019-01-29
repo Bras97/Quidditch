@@ -77,7 +77,7 @@ public class Rozgrywka {
         ps.setInt(6,znicz_id_znicza);
         ps.setInt(7,sedzia_id_sedzi);
         ps.setInt(8,id);
-        ps.execute();
+        ps.executeUpdate();
     }
     
     public int delQuery(Integer id) throws SQLException {
