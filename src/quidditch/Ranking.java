@@ -365,56 +365,64 @@ public class Ranking extends javax.swing.JFrame {
     }//GEN-LAST:event_rankTableMouseClicked
 
     private void jDodajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDodajButtonActionPerformed
-        Druzyna druzyna = new Druzyna();
-        ArrayList<Druzyna> listaDruzyn = new ArrayList<>();
-        druzyna.setNazwa(jTextField1.getText());
-        
-        try {
-            listaDruzyn = druzyna.getLista();
-        } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        for(Druzyna dr: listaDruzyn)
+        if (!czyNazwaPusta())
         {
-            if(dr.getNazwa().equals(jTextField1.getText()))
+            Druzyna druzyna = new Druzyna();
+            ArrayList<Druzyna> listaDruzyn = new ArrayList<>();
+            druzyna.setNazwa(jTextField1.getText());
+
+            try {
+                listaDruzyn = druzyna.getLista();
+            } catch (SQLException ex) {
+                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            for(Druzyna dr: listaDruzyn)
             {
-                JOptionPane.showMessageDialog(new Frame(), "Drużyna z taką nazwą już istnieje!", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
-                return;
+                if(dr.getNazwa().equals(jTextField1.getText()))
+                {
+                    JOptionPane.showMessageDialog(new Frame(), "Drużyna z taką nazwą już istnieje!", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+            }
+            druzyna.setNarodowosc(jTextField2.getText());
+
+            String nazwaStadionu =(String)jComboBox.getSelectedItem();
+
+            Stadion s = new Stadion();
+            ArrayList<Stadion> listaStadionow = new ArrayList<>();
+
+            try {
+                listaStadionow = s.getLista();
+
+            for(Stadion st: listaStadionow)
+            {
+                if (nazwaStadionu.equals(st.getNazwa()))
+                {
+                    druzyna.setStadion_id_stadionu(st.getId_stadionu());
+                    break;
+                }
+            }
+
+            druzyna.addQuery();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            DefaultTableModel model = (DefaultTableModel)rankTable.getModel();
+
+            //DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
+    //        model.fireTableDataChanged();
+    //        rankTable.repaint();
+
+            try {
+                wypelnijTabele();
+            } catch (SQLException ex) {
+                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        druzyna.setNarodowosc(jTextField2.getText());
-
-        String nazwaStadionu =(String)jComboBox.getSelectedItem();
-
-        Stadion s = new Stadion();
-        ArrayList<Stadion> listaStadionow = new ArrayList<>();
-
-        try {
-            listaStadionow = s.getLista();
-
-        for(Stadion st: listaStadionow)
-        {
-            if (nazwaStadionu.equals(st.getNazwa()))
-            {
-                druzyna.setStadion_id_stadionu(st.getId_stadionu());
-                break;
-            }
-        }
-
-            System.out.println("Zrobiłem przypadkiem inserta :(");
-        druzyna.addQuery();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        DefaultTableModel model = (DefaultTableModel)rankTable.getModel();
         
-        //DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
-        model.fireTableDataChanged();
-        rankTable.repaint();
-
         
     }//GEN-LAST:event_jDodajButtonActionPerformed
 
@@ -429,7 +437,7 @@ public class Ranking extends javax.swing.JFrame {
             Druzyna druzyna = new Druzyna();
             String nazwaStadionu =(String)jComboBox.getSelectedItem();
             
-            System.out.println(nazwaStadionu + idStadionu);
+            
             try {
                 if(!nazwaStadionu.equals(rankTable.getModel().getValueAt(currentRow, 2)))
                 {
@@ -446,18 +454,23 @@ public class Ranking extends javax.swing.JFrame {
                         }
                     }                    
                 }
-                System.out.println("Zaktualizowano");
-                System.out.println(rankTable.getModel().getValueAt(currentRow, 4).toString());
+                
                 druzyna.updateQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString()), jTextField1.getText(), jTextField2.getText(), idStadionu);
                 
             } catch (SQLException ex) {
                 Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
             }
  
-            DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
-            model.fireTableDataChanged();
-            rankTable.repaint();
+//            DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
+//            model.fireTableDataChanged();
+//            rankTable.repaint();
             pozycjaZaznaczona=false;
+            
+            try {
+                wypelnijTabele();
+            } catch (SQLException ex) {
+                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_jModyfikujButtonActionPerformed
 
     private void jButtonZawodnicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZawodnicyActionPerformed
@@ -547,7 +560,61 @@ public class Ranking extends javax.swing.JFrame {
         rankTable.repaint();
     }//GEN-LAST:event_jUsunButtonActionPerformed
 
-  
+    public Boolean czyNazwaPusta()
+    {
+        if(jTextField1.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(new Frame(), "Nazwa nie może być pusta!", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+        }
+        return false;  
+    }
+    
+    public void wypelnijTabele() throws SQLException
+    {
+        
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        defaultTableModel.addColumn("Nazwa");
+        defaultTableModel.addColumn("Narodowość");
+        defaultTableModel.addColumn("Stadion");
+        defaultTableModel.addColumn("Punkty");
+        defaultTableModel.addColumn("Id_druzyny");
+        defaultTableModel.addColumn("Id_stadionu");
+
+        Druzyna d = new Druzyna();
+        ArrayList<Druzyna> listaDruzyn = d.getLista();
+
+         Collections.sort(listaDruzyn, new Comparator<Druzyna>() {
+            public int compare(Druzyna o1, Druzyna o2) {
+                return o1.getNazwa().compareTo(o2.getNazwa());
+                }
+            });
+
+         
+        Stadion s = new Stadion();
+        ArrayList<Stadion> listaStadionow = s.getLista();
+                
+        for(Druzyna dr: listaDruzyn)
+        {
+            String stadion=null;
+            for(Stadion st: listaStadionow)
+            {
+                if(dr.getStadion_id_stadionu()==st.getId_stadionu())
+                    stadion=st.getNazwa().toString();
+            }
+            defaultTableModel.addRow(new Object[] {dr.getNazwa(),dr.getNarodowosc(),stadion, "0", dr.getId_druzyny().toString(), dr.getStadion_id_stadionu().toString()});
+        }
+
+        rankTable.setModel(defaultTableModel);
+        rankTable.getColumnModel().getColumn(3).setPreferredWidth(15);
+
+
+        rankTable.removeColumn(rankTable.getColumnModel().getColumn(5));
+        rankTable.removeColumn(rankTable.getColumnModel().getColumn(4));
+                
+    }
+    
+    
     public void fillData() throws SQLException {
                 
 //                URL iconURL = getClass().getResource("/src/img/znicz.png");
@@ -577,11 +644,11 @@ public class Ranking extends javax.swing.JFrame {
                 Stadion s = new Stadion();
                 ArrayList<Stadion> listaStadionow = s.getLista();
                 
-//                Collections.sort(listaStadionow, new Comparator<Stadion>() {
-//                    public int compare(Stadion o1, Stadion o2) {
-//                        return o1.getNazwa().compareTo(o2.getNazwa());
-//                        }
-//                    });
+                Collections.sort(listaStadionow, new Comparator<Stadion>() {
+                    public int compare(Stadion o1, Stadion o2) {
+                        return o1.getNazwa().compareTo(o2.getNazwa());
+                        }
+                    });
             
                 jComboBox.removeAllItems();
                 for(Stadion st: listaStadionow)
@@ -590,41 +657,15 @@ public class Ranking extends javax.swing.JFrame {
                         jComboBox.addItem(st.getNazwa());
                 }
                 //jComboBox.
-                
+                wypelnijTabele();
                 //jObraz.setIcon((Icon) Toolkit.getDefaultToolkit().getImage("src/img/znicz.jpg"));
-		DefaultTableModel defaultTableModel = new DefaultTableModel();
-		defaultTableModel.addColumn("Nazwa");
-		defaultTableModel.addColumn("Narodowość");
-		defaultTableModel.addColumn("Stadion");
-		defaultTableModel.addColumn("Punkty");
-		defaultTableModel.addColumn("Id_druzyny");
-		defaultTableModel.addColumn("Id_stadionu");
-                
-                Druzyna d = new Druzyna();
-                ArrayList<Druzyna> listaDruzyn = d.getLista();
-                
-                for(Druzyna dr: listaDruzyn)
-                {
-                    String stadion=null;
-                    for(Stadion st: listaStadionow)
-                    {
-                        if(dr.getStadion_id_stadionu()==st.getId_stadionu())
-                            stadion=st.getNazwa().toString();
-                    }
-                    defaultTableModel.addRow(new Object[] {dr.getNazwa(),dr.getNarodowosc(),stadion, "0", dr.getId_druzyny().toString(), dr.getStadion_id_stadionu().toString()});
-                }
-                
-                rankTable.setModel(defaultTableModel);
-                rankTable.getColumnModel().getColumn(3).setPreferredWidth(15);
- 
-                
-                rankTable.removeColumn(rankTable.getColumnModel().getColumn(5));
-                rankTable.removeColumn(rankTable.getColumnModel().getColumn(4));
-                
+		
             }  
     /**
      * @param args the command line arguments
      */
+    
+           
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -664,6 +705,8 @@ public class Ranking extends javax.swing.JFrame {
             }
 
         });
+ 
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
