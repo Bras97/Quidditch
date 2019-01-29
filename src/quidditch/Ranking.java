@@ -414,7 +414,16 @@ public class Ranking extends javax.swing.JFrame {
     }//GEN-LAST:event_jDodajButtonActionPerformed
 
     private void jModyfikujButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModyfikujButtonActionPerformed
-        // TODO add your handling code here:
+//        int currentRow = rankTable.getSelectedRow();
+//        int ids  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 5).toString());
+//        int idd  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString());
+//        System.out.println("Id stadionu: " + ids + ", id druzyny: " + idd);
+//        Druzyna m = new Druzyna();
+//        try {
+//            m.updateQuery(idd, "A1", "C", ids);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_jModyfikujButtonActionPerformed
 
     private void jButtonZawodnicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZawodnicyActionPerformed
@@ -509,6 +518,9 @@ public class Ranking extends javax.swing.JFrame {
                         jComboBox.addItem(st.getNazwa());
                 }
                 //jComboBox.
+                
+//                Druzyna m = new Druzyna();
+//                m.updateQuery(1, "A", "B", 2);
                 
                 //jObraz.setIcon((Icon) Toolkit.getDefaultToolkit().getImage("src/img/znicz.jpg"));
 		DefaultTableModel defaultTableModel = new DefaultTableModel();

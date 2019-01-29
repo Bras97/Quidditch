@@ -53,11 +53,12 @@ public class Kara {
     }
     
     public void updateQuery(Integer id, String typ_kary, Integer okres_wykluczenia, Integer zawodnik_id_zawodnika) throws SQLException{
-        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE kara SET typ_kary = ?, okres_wykluczenia = ?, zawodnik_id_zawodnika = ? WHERE id = ?");
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE kara SET typ_kary = ?, okres_wykluczenia = ?, zawodnik_id_zawodnika = ? WHERE id_kary = ?;");
         ps.setString(1,typ_kary);
         ps.setInt(2,okres_wykluczenia);
         ps.setInt(3,zawodnik_id_zawodnika);
         ps.setInt(4,id);
+        ps.execute();
     }
     
     public int delQuery(Integer id) throws SQLException {

@@ -127,7 +127,7 @@ public class Zawodnik {
     }
     
     public void updateQuery(Integer id, String imie, String nazwisko, String pozycja, Date data_urodzenia, String plec, Integer druzyna_id_druzyny) throws SQLException{
-        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE zawodnik SET imie = ?, nazwisko = ?, pozycja = ?, data_urodzenia = ?, plec = ?, druzyna_id_druzyny = ? WHERE id = ?");
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE zawodnik SET imie = ?, nazwisko = ?, pozycja = ?, data_urodzenia = ?, plec = ?, druzyna_id_druzyny = ? WHERE id_zawodnika = ?;");
         ps.setString(1,imie);
         ps.setString(2,nazwisko);
         ps.setString(3,pozycja);
@@ -135,6 +135,7 @@ public class Zawodnik {
         ps.setString(5,plec);
         ps.setInt(6,druzyna_id_druzyny);
         ps.setInt(7,id);
+        ps.execute();
     }
     
     public int delQuery(Integer id) throws SQLException {

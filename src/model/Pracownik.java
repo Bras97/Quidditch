@@ -57,12 +57,13 @@ public class Pracownik {
     }
     
     public void updateQuery(Integer id, String imie, String nazwisko, String funkcja, Float zarobki) throws SQLException{
-        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE pracownik SET imie = ?, nazwisko = ?, funkcja = ?, zarobki = ? WHERE id = ?");
+        PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE pracownik SET imie = ?, nazwisko = ?, funkcja = ?, zarobki = ? WHERE id_pracownika = ?;");
         ps.setString(1,imie);
         ps.setString(2,nazwisko);
         ps.setString(3,funkcja);
         ps.setFloat(4,zarobki);
         ps.setInt(5,id);
+        ps.execute();
     }
     
     public int delQuery(Integer id) throws SQLException {
