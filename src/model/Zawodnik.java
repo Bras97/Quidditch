@@ -119,8 +119,8 @@ public class Zawodnik {
                 + imie + "\",\""
                 + nazwisko + "\",\""
                 + pozycja + "\","
-                + data_urodzenia + ","
-                + plec + ","
+                + data_urodzenia + ",\""
+                + plec + "\","
                 + druzyna_id_druzyny
                 +");";
         Statement stmt= Quidditch.con.createStatement(); 
