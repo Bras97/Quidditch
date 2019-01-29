@@ -112,16 +112,16 @@ public class Druzyna {
         for(Zawodnik y1: lista1)
         {
             if(y1.getDruzyna_id_druzyny() == id)
-                return -1;
+                return -2;
         }
         Rozgrywka x2 = new Rozgrywka();
         ArrayList<Rozgrywka> lista2 = x2.getLista();
         for(Rozgrywka y2: lista2)
         {
             if(y2.getDruzyna_id_druzyny() == id)
-                return -1;
+                return -3;
             if(y2.getDruzyna_id_druzyny1() == id)
-                return -1;
+                return -3;
         }
         PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE zawdnik SET druzyna_id_druzyny = ? WHERE druzyna_id_druzyny = ?;");
         ps.setNull(1, Types.INTEGER);
