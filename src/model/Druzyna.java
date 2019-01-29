@@ -83,6 +83,16 @@ public class Druzyna {
         return listaDruzyna;
     }
 
+    public static ArrayList<Druzyna> wyszukaj(String szukane) throws SQLException {
+        listaDruzyna = new ArrayList<>();
+        Statement stmt= Quidditch.con.createStatement();  
+        ResultSet rs=stmt.executeQuery("select * from druzyna where nazwa LIKE '%" + szukane + "%';");  
+        
+        while(rs.next())
+            listaDruzyna.add(new Druzyna(rs.getInt("id_druzyny"),rs.getString("nazwa"),rs.getString("narodowosc"),rs.getInt("stadion_id_stadionu")));
+        return listaDruzyna;
+    }
+    
     public void addQuery() throws SQLException {
         System.out.println(nazwa);
         System.out.println(narodowosc);
