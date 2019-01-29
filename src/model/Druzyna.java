@@ -111,16 +111,16 @@ public class Druzyna {
         for(Zawodnik y1: lista1)
         {
             if(y1.getDruzyna_id_druzyny() == id)
-                return -1;
+                return -2;
         }
         Rozgrywka x2 = new Rozgrywka();
         ArrayList<Rozgrywka> lista2 = x2.getLista();
         for(Rozgrywka y2: lista2)
         {
             if(y2.getDruzyna_id_druzyny() == id)
-                return -1;
+                return -3;
             if(y2.getDruzyna_id_druzyny1() == id)
-                return -1;
+                return -3;
         }
         String query1 = "delete from relation_9 where druzyna_id_druzyny = ?;";
         PreparedStatement preparedStmt1 = Quidditch.con.prepareStatement(query1);

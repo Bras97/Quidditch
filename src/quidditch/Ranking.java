@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -156,6 +157,11 @@ public class Ranking extends javax.swing.JFrame {
         });
 
         jUsunButton.setLabel("Usuń");
+        jUsunButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUsunButtonActionPerformed(evt);
+            }
+        });
 
         jButtonZawodnicy.setText("Zawodnicy");
         jButtonZawodnicy.setMargin(new java.awt.Insets(2, 2, 2, 2));
@@ -329,7 +335,7 @@ public class Ranking extends javax.swing.JFrame {
         pozycjaZaznaczona=true;
         
         
-        idStadionu  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString());
+        idStadionu  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 5).toString());
         
         
         jComboBox.removeAllItems();
@@ -369,15 +375,12 @@ public class Ranking extends javax.swing.JFrame {
             Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        Boolean utworzDruzyne=true;
         for(Druzyna dr: listaDruzyn)
         {
             if(dr.getNazwa().equals(jTextField1.getText()))
             {
                 JOptionPane.showMessageDialog(new Frame(), "Drużyna z taką nazwą już istnieje!", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                 return;
-                //utworzDruzyne=false;
-                //break;
             }
         }
         druzyna.setNarodowosc(jTextField2.getText());
@@ -399,14 +402,16 @@ public class Ranking extends javax.swing.JFrame {
             }
         }
 
-
+            System.out.println("Zrobiłem przypadkiem inserta :(");
         druzyna.addQuery();
 
         } catch (SQLException ex) {
             Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
+        DefaultTableModel model = (DefaultTableModel)rankTable.getModel();
+        
+        //DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
         model.fireTableDataChanged();
         rankTable.repaint();
 
@@ -414,16 +419,45 @@ public class Ranking extends javax.swing.JFrame {
     }//GEN-LAST:event_jDodajButtonActionPerformed
 
     private void jModyfikujButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModyfikujButtonActionPerformed
-//        int currentRow = rankTable.getSelectedRow();
-//        int ids  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 5).toString());
-//        int idd  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString());
-//        System.out.println("Id stadionu: " + ids + ", id druzyny: " + idd);
-//        Druzyna m = new Druzyna();
-//        try {
-//            m.updateQuery(idd, "A1", "C", ids);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+            
+            if(!pozycjaZaznaczona)
+            {
+                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać drużynę z tabeli, którą chcesz zaktualizować.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            int currentRow = rankTable.getSelectedRow();    
+            Druzyna druzyna = new Druzyna();
+            String nazwaStadionu =(String)jComboBox.getSelectedItem();
+            
+            System.out.println(nazwaStadionu + idStadionu);
+            try {
+                if(!nazwaStadionu.equals(rankTable.getModel().getValueAt(currentRow, 2)))
+                {
+                    Stadion s = new Stadion();
+                    ArrayList<Stadion> listaStadionow = new ArrayList<>();
+                    listaStadionow = s.getLista();
+
+                    for(Stadion st: listaStadionow)
+                    {
+                        if (nazwaStadionu.equals(st.getNazwa()))
+                        {
+                            idStadionu=st.getId_stadionu();
+                            break;
+                        }
+                    }                    
+                }
+                System.out.println("Zaktualizowano");
+                System.out.println(rankTable.getModel().getValueAt(currentRow, 4).toString());
+                druzyna.updateQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString()), jTextField1.getText(), jTextField2.getText(), idStadionu);
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ 
+            DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
+            model.fireTableDataChanged();
+            rankTable.repaint();
+            pozycjaZaznaczona=false;
     }//GEN-LAST:event_jModyfikujButtonActionPerformed
 
     private void jButtonZawodnicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZawodnicyActionPerformed
@@ -476,6 +510,43 @@ public class Ranking extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonPracownicyActionPerformed
 
+    private void jUsunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsunButtonActionPerformed
+        
+        if(!pozycjaZaznaczona)
+        {
+            JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać drużynę z tabeli, którą chcesz usunąć.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        int currentRow = rankTable.getSelectedRow();
+        if (JOptionPane.showConfirmDialog(null, 
+            "Czy na pewno chcesz nieodwracalnie usunąć zaznaczoną drużynę?", "Usunąć?", 
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+            Druzyna d = new Druzyna();
+            int czyUsunieto=-1;
+            try {
+                czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 5).toString()));
+            } catch (SQLException ex) {
+                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            switch(czyUsunieto)
+            {
+                case -3: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć drużyny, ponieważ istnieje rozgrywka w której brała udział.", "Usuń najpierw powiązane rozgrywki", JOptionPane.INFORMATION_MESSAGE);
+                         break;
+                case -2: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć drużyny, ponieważ istnieją zawodnicy powiązani z tą drużyną.", "Usuń najpierw powiązanych zawodników", JOptionPane.INFORMATION_MESSAGE);
+                         break;
+                case 1:  JOptionPane.showMessageDialog(new Frame(), "Pomyślnie usunięto drużynę.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
+                         break;
+                default: JOptionPane.showMessageDialog(new Frame(), "Coś poszło nie tak.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                         break;
+            }
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
+        model.fireTableDataChanged();
+        rankTable.repaint();
+    }//GEN-LAST:event_jUsunButtonActionPerformed
+
   
     public void fillData() throws SQLException {
                 
@@ -483,6 +554,7 @@ public class Ranking extends javax.swing.JFrame {
 //                // iconURL is null when not found
 //                ImageIcon icon = new ImageIcon(iconURL);
 //                jObraz.setIconImage(icon.getImage());
+
 
                 //Wysrodkuj
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -505,11 +577,11 @@ public class Ranking extends javax.swing.JFrame {
                 Stadion s = new Stadion();
                 ArrayList<Stadion> listaStadionow = s.getLista();
                 
-                Collections.sort(listaStadionow, new Comparator<Stadion>() {
-                    public int compare(Stadion o1, Stadion o2) {
-                        return o1.getNazwa().compareTo(o2.getNazwa());
-                        }
-                    });
+//                Collections.sort(listaStadionow, new Comparator<Stadion>() {
+//                    public int compare(Stadion o1, Stadion o2) {
+//                        return o1.getNazwa().compareTo(o2.getNazwa());
+//                        }
+//                    });
             
                 jComboBox.removeAllItems();
                 for(Stadion st: listaStadionow)
@@ -518,9 +590,6 @@ public class Ranking extends javax.swing.JFrame {
                         jComboBox.addItem(st.getNazwa());
                 }
                 //jComboBox.
-                
-//                Druzyna m = new Druzyna();
-//                m.updateQuery(1, "A", "B", 2);
                 
                 //jObraz.setIcon((Icon) Toolkit.getDefaultToolkit().getImage("src/img/znicz.jpg"));
 		DefaultTableModel defaultTableModel = new DefaultTableModel();
@@ -547,18 +616,8 @@ public class Ranking extends javax.swing.JFrame {
                 
                 rankTable.setModel(defaultTableModel);
                 rankTable.getColumnModel().getColumn(3).setPreferredWidth(15);
+ 
                 
-                rankTable.setAutoCreateRowSorter(true);
-                
-                TableRowSorter<TableModel> sorter = new TableRowSorter<>(rankTable.getModel());
-                rankTable.setRowSorter(sorter);
-                ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>();
-
-                
-                sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
-                sorter.setSortKeys(sortKeys);
-                sorter.sort();
-
                 rankTable.removeColumn(rankTable.getColumnModel().getColumn(5));
                 rankTable.removeColumn(rankTable.getColumnModel().getColumn(4));
                 

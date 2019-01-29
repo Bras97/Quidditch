@@ -399,6 +399,9 @@
       <Properties>
         <Property name="label" type="java.lang.String" value="Usu&#x144;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jUsunButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.Box$Filler" name="filler2">
       <Properties>
