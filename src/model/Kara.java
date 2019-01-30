@@ -33,6 +33,15 @@ public class Kara {
         this.zawodnik_id_zawodnika = (zawodnik_id_zawodnika == null) ? null : zawodnik_id_zawodnika;
     }
 
+    public static ArrayList<Kara> wyszukaj(String szukane) throws SQLException {
+        listaKara = new ArrayList<>();
+        Statement stmt= Quidditch.con.createStatement();  
+        ResultSet rs=stmt.executeQuery("select * from kara where typ_kary LIKE '%" + szukane + "%';");  
+        while(rs.next())
+            listaKara.add(new Kara(rs.getInt("id_kary"),rs.getString("typ_kary"),rs.getInt("okres_wykluczenia"),rs.getInt("zawodnik_id_zawodnika")));
+        return listaKara;
+    }
+    
     public static ArrayList<Kara> getLista() throws SQLException {
         listaKara = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  

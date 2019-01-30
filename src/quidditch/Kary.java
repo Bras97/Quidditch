@@ -7,6 +7,7 @@ package quidditch;
 
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -19,28 +20,24 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import model.*;
 
 /**
  *
  * @author Elater
  */
-public class Miotly extends javax.swing.JFrame {
+public class Kary extends javax.swing.JFrame {
     
     Boolean pozycjaZaznaczona=false;
     Integer idZespolu;
-    Integer idZawodnika;
+    Integer idStadionu;
     Boolean wyszukiwanie=false;
+    Integer idZawodnika;
     /**
      * Creates new form Ranking
      */
-    public Miotly() throws SQLException {
+    public Kary() throws SQLException {
         initComponents();
         fillData();
         setVisible(true);
@@ -69,29 +66,22 @@ public class Miotly extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jScrollPane1 = new javax.swing.JScrollPane();
         rankTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 40), new java.awt.Dimension(0, 40), new java.awt.Dimension(32767, 40));
+        jDodajButton = new java.awt.Button();
+        jUsunButton = new java.awt.Button();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30), new java.awt.Dimension(32767, 30));
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         jObraz = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jWyszukajButton1 = new javax.swing.JToggleButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jPanel1 = new javax.swing.JPanel();
-        jUsunButton = new java.awt.Button();
         jModyfikujButton = new java.awt.Button();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jComboBox = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jDodajButton = new java.awt.Button();
-        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jRanking = new javax.swing.JMenu();
         jZawodnicy = new javax.swing.JMenu();
@@ -144,11 +134,23 @@ public class Miotly extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(rankTable);
 
-        jWyszukajButton1.setText("Wyszukaj");
-        jWyszukajButton1.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        jWyszukajButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Typ kary:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Okres wykluczenia:");
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jWyszukajButton1ActionPerformed(evt);
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jDodajButton.setActionCommand("Dodaj");
+        jDodajButton.setLabel("Dodaj");
+        jDodajButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDodajButtonActionPerformed(evt);
             }
         });
 
@@ -156,6 +158,14 @@ public class Miotly extends javax.swing.JFrame {
         jUsunButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jUsunButtonActionPerformed(evt);
+            }
+        });
+
+        jWyszukajButton1.setText("Wyszukaj");
+        jWyszukajButton1.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        jWyszukajButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jWyszukajButton1ActionPerformed(evt);
             }
         });
 
@@ -169,108 +179,9 @@ public class Miotly extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Tworzywo:");
+        jLabel3.setText("Zawodnik:");
 
         jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Model:");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Prędkosć:");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Czyja:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Masa:");
-
-        jDodajButton.setActionCommand("Dodaj");
-        jDodajButton.setLabel("Dodaj");
-        jDodajButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jDodajButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Kolor:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jDodajButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(190, 190, 190))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jModyfikujButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jUsunButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField6))))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jDodajButton, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(jModyfikujButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jUsunButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
 
         jRanking.setText("Ranking");
         jRanking.setBorderPainted(true);
@@ -358,30 +269,48 @@ public class Miotly extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 263, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jObraz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jObraz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jDodajButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(196, 196, 196)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jWyszukajButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jSeparator1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jWyszukajButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(4, 4, 4)))
-                        .addContainerGap())))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jModyfikujButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jUsunButton, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGap(16, 16, 16))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,21 +319,36 @@ public class Miotly extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                            .addComponent(jTextField1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(200, 200, 200)
-                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jUsunButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDodajButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jModyfikujButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jObraz, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jWyszukajButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -419,20 +363,10 @@ public class Miotly extends javax.swing.JFrame {
         int currentRow = rankTable.getSelectedRow();
         jTextField1.setText(rankTable.getValueAt(currentRow, 0).toString());
         jTextField2.setText(rankTable.getValueAt(currentRow, 1).toString());
-        //jTextField3.setText(rankTable.getValueAt(currentRow, 2).toString());
-        jTextField4.setText(rankTable.getValueAt(currentRow, 2).toString());
-        jTextField5.setText(rankTable.getValueAt(currentRow, 3).toString());
-        jTextField6.setText(rankTable.getValueAt(currentRow, 4).toString());
-        //idZespolu= dr.getId_druzyny();
-        pozycjaZaznaczona=true;
+        pozycjaZaznaczona=true;     
         
-        
-        idZawodnika  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 7).toString());
-        
-        
-        jComboBox.removeAllItems();
-        
-        String stadion = rankTable.getValueAt(currentRow, 5).toString();
+        jComboBox.removeAllItems();        
+        String stadion = rankTable.getValueAt(currentRow, 2).toString();
         jComboBox.addItem(stadion); 
         
         Zawodnik s = new Zawodnik();
@@ -458,37 +392,27 @@ public class Miotly extends javax.swing.JFrame {
     private void jDodajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDodajButtonActionPerformed
         if (!czyNazwaPusta())
         {
-            Miotla miotla = new Miotla();
-            ArrayList<Miotla> listaMiotel = new ArrayList<>();
-            miotla.setModel(jTextField1.getText());
-            miotla.setPredkosc(Float.parseFloat(jTextField2.getText()));
-            miotla.setTworzywo(jTextField4.getText());
+            Kara kara = new Kara();
             
-            miotla.setMasa(Float.parseFloat(jTextField5.getText()));
-            miotla.setKolor(jTextField6.getText());
-
-            try {
-                listaMiotel = miotla.getLista();
-            } catch (SQLException ex) {
-                Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            kara.setTyp_kary(jTextField1.getText());
+            kara.setOkres_wykluczenia(Integer.parseInt(jTextField2.getText()));
             
             String nazwaZawodnika =(String)jComboBox.getSelectedItem();
             String[] parts = nazwaZawodnika.split(",");
-            miotla.setZawodnik_id_zawodnika(Integer.parseInt(parts[1]));
-     
+            kara.setZawodnik_id_zawodnika(Integer.parseInt(parts[1]));
+
             try {
-            miotla.addQuery();
+
+            kara.addQuery();
 
             } catch (SQLException ex) {
-                Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-
+            
             try {
                 wypelnijTabele();
             } catch (SQLException ex) {
-                Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -496,30 +420,31 @@ public class Miotly extends javax.swing.JFrame {
     }//GEN-LAST:event_jDodajButtonActionPerformed
 
     private void jModyfikujButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModyfikujButtonActionPerformed
-            
+        if (!czyNazwaPusta())
+        {    
             if(!pozycjaZaznaczona)
             {
-                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać miotłę z tabeli, którą chcesz zaktualizować.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać kara z tabeli, który chcesz zaktualizować.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             int currentRow = rankTable.getSelectedRow();    
-            Miotla miotla = new Miotla();
+            Kara kara = new Kara();
+            
             String nazwaZawodnika =(String)jComboBox.getSelectedItem();
             String[] parts;
             
-            if(!nazwaZawodnika.equals(rankTable.getModel().getValueAt(currentRow, 5).toString()))
+            if(!nazwaZawodnika.equals(rankTable.getModel().getValueAt(currentRow, 2).toString()))
             {
                 parts = nazwaZawodnika.split(",");
                 idZawodnika=Integer.parseInt(parts[1]);
             }
             
-            
-            try {                
-                miotla.updateQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString()), jTextField1.getText(), 
-                        Float.parseFloat(jTextField2.getText()), jTextField4.getText(), Float.parseFloat(jTextField5.getText()), jTextField6.getText(), idZawodnika);
+            try {
+                
+                kara.updateQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 3).toString()), jTextField1.getText(), Integer.parseInt(jTextField2.getText()), idZawodnika );
                 
             } catch (SQLException ex) {
-                Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
             }
  
 //            DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
@@ -530,8 +455,9 @@ public class Miotly extends javax.swing.JFrame {
             try {
                 wypelnijTabele();
             } catch (SQLException ex) {
-                Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
     }//GEN-LAST:event_jModyfikujButtonActionPerformed
 
     private void jUsunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsunButtonActionPerformed
@@ -539,22 +465,22 @@ public class Miotly extends javax.swing.JFrame {
         try {
             if(!pozycjaZaznaczona)
             {
-                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać miotłę z tabeli, którą chcesz usunąć.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać karę z tabeli, którą chcesz usunąć.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             int currentRow = rankTable.getSelectedRow();
             if (JOptionPane.showConfirmDialog(null,
-                    "Czy na pewno chcesz nieodwracalnie usunąć zaznaczoną miotłę?", "Usunąć?",
+                    "Czy na pewno chcesz nieodwracalnie usunąć zaznaczona karę?", "Usunąć?",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                Miotla d = new Miotla();
+                Kara d = new Kara();
                 int czyUsunieto=-1;
                 
-                    czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString()));
+                    czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 3).toString()));
                     
                 switch(czyUsunieto)
                 {
-                    case 1:  JOptionPane.showMessageDialog(new Frame(), "Pomyślnie usunięto miotłę.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
+                    case 1:  JOptionPane.showMessageDialog(new Frame(), "Pomyślnie usunięto karę.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
                     break;
                     default: JOptionPane.showMessageDialog(new Frame(), "Coś poszło nie tak.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                     break;
@@ -566,18 +492,18 @@ public class Miotly extends javax.swing.JFrame {
 //        rankTable.repaint();
             wypelnijTabele();
         } catch (SQLException ex) {
-            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jUsunButtonActionPerformed
 
     private void jWyszukajButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWyszukajButton1ActionPerformed
         try {
-            Miotla d = new Miotla();
+            Kara d = new Kara();
             wyszukiwanie=true;
             wypelnijTabele();
             
         } catch (SQLException ex) {
-            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jWyszukajButton1ActionPerformed
 
@@ -586,7 +512,7 @@ public class Miotly extends javax.swing.JFrame {
             Zawodnicy t = new Zawodnicy();
             this.dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jZawodnicyMouseClicked
 
@@ -594,7 +520,7 @@ public class Miotly extends javax.swing.JFrame {
         try {
             Stadiony t = new Stadiony();
         } catch (SQLException ex) {
-            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
       
@@ -604,7 +530,7 @@ public class Miotly extends javax.swing.JFrame {
         try {
             Miotly t = new Miotly();
         } catch (SQLException ex) {
-            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_jMiotlyMouseClicked
@@ -613,18 +539,17 @@ public class Miotly extends javax.swing.JFrame {
         try {
             Pracownicy t = new Pracownicy();
         } catch (SQLException ex) {
-            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_jPracownicyMouseClicked
 
     private void jSedziowieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSedziowieMouseClicked
-        Sedzia t = new Sedzia();
-        this.dispose();
+        
     }//GEN-LAST:event_jSedziowieMouseClicked
 
     private void jZniczeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZniczeMouseClicked
-        Znicz t = new Znicz();
+        Kara t = new Kara();
         this.dispose();
     }//GEN-LAST:event_jZniczeMouseClicked
 
@@ -641,6 +566,10 @@ public class Miotly extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jZaplanowaneMouseClicked
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
     public Boolean czyNazwaPusta()
     {
         if(jTextField1.getText().equals(""))
@@ -655,33 +584,29 @@ public class Miotly extends javax.swing.JFrame {
     {
         
         DefaultTableModel defaultTableModel = new DefaultTableModel();
-        defaultTableModel.addColumn("Model");
-        defaultTableModel.addColumn("Predkość");
-        defaultTableModel.addColumn("Tworzywo");
-        defaultTableModel.addColumn("Masa");
-        defaultTableModel.addColumn("Kolor");
-        defaultTableModel.addColumn("Właściciel");
-        defaultTableModel.addColumn("Id_miotly");
+        defaultTableModel.addColumn("Typ_kary");
+        defaultTableModel.addColumn("Okres_wykluczenia");
+        defaultTableModel.addColumn("Zawodnik");
+        defaultTableModel.addColumn("Id_kary");
         defaultTableModel.addColumn("Id_zawodnika");
 
-        Miotla d = new Miotla();
-        ArrayList<Miotla> listaMiotel = new ArrayList<>();
+        Kara d = new Kara();
+        ArrayList<Kara> listaKar = new ArrayList<>();
         if(!wyszukiwanie)
-            listaMiotel = d.getLista();
+            listaKar = d.getLista();
         else
-            listaMiotel = d.wyszukaj(jTextField3.getText());
+            listaKar = d.wyszukaj(jTextField3.getText());
 
-         Collections.sort(listaMiotel, new Comparator<Miotla>() {
-            public int compare(Miotla o1, Miotla o2) {
-                return o1.getModel().compareTo(o2.getModel());
+         Collections.sort(listaKar, new Comparator<Kara>() {
+            public int compare(Kara o1, Kara o2) {
+                return o1.getTyp_kary().compareTo(o2.getTyp_kary());
                 }
             });
 
-         
-        Zawodnik s = new Zawodnik();
+         Zawodnik s = new Zawodnik();
         ArrayList<Zawodnik> listaZawodnikow = s.getLista();
                 
-        for(Miotla dr: listaMiotel)
+        for(Kara dr: listaKar)
         {
             String nazwisko=null;
             String ID=null;
@@ -694,15 +619,17 @@ public class Miotly extends javax.swing.JFrame {
                     break;
                 }
             }
-            defaultTableModel.addRow(new Object[] {dr.getModel(),dr.getPredkosc().toString(),dr.getTworzywo(), dr.getMasa().toString(), dr.getKolor(), nazwisko, dr.getId_miotly(), ID});
+            defaultTableModel.addRow(new Object[] {dr.getTyp_kary(),dr.getOkres_wykluczenia().toString(),nazwisko,
+                dr.getId_kary(),ID});
+                    
         }
 
         rankTable.setModel(defaultTableModel);
-        rankTable.getColumnModel().getColumn(3).setPreferredWidth(15);
+        rankTable.getColumnModel().getColumn(1).setPreferredWidth(15);
 
 
-        rankTable.removeColumn(rankTable.getColumnModel().getColumn(7));
-        rankTable.removeColumn(rankTable.getColumnModel().getColumn(6));
+        rankTable.removeColumn(rankTable.getColumnModel().getColumn(4));
+        rankTable.removeColumn(rankTable.getColumnModel().getColumn(3));
                 
     }
     
@@ -715,18 +642,16 @@ public class Miotly extends javax.swing.JFrame {
         
                 jTextField1.setColumns(10);
                 jTextField2.setColumns(10);
-                //jTextField4.setColumns(10);
                 try{
-//                    ImageIcon img = new ImageIcon(getClass().getResource("/img/pracownicy.png"));
-//                    Image image = img.getImage(); // transform it 
-//                    Image newimg = image.getScaledInstance(271, 190,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-//                    img = new ImageIcon(newimg);
-//                    jObraz.setIcon(img);
-                    jObraz.setIcon(new ImageIcon(getClass().getResource("/img/miotla.png")));
+                    ImageIcon img = new ImageIcon(getClass().getResource("/img/kary.png"));
+                    Image image = img.getImage(); // transform it 
+                    Image newimg = image.getScaledInstance(271, 190,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+                    img = new ImageIcon(newimg);
+                    jObraz.setIcon(img);
+                    //jObraz.setIcon(new ImageIcon(getClass().getResource("/img/kara.png")));
                 }catch(Exception e){ System.out.println("Nie znaleziono zdjęcia\n");} 
                 setResizable(false);
                 
-                //uzupelnij comboBox
                 Zawodnik s = new Zawodnik();
                 ArrayList<Zawodnik> listaZawodnikow = s.getLista();
                 
@@ -742,9 +667,9 @@ public class Miotly extends javax.swing.JFrame {
                 {
                     jComboBox.addItem(st.getNazwisko() + "," + st.getId_zawodnika() );
                 }
-                //jComboBox.
+                
                 wypelnijTabele();
-                //jObraz.setIcon((Icon) Toolkit.getDefaultToolkit().getImage("src/img/znicz.jpg"));
+                //jObraz.setIcon((Icon) Toolkit.getDefaultToolkit().getImage("src/img/kara.jpg"));
 		
             }  
     /**
@@ -767,14 +692,20 @@ public class Miotly extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Miotly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Miotly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Miotly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Miotly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>        
+        //</editor-fold>        
+        //</editor-fold>        
+        //</editor-fold>        
+        //</editor-fold>        
+        //</editor-fold>        
         //</editor-fold>        
         //</editor-fold>        
         /* Create and display the form */
@@ -783,11 +714,11 @@ public class Miotly extends javax.swing.JFrame {
             public void run() {
                 
                 try {
-                    new Miotly().setVisible(true);
+                    new Kary().setVisible(true);
                     
                     //Ranking.rankTable.add("J","K","L","O");
                 } catch (SQLException ex) {
-                    Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -807,9 +738,6 @@ public class Miotly extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
@@ -817,7 +745,6 @@ public class Miotly extends javax.swing.JFrame {
     private javax.swing.JMenu jMiotly;
     private java.awt.Button jModyfikujButton;
     private javax.swing.JLabel jObraz;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu jPracownicy;
     private javax.swing.JMenu jRanking;
     private javax.swing.JMenu jRozegrane;
@@ -828,9 +755,6 @@ public class Miotly extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private java.awt.Button jUsunButton;
     private javax.swing.JToggleButton jWyszukajButton1;
     private javax.swing.JMenu jZaplanowane;
