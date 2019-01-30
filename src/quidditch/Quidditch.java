@@ -32,5 +32,20 @@ public class Quidditch {
         Ranking ranking = new Ranking();
         }catch(Exception e){ System.out.println(e);} 
     }
+    public static String conv(String s){
+        s = s.replace("styczeń", "january");
+        s = s.replace("luty", "february");
+        s = s.replace("marzec", "march");
+        s = s.replace("kwiecień", "april");
+        s = s.replace("maj", "may");
+        s = s.replace("czerwiec", "june");
+        s = s.replace("lipiec", "july");
+        s = s.replace("sierpień", "august");
+        s = s.replace("wrzesień", "september");
+        s = s.replace("październik", "october");
+        s = s.replace("listopad", "november");
+        s = s.replace("grudzień", "december");
+        return s;
+    }
     
 }

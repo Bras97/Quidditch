@@ -552,8 +552,9 @@ public class Rozegrane extends javax.swing.JFrame {
             
             DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
             java.sql.Date sqlDate = null;
+            String tmpS = Quidditch.conv(jTextField4.getText());
             try {
-                java.util.Date date = (java.util.Date) format.parse(jTextField4.getText());
+                java.util.Date date = (java.util.Date) format.parse(tmpS);
                 sqlDate = new java.sql.Date(date.getTime());
             } catch (ParseException ex) {
                 Logger.getLogger(Rozegrane.class.getName()).log(Level.SEVERE, null, ex);
@@ -638,8 +639,9 @@ public class Rozegrane extends javax.swing.JFrame {
             
             DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
             java.sql.Date sqlDate = null;
+            String tmpS = Quidditch.conv(jTextField4.getText());
             try {
-                java.util.Date date = (java.util.Date) format.parse(jTextField4.getText());
+                java.util.Date date = (java.util.Date) format.parse(tmpS);
                 sqlDate = new java.sql.Date(date.getTime());
             } catch (ParseException ex) {
                 Logger.getLogger(Rozegrane.class.getName()).log(Level.SEVERE, null, ex);
