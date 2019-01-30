@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +23,7 @@ public class Druzyna {
     private String nazwa;
     private String narodowosc;
     private Integer stadion_id_stadionu;
+    private Integer punkty;
     private static ArrayList<Druzyna> listaDruzyna; 
     
     public Druzyna() {
@@ -67,29 +69,53 @@ public class Druzyna {
         Druzyna.listaDruzyna = listaDruzyna;
     }
     
-    public Druzyna(Integer id_druzyny, String nazwa, String narodowosc, Integer stadion_id_stadionu) {
+    public Druzyna(Integer id_druzyny, String nazwa, String narodowosc, Integer stadion_id_stadionu, Integer punkty) {
         this.id_druzyny = (id_druzyny == null) ? null : id_druzyny;
         this.nazwa = (nazwa == null) ? null : nazwa;
         this.narodowosc = (narodowosc == null) ? null : narodowosc;
         this.stadion_id_stadionu = (stadion_id_stadionu == null) ? null : stadion_id_stadionu;
+        this.punkty = (punkty == null) ? 0 : punkty;
     }
 
     public static ArrayList<Druzyna> getLista() throws SQLException {
         listaDruzyna = new ArrayList<>();
-        Statement stmt= Quidditch.con.createStatement();  
+        String sql = null;
+        Statement stmt= Quidditch.con.createStatement();
         ResultSet rs=stmt.executeQuery("select * from druzyna;");  
-        while(rs.next())
-            listaDruzyna.add(new Druzyna(rs.getInt("id_druzyny"),rs.getString("nazwa"),rs.getString("narodowosc"),rs.getInt("stadion_id_stadionu")));
+        while(rs.next()){
+                listaDruzyna.add(new Druzyna(rs.getInt("id_druzyny"),rs.getString("nazwa"),rs.getString("narodowosc"),rs.getInt("stadion_id_stadionu"),calculatePoints(rs.getInt("id_druzyny"))));
+        }
         return listaDruzyna;
     }
 
+    public static Integer calculatePoints(Integer id) throws SQLException{
+        try {
+            CallableStatement stmt1;
+            String sql = "call procedura(?, ?);";
+            stmt1=Quidditch.con.prepareCall(sql);
+            stmt1.setInt(1, id);  
+            stmt1.registerOutParameter(2, java.sql.Types.INTEGER);
+            stmt1.executeQuery();
+            return(stmt1.getInt(2));
+	} catch (SQLException e) {
+            return 0;
+	}
+    }
+    
     public static ArrayList<Druzyna> wyszukaj(String szukane) throws SQLException {
         listaDruzyna = new ArrayList<>();
-        Statement stmt= Quidditch.con.createStatement();  
+        String sql = null;
+        Statement stmt= Quidditch.con.createStatement();
+        CallableStatement stmt1;     
         ResultSet rs=stmt.executeQuery("select * from druzyna where nazwa LIKE '%" + szukane + "%';");  
-        
         while(rs.next())
-            listaDruzyna.add(new Druzyna(rs.getInt("id_druzyny"),rs.getString("nazwa"),rs.getString("narodowosc"),rs.getInt("stadion_id_stadionu")));
+            sql = "{call procedura(?, ?);}";
+            stmt1=Quidditch.con.prepareCall(sql);
+            stmt1.setInt(1, rs.getInt("id_druzyny"));  
+            stmt1.registerOutParameter(2, Types.INTEGER);
+            ResultSet rs1 = stmt1.executeQuery();
+            if(rs1.next())
+                listaDruzyna.add(new Druzyna(rs.getInt("id_druzyny"),rs.getString("nazwa"),rs.getString("narodowosc"),rs.getInt("stadion_id_stadionu"),stmt1.getInt(2)));
         return listaDruzyna;
     }
     
