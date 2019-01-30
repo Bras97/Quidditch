@@ -107,9 +107,9 @@ public class Stadion {
         String query = "insert into stadion ( nazwa, adres, pojemnosc, parking) values (\""
                 + nazwa + "\",\""
                 + adres + "\","
-                + pojemnosc + "\","
+                + pojemnosc + ",\""
                 + parking
-                +");";
+                +"\");";
         Statement stmt= Quidditch.con.createStatement(); 
         stmt.executeUpdate(query);
     }

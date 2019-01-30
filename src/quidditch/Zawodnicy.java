@@ -483,15 +483,15 @@ public class Zawodnicy extends javax.swing.JFrame {
             zawodnik.setPlec((String)jComboBox2.getSelectedItem());
             zawodnik.setDataString(jTextField4.getText());
             
-            DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
-            Date date=null;
+            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
+            java.util.Date date=null;
             try {
-                date = (Date) format.parse(jTextField4.getText());
+                date = (java.util.Date) format.parse(jTextField4.getText());
             } catch (ParseException ex) {
                 Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            zawodnik.setData_urodzenia(date);
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            zawodnik.setData_urodzenia(sqlDate);
             
             String nazwaDruzyny=(String)jComboBox3.getSelectedItem();
             ArrayList<Druzyna> listaDruzyn = new ArrayList<>();

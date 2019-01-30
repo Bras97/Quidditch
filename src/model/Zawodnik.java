@@ -139,8 +139,8 @@ public class Zawodnik {
         String query = "insert into zawodnik ( imie, nazwisko, pozycja, data_urodzenia, plec, druzyna_id_druzyny) values (\""
                 + imie + "\",\""
                 + nazwisko + "\",\""
-                + pozycja + "\","
-                + data_urodzenia + ",\""
+                + pozycja + "\",\""
+                + data_urodzenia + "\",\""
                 + plec + "\","
                 + druzyna_id_druzyny
                 +");";
