@@ -546,9 +546,18 @@ public class Zawodnicy extends javax.swing.JFrame {
             int ID=Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString());
             int ID_DR=Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 7).toString());
             
+            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
+            java.util.Date date=null;
+            try {
+                date = (java.util.Date) format.parse(jTextField4.getText());
+            } catch (ParseException ex) {
+                Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            
         try { 
             zawodnik.updateQuery(ID, jTextField1.getText(), jTextField2.getText(),
-                    jComboBox.getSelectedItem().toString(),jTextField4.getText(),jComboBox2.getSelectedItem().toString(),ID_DR);
+                    jComboBox.getSelectedItem().toString(),sqlDate,jComboBox2.getSelectedItem().toString(),ID_DR);
         } catch (SQLException ex) {
             Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
         }
