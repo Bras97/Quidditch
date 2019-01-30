@@ -27,7 +27,6 @@ public class Zawodnik {
     private String dataString;
     private String plec;
     private Integer druzyna_id_druzyny;
-    private String  dataString;
     private static ArrayList<Zawodnik> listaZawodnik; 
     
     public Zawodnik() {
@@ -120,9 +119,9 @@ public class Zawodnik {
     public static ArrayList<Zawodnik> getLista() throws SQLException {
         listaZawodnik = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS function from zawodnik;");  
+        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS fun from zawodnik;");  
         while(rs.next())
-            listaZawodnik.add(new Zawodnik(rs.getInt("id_zawodnika"),rs.getString("imie"),rs.getString("nazwisko"),rs.getString("pozycja"),rs.getDate("data_urodzenia"), rs.getString("plec"),rs.getInt("druzyna_id_druzyny"),rs.getString("function")));
+            listaZawodnik.add(new Zawodnik(rs.getInt("id_zawodnika"),rs.getString("imie"),rs.getString("nazwisko"),rs.getString("pozycja"),rs.getDate("data_urodzenia"), rs.getString("plec"),rs.getInt("druzyna_id_druzyny"),rs.getString("fun")));
         return listaZawodnik;
     }
     
