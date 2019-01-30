@@ -560,7 +560,15 @@ public class Zawodnicy extends javax.swing.JFrame {
             
             DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
             java.sql.Date sqlDate = null;
+            //
             String tmpS = Quidditch.conv(jTextField4.getText());
+            System.out.println("Zaczynam");
+            if(jTextField4.getText().matches("[0-9]{4}\\,\\s(styczeń|luty|marzec|kwiecień|maj|czerwiec|lipiec|sierpień|wrzesień|październik|listopad|grudzień)\\,\\s[0-9]{2}"))
+                System.out.println("True");
+            else
+                System.out.println("False");
+            System.out.println("koniec");
+            //
             try {
                 java.util.Date date = (java.util.Date) format.parse(tmpS);
                 sqlDate = new java.sql.Date(date.getTime());
