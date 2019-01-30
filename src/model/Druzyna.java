@@ -56,6 +56,10 @@ public class Druzyna {
     public Integer getStadion_id_stadionu() {
         return stadion_id_stadionu;
     }
+    
+    public Integer getPunkty() {
+        return punkty;
+    }
 
     public void setStadion_id_stadionu(Integer stadion_id_stadionu) {
         this.stadion_id_stadionu = stadion_id_stadionu;

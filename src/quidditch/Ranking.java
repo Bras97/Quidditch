@@ -779,7 +779,7 @@ public class Ranking extends javax.swing.JFrame {
                 if(dr.getStadion_id_stadionu()==st.getId_stadionu())
                     stadion=st.getNazwa().toString();
             }
-            defaultTableModel.addRow(new Object[] {dr.getNazwa(),dr.getNarodowosc(),stadion, "0", dr.getId_druzyny().toString(), dr.getStadion_id_stadionu().toString()});
+            defaultTableModel.addRow(new Object[] {dr.getNazwa(),dr.getNarodowosc(),stadion, dr.getPunkty(), dr.getId_druzyny().toString(), dr.getStadion_id_stadionu().toString()});
         }
 
         rankTable.setModel(defaultTableModel);
