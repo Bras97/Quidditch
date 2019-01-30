@@ -22,6 +22,7 @@ public class Rozgrywka {
     private String punkty_druzyna1;
     private String punkty_druzyna2;
     private Date data;
+    private String dataString;
     private Integer druzyna_id_druzyny;
     private Integer druzyna_id_druzyny1;
     private Integer znicz_id_znicza;
@@ -31,11 +32,12 @@ public class Rozgrywka {
     public Rozgrywka() {
     }
     
-    public Rozgrywka(Integer id_rozgrywki, String punkty_druzyna1, String punkty_druzyna2, Date data, Integer druzyna_id_druzyny, Integer druzyna_id_druzyny1, Integer znicz_id_znicza, Integer sedzia_id_sedzi) {
+    public Rozgrywka(Integer id_rozgrywki, String punkty_druzyna1, String punkty_druzyna2, Date data, Integer druzyna_id_druzyny, Integer druzyna_id_druzyny1, Integer znicz_id_znicza, Integer sedzia_id_sedzi, String dataString) {
         this.id_rozgrywki = (id_rozgrywki == null) ? null : id_rozgrywki;
         this.punkty_druzyna1 = (punkty_druzyna1 == null) ? null : punkty_druzyna1;
         this.punkty_druzyna2 = (punkty_druzyna2 == null) ? null : punkty_druzyna2;
         this.data = (data == null) ? null : data;
+        this.dataString = (data == null) ? null : dataString;
         this.druzyna_id_druzyny = (druzyna_id_druzyny == null) ? null : druzyna_id_druzyny;
         this.druzyna_id_druzyny1 = (druzyna_id_druzyny1 == null) ? null : druzyna_id_druzyny1;
         this.znicz_id_znicza = (znicz_id_znicza == null) ? null : znicz_id_znicza;
@@ -45,9 +47,9 @@ public class Rozgrywka {
     public static ArrayList<Rozgrywka> getLista() throws SQLException {
         listaRozgrywka = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select * from rozgrywka;");  
+        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS fun from rozgrywka;");  
         while(rs.next())
-            listaRozgrywka.add(new Rozgrywka(rs.getInt("id_rozgrywki"),rs.getString("punkty_druzyna1"),rs.getString("punkty_druzyna2"),rs.getDate("data"),rs.getInt("druzyna_id_druzyny1"),rs.getInt("druzyna_id_druzyny2"),rs.getInt("znicz_id_znicza"),rs.getInt("sedzia_id_sedzi")));
+            listaRozgrywka.add(new Rozgrywka(rs.getInt("id_rozgrywki"),rs.getString("punkty_druzyna1"),rs.getString("punkty_druzyna2"),rs.getDate("data"),rs.getInt("druzyna_id_druzyny1"),rs.getInt("druzyna_id_druzyny2"),rs.getInt("znicz_id_znicza"),rs.getInt("sedzia_id_sedzi"),rs.getString("fun")));
         return listaRozgrywka;
     }
 

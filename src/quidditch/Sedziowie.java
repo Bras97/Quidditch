@@ -11,9 +11,13 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -369,8 +373,17 @@ public class Sedziowie extends javax.swing.JFrame {
             ArrayList<Sedzia> listaSedziow = new ArrayList<>();
             sedzia.setImie(jTextField1.getText());
             sedzia.setNazwisko(jTextField2.getText());
-            sedzia.setData_urodzenia(jTextField4.getText());
-
+           
+            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd");
+            java.sql.Date sqlDate = null;
+            try {
+                java.util.Date date = (java.util.Date) format.parse(jTextField4.getText());
+                sqlDate = new java.sql.Date(date.getTime());
+            } catch (ParseException ex) {
+                Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            sedzia.setData_urodzenia(sqlDate);
+            
             try {
 
             sedzia.addQuery();
@@ -398,9 +411,19 @@ public class Sedziowie extends javax.swing.JFrame {
             }
             int currentRow = rankTable.getSelectedRow();    
             Sedzia sedzia = new Sedzia();
+            
+            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd");
+            java.sql.Date sqlDate = null;
+            try {
+                java.util.Date date = (java.util.Date) format.parse(jTextField4.getText());
+                sqlDate = new java.sql.Date(date.getTime());
+            } catch (ParseException ex) {
+                Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             try {
                 
-                sedzia.updateQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 3).toString()), jTextField1.getText(), jTextField2.getText(), jTextField4.getText());
+                sedzia.updateQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 3).toString()), jTextField1.getText(), jTextField2.getText(), sqlDate);
                 
             } catch (SQLException ex) {
                 Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);

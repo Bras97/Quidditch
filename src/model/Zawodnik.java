@@ -120,8 +120,9 @@ public class Zawodnik {
         listaZawodnik = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
         ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS fun from zawodnik;");  
-        while(rs.next())
+        while(rs.next()){
             listaZawodnik.add(new Zawodnik(rs.getInt("id_zawodnika"),rs.getString("imie"),rs.getString("nazwisko"),rs.getString("pozycja"),rs.getDate("data_urodzenia"), rs.getString("plec"),rs.getInt("druzyna_id_druzyny"),rs.getString("fun")));
+        }
         return listaZawodnik;
     }
     

@@ -22,33 +22,35 @@ public class Sedzia {
     private String imie;
     private String nazwisko;
     private Date data_urodzenia;
+    private String dataString;
     private static ArrayList<Sedzia> listaSedzia; 
     
     public Sedzia() {
     }
     
-    public Sedzia(Integer id_sedzi, String imie, String nazwisko, Date data_urodzenia) {
+    public Sedzia(Integer id_sedzi, String imie, String nazwisko, Date data_urodzenia, String dataString) {
         this.id_sedzi = (id_sedzi == null) ? null : id_sedzi;
         this.imie = (imie == null) ? null : imie;
         this.nazwisko = (nazwisko == null) ? null : nazwisko;
         this.data_urodzenia = (data_urodzenia == null) ? null : data_urodzenia;
+        this.dataString = (data_urodzenia == null) ? null : dataString;
     }
 
     public static ArrayList<Sedzia> wyszukaj(String szukane) throws SQLException {
         listaSedzia = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select * from sedzia where nazwisko LIKE '%" + szukane + "%';");  
+        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS fun from sedzia where nazwisko LIKE '%" + szukane + "%';");  
         while(rs.next())
-            listaSedzia.add(new Sedzia(rs.getInt("id_sedzi"),rs.getString("imie"),rs.getString("nazwisko"),rs.getDate("data_urodzenia")));
+            listaSedzia.add(new Sedzia(rs.getInt("id_sedzi"),rs.getString("imie"),rs.getString("nazwisko"),rs.getDate("data_urodzenia"),rs.getString("fun")));
         return listaSedzia;
     }
 
     public static ArrayList<Sedzia> getLista() throws SQLException {
         listaSedzia = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select * from sedzia;");  
+        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS fun from sedzia;");  
         while(rs.next())
-            listaSedzia.add(new Sedzia(rs.getInt("id_sedzi"),rs.getString("imie"),rs.getString("nazwisko"),rs.getDate("data_urodzenia")));
+            listaSedzia.add(new Sedzia(rs.getInt("id_sedzi"),rs.getString("imie"),rs.getString("nazwisko"),rs.getDate("data_urodzenia"),rs.getString("fun")));
         return listaSedzia;
     }
 
