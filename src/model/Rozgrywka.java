@@ -56,8 +56,8 @@ public class Rozgrywka {
     public void addQuery() throws SQLException {
         String query = "insert into rozgrywka ( punkty_druzyna1, punkty_druzyna2, data, druzyna_id_druzyny1, druzyna_id_druzyny2, znicz_id_znicza, sedzia_id_sedzi) values ("
                 + punkty_druzyna1 + ","
-                + punkty_druzyna2 + ","
-                + data + ","
+                + punkty_druzyna2 + ",\""
+                + data + "\","
                 + druzyna_id_druzyny + ","
                 + druzyna_id_druzyny1 + ","
                 + znicz_id_znicza + ","
