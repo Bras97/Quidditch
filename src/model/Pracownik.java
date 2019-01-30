@@ -36,6 +36,15 @@ public class Pracownik {
         this.zarobki = (zarobki == null) ? null : zarobki;
     }
 
+    public static ArrayList<Pracownik> wyszukaj(String szukane) throws SQLException {
+        listaPracownik = new ArrayList<>();
+        Statement stmt= Quidditch.con.createStatement();  
+        ResultSet rs=stmt.executeQuery("select * from pracownik where nazwisko LIKE '%" + szukane + "%';");  
+        while(rs.next())
+            listaPracownik.add(new Pracownik(rs.getInt("id_pracownika"),rs.getString("imie"),rs.getString("nazwisko"),rs.getString("funkcja"),rs.getFloat("zarobki")));
+        return listaPracownik;
+    }
+
     public static ArrayList<Pracownik> getLista() throws SQLException {
         listaPracownik = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
