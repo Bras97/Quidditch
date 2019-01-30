@@ -546,18 +546,18 @@ public class Zawodnicy extends javax.swing.JFrame {
             int ID=Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString());
             int ID_DR=Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 7).toString());
             
-            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
-            java.util.Date date=null;
+             DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
+            java.sql.Date sqlDate = null;
             try {
-                date = (java.util.Date) format.parse(jTextField4.getText());
+                java.util.Date date = (java.util.Date) format.parse(jTextField4.getText());
+                sqlDate = new java.sql.Date(date.getTime());
             } catch (ParseException ex) {
                 Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
             }
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-            
+
+            System.out.println(sqlDate.toString());
         try { 
-            zawodnik.updateQuery(ID, jTextField1.getText(), jTextField2.getText(),
-                    jComboBox.getSelectedItem().toString(),sqlDate,jComboBox2.getSelectedItem().toString(),ID_DR);
+            zawodnik.updateQuery(ID, jTextField1.getText(), jTextField2.getText(), jComboBox.getSelectedItem().toString(),sqlDate,jComboBox2.getSelectedItem().toString(),ID_DR);
         } catch (SQLException ex) {
             Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
         }
