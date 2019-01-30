@@ -60,6 +60,24 @@ public class Rozgrywka {
             listaRozgrywka.add(new Rozgrywka(rs.getInt("id_rozgrywki"),rs.getString("punkty_druzyna1"),rs.getString("punkty_druzyna2"),rs.getDate("data"),rs.getInt("druzyna_id_druzyny1"),rs.getInt("druzyna_id_druzyny2"),rs.getInt("znicz_id_znicza"),rs.getInt("sedzia_id_sedzi"),rs.getString("fun")));
         return listaRozgrywka;
     }
+    
+    public static ArrayList<Rozgrywka> getListaToToday() throws SQLException {
+        listaRozgrywka = new ArrayList<>();
+        Statement stmt= Quidditch.con.createStatement();  
+        ResultSet rs=stmt.executeQuery("select *, dataString(data, \",\") AS fun from rozgrywka where data >= now();");  
+        while(rs.next())
+            listaRozgrywka.add(new Rozgrywka(rs.getInt("id_rozgrywki"),rs.getString("punkty_druzyna1"),rs.getString("punkty_druzyna2"),rs.getDate("data"),rs.getInt("druzyna_id_druzyny1"),rs.getInt("druzyna_id_druzyny2"),rs.getInt("znicz_id_znicza"),rs.getInt("sedzia_id_sedzi"),rs.getString("fun")));
+        return listaRozgrywka;
+    }
+    
+    public static ArrayList<Rozgrywka> getListaFromToday() throws SQLException {
+        listaRozgrywka = new ArrayList<>();
+        Statement stmt= Quidditch.con.createStatement();  
+        ResultSet rs=stmt.executeQuery("select *, dataString(data, \",\") AS fun from rozgrywka where data <= now();");  
+        while(rs.next())
+            listaRozgrywka.add(new Rozgrywka(rs.getInt("id_rozgrywki"),rs.getString("punkty_druzyna1"),rs.getString("punkty_druzyna2"),rs.getDate("data"),rs.getInt("druzyna_id_druzyny1"),rs.getInt("druzyna_id_druzyny2"),rs.getInt("znicz_id_znicza"),rs.getInt("sedzia_id_sedzi"),rs.getString("fun")));
+        return listaRozgrywka;
+    }
 
     public void addQuery() throws SQLException {
         String query = "insert into rozgrywka ( punkty_druzyna1, punkty_druzyna2, data, druzyna_id_druzyny1, druzyna_id_druzyny2, znicz_id_znicza, sedzia_id_sedzi) values ("
