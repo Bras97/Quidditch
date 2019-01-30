@@ -32,16 +32,16 @@ import model.*;
  *
  * @author Elater
  */
-public class Zawodnicy extends javax.swing.JFrame {
+public class Stadiony extends javax.swing.JFrame {
     
     Boolean pozycjaZaznaczona=false;
     Integer idDruzyny;
-    Integer idZawodnika;
+    Integer idStadiona;
     Boolean wyszukiwanie=false;
     /**
      * Creates new form Ranking
      */
-    public Zawodnicy() throws SQLException {
+    public Stadiony() throws SQLException {
         initComponents();
         fillData();
         setVisible(true);
@@ -80,20 +80,16 @@ public class Zawodnicy extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox = new javax.swing.JComboBox<>();
         jUsunButton = new java.awt.Button();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jComboBox = new javax.swing.JComboBox<>();
         jModyfikujButton = new java.awt.Button();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jDodajButton = new java.awt.Button();
-        jTextField4 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jRanking = new javax.swing.JMenu();
         jZawodnicy = new javax.swing.JMenu();
@@ -155,12 +151,9 @@ public class Zawodnicy extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Pozycja:");
+        jLabel3.setText("Pojemność:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox3.setMaximumSize(new java.awt.Dimension(56, 20));
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jUsunButton.setLabel("Usuń");
         jUsunButton.addActionListener(new java.awt.event.ActionListener() {
@@ -170,9 +163,7 @@ public class Zawodnicy extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Imię:");
-
-        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel1.setText("Nazwa:");
 
         jModyfikujButton.setLabel("Modyfikuj");
         jModyfikujButton.setName(""); // NOI18N
@@ -183,14 +174,8 @@ public class Zawodnicy extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("D. urodzenia:");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Drużyna:");
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Płeć:");
+        jLabel5.setText("Parking:");
 
         jDodajButton.setActionCommand("Dodaj");
         jDodajButton.setLabel("Dodaj");
@@ -201,7 +186,7 @@ public class Zawodnicy extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Nazwisko:");
+        jLabel2.setText("Adres:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -224,28 +209,19 @@ public class Zawodnicy extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(jModyfikujButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                                 .addComponent(jUsunButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField2)
-                                .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .addComponent(jTextField2)))
+                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(36, 36, 36))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(43, 43, 43)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField4)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -263,23 +239,13 @@ public class Zawodnicy extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jDodajButton, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
@@ -314,14 +280,14 @@ public class Zawodnicy extends javax.swing.JFrame {
         jMenuBar1.add(jRanking);
 
         jZawodnicy.setText("Zawodnicy");
+        jZawodnicy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jZawodnicyMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jZawodnicy);
 
         jStadiony.setText("Stadiony");
-        jStadiony.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jStadionyMouseClicked(evt);
-            }
-        });
         jMenuBar1.add(jStadiony);
 
         jMiotly.setText("Miotly");
@@ -385,9 +351,12 @@ public class Zawodnicy extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -404,11 +373,8 @@ public class Zawodnicy extends javax.swing.JFrame {
                             .addComponent(jWyszukajButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
@@ -421,147 +387,87 @@ public class Zawodnicy extends javax.swing.JFrame {
         jTextField1.setText(rankTable.getValueAt(currentRow, 0).toString());
         jTextField2.setText(rankTable.getValueAt(currentRow, 1).toString());
         //jTextField3.setText(rankTable.getValueAt(currentRow, 2).toString());
-        jTextField4.setText(rankTable.getValueAt(currentRow, 4).toString());
+        jTextField4.setText(rankTable.getValueAt(currentRow, 2).toString());
         //idDruzyny= dr.getId_druzyny();
         pozycjaZaznaczona=true;
-        
-        
-        idZawodnika  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString());
-        
+           
         
         jComboBox.removeAllItems();
-        jComboBox2.removeAllItems();
-        jComboBox3.removeAllItems();
         
-        jComboBox.addItem(rankTable.getValueAt(currentRow, 2).toString()); 
-        jComboBox.addItem("obronca");
-        jComboBox.addItem("palkarz");
-        jComboBox.addItem("scigajacy");
-        jComboBox.addItem("szukajacy");
-        
-        jComboBox2.addItem(rankTable.getValueAt(currentRow, 3).toString()); 
-        jComboBox2.addItem("K"); 
-        jComboBox2.addItem("M");         
-        
-        jComboBox3.addItem(rankTable.getValueAt(currentRow, 5).toString()); 
-        
-        try {
-            
-            ArrayList<Druzyna> listaDruzyn = Druzyna.getLista();
-            Collections.sort(listaDruzyn, new Comparator<Druzyna>() {
-                public int compare(Druzyna o1, Druzyna o2) {
-                    return o1.getNazwa().compareTo(o2.getNazwa());
-                    }
-                });
-            for(Druzyna st: listaDruzyn)
-            {
-                jComboBox.addItem(st.getNazwa());
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        jComboBox.addItem(rankTable.getValueAt(currentRow, 3).toString()); 
+        jComboBox.addItem("T"); 
+        jComboBox.addItem("N");   
       
     }//GEN-LAST:event_rankTableMouseClicked
 
     private void jDodajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDodajButtonActionPerformed
         if (!czyNazwaPusta())
         {
-            Zawodnik zawodnik = new Zawodnik();
-            ArrayList<Zawodnik> listaZawodnikow = new ArrayList<>();
-            zawodnik.setImie(jTextField1.getText());
-
+            ArrayList<Stadion> listaStadionow= new ArrayList<>();
             try {
-                listaZawodnikow = zawodnik.getLista();
+                listaStadionow = Stadion.getLista();
             } catch (SQLException ex) {
-                Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Stadiony.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            zawodnik.setNazwisko(jTextField2.getText());
-
-            zawodnik.setPozycja((String)jComboBox.getSelectedItem());
-            zawodnik.setPlec((String)jComboBox2.getSelectedItem());
-            zawodnik.setDataString(jTextField4.getText());
-            
-            DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
-            Date date=null;
-            try {
-                date = (Date) format.parse(jTextField4.getText());
-            } catch (ParseException ex) {
-                Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            zawodnik.setData_urodzenia(date);
-            
-            String nazwaDruzyny=(String)jComboBox3.getSelectedItem();
-            ArrayList<Druzyna> listaDruzyn = new ArrayList<>();
-            try {
-                listaDruzyn = Druzyna.getLista();
-            } catch (SQLException ex) {
-                Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            for(Druzyna d: listaDruzyn)
+             for(Stadion dr: listaStadionow)
             {
-                if(d.getNazwa().equals(nazwaDruzyny))
+                if(dr.getNazwa().equals(jTextField1.getText()))
                 {
-                    zawodnik.setDruzyna_id_druzyny(d.getId_druzyny());
+                    JOptionPane.showMessageDialog(new Frame(), "Stadion z taką nazwą już istnieje!", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                    return;
                 }
             }
+            Stadion stadion = new Stadion();
+            stadion.setNazwa(jTextField1.getText());
 
-           
+
+            stadion.setAdres(jTextField2.getText());
+
+            int pojemnosc =Integer.parseInt(jTextField4.getText());
+            stadion.setPojemnosc(pojemnosc);
+            stadion.setParking((String)jComboBox.getSelectedItem());
+                                             
             try {
-
-            zawodnik.addQuery();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            stadion.addQuery();
 
             DefaultTableModel model = (DefaultTableModel)rankTable.getModel();
 
-            //DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
-    //        model.fireTableDataChanged();
-    //        rankTable.repaint();
-
-            try {
-                wypelnijTabele();
+            wypelnijTabele();
+            
             } catch (SQLException ex) {
-                Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Stadiony.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
         
     }//GEN-LAST:event_jDodajButtonActionPerformed
 
+    
     private void jModyfikujButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModyfikujButtonActionPerformed
             
             if(!pozycjaZaznaczona)
             {
-                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać zawodnika z tabeli, którego chcesz zaktualizować.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać stadion z tabeli, którego chcesz zaktualizować.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             int currentRow = rankTable.getSelectedRow();    
-            Zawodnik zawodnik = new Zawodnik();
+            Stadion stadion = new Stadion();
             
-            int ID=Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString());
-            int ID_DR=Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 7).toString());
+            int ID=Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString());
             
         try { 
-            zawodnik.updateQuery(ID, jTextField1.getText(), jTextField2.getText(),
-                    jComboBox.getSelectedItem().toString(),jTextField4.getText(),jComboBox2.getSelectedItem().toString(),ID_DR);
+            stadion.updateQuery(ID, jTextField1.getText(), jTextField2.getText(),Integer.parseInt(jTextField4.getText()),
+                    jComboBox.getSelectedItem().toString());
         } catch (SQLException ex) {
-            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Stadiony.class.getName()).log(Level.SEVERE, null, ex);
         }
  
-//            DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
-//            model.fireTableDataChanged();
-//            rankTable.repaint();
             pozycjaZaznaczona=false;
             
             try {
                 wypelnijTabele();
             } catch (SQLException ex) {
-                Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Stadiony.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jModyfikujButtonActionPerformed
 
@@ -578,19 +484,17 @@ public class Zawodnicy extends javax.swing.JFrame {
                     "Czy na pewno chcesz nieodwracalnie usunąć zaznaczoną drużynę?", "Usunąć?",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                Zawodnik d = new Zawodnik();
-                int czyUsunieto=-1;
+                Stadion d = new Stadion();
+                int czyUsunieto=0;
                 
-                    czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString()));
+                    czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString()));
                     
                 switch(czyUsunieto)
                 {
-                    case -3: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć drużyny, ponieważ istnieje rozgrywka w której brała udział.", "Usuń najpierw powiązane rozgrywki", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                    case -2: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć drużyny, ponieważ istnieją zawodnicy powiązani z tą drużyną.", "Usuń najpierw powiązanych zawodników", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                    case 1:  JOptionPane.showMessageDialog(new Frame(), "Pomyślnie usunięto drużynę.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
-                    break;
+                    case -1: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć stadionu, ponieważ istnieje drużyna do której należy ten stadion", "Usuń najpierw powiązaną drużynę", JOptionPane.INFORMATION_MESSAGE);
+                                break;   
+                    case 1: JOptionPane.showMessageDialog(new Frame(), "Pomyślnie usunięto stadion", "SUKCES", JOptionPane.INFORMATION_MESSAGE);
+                                break;                  
                     default: JOptionPane.showMessageDialog(new Frame(), "Coś poszło nie tak.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 }
@@ -601,18 +505,18 @@ public class Zawodnicy extends javax.swing.JFrame {
 //        rankTable.repaint();
             wypelnijTabele();
         } catch (SQLException ex) {
-            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Stadiony.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jUsunButtonActionPerformed
 
     private void jWyszukajButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWyszukajButton1ActionPerformed
         try {
-            Zawodnik d = new Zawodnik();
+            Stadion d = new Stadion();
             wyszukiwanie=true;
             wypelnijTabele();
             
         } catch (SQLException ex) {
-            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Stadiony.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jWyszukajButton1ActionPerformed
 
@@ -620,19 +524,19 @@ public class Zawodnicy extends javax.swing.JFrame {
         try {
             Ranking t = new Ranking();
         } catch (SQLException ex) {
-            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Stadiony.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_jRankingMouseClicked
 
-    private void jStadionyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStadionyMouseClicked
+    private void jZawodnicyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZawodnicyMouseClicked
         try {
-            Stadiony stadiony = new Stadiony();
-            this.dispose();        // TODO add your handling code here:
+            Zawodnicy zawodnicy = new Zawodnicy();
         } catch (SQLException ex) {
-            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Stadiony.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jStadionyMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jZawodnicyMouseClicked
 
     public Boolean czyNazwaPusta()
     {
@@ -648,54 +552,36 @@ public class Zawodnicy extends javax.swing.JFrame {
     {
         
         DefaultTableModel defaultTableModel = new DefaultTableModel();
-        defaultTableModel.addColumn("Imię");
-        defaultTableModel.addColumn("Nazwisko");
-        defaultTableModel.addColumn("Pozycja");
-        defaultTableModel.addColumn("Płeć");
-        defaultTableModel.addColumn("D. urodzenia");
-        defaultTableModel.addColumn("Drużyna");
-        defaultTableModel.addColumn("Id_zawodnika");
-        defaultTableModel.addColumn("Id_druzyny");
-        defaultTableModel.addColumn("Date");
+        defaultTableModel.addColumn("Nazwa");
+        defaultTableModel.addColumn("Adres");
+        defaultTableModel.addColumn("Pojemność");
+        defaultTableModel.addColumn("Parking");
+        defaultTableModel.addColumn("Id_stadionu");
 
-        Zawodnik d = new Zawodnik();
-        ArrayList<Zawodnik> listaZawodnikow = new ArrayList<>();
+        Stadion d = new Stadion();
+        ArrayList<Stadion> listaStadionow = new ArrayList<>();
         if(!wyszukiwanie)
-            listaZawodnikow = d.getLista();
+            listaStadionow = d.getLista();
         else
-            listaZawodnikow = d.wyszukaj(jTextField2.getText());
+            listaStadionow = d.wyszukaj(jTextField3.getText());
 
-         Collections.sort(listaZawodnikow, new Comparator<Zawodnik>() {
-            public int compare(Zawodnik o1, Zawodnik o2) {
-                return o1.getNazwisko().compareTo(o2.getNazwisko());
+         Collections.sort(listaStadionow, new Comparator<Stadion>() {
+            public int compare(Stadion o1, Stadion o2) {
+                return o1.getNazwa().compareTo(o2.getNazwa());
                 }
             });
-
          
-        Druzyna s = new Druzyna();
-        ArrayList<Druzyna> listaDruzyn = s.getLista();
-                
-        for(Zawodnik za: listaZawodnikow)
-        {
-            Druzyna druzyna=null;
-            for(Druzyna st: listaDruzyn)
-            {
-                if(za.getDruzyna_id_druzyny()==st.getId_druzyny())
-                {
-                    druzyna=st;
-                    break;
-                }
-            }
-            defaultTableModel.addRow(new Object[] {za.getImie(),za.getNazwisko(),za.getPozycja(), za.getPlec(), za.getDataString(), druzyna.getNazwa(),za.getId_zawodnika(),druzyna.getId_druzyny(), za.getData_urodzenia().toString()});
+         
+        for(Stadion dr: listaStadionow)
+        {            
+            defaultTableModel.addRow(new Object[] {dr.getNazwa(),dr.getAdres(),dr.getPojemnosc(),dr.getParking(), dr.getId_stadionu()});
         }
 
         rankTable.setModel(defaultTableModel);
         rankTable.getColumnModel().getColumn(3).setPreferredWidth(15);
 
 
-        rankTable.removeColumn(rankTable.getColumnModel().getColumn(8));
-        rankTable.removeColumn(rankTable.getColumnModel().getColumn(7));
-        rankTable.removeColumn(rankTable.getColumnModel().getColumn(6));
+        rankTable.removeColumn(rankTable.getColumnModel().getColumn(4));
                 
     }
     
@@ -715,44 +601,19 @@ public class Zawodnicy extends javax.swing.JFrame {
 //                    Image newimg = image.getScaledInstance(271, 190,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 //                    img = new ImageIcon(newimg);
 //                    jObraz.setIcon(img);
-                    jObraz.setIcon(new ImageIcon(getClass().getResource("/img/zawodnik.png")));
+                    jObraz.setIcon(new ImageIcon(getClass().getResource("/img/stadion.png")));
                 }catch(Exception e){ System.out.println("Nie znaleziono zdjęcia\n");} 
                 setResizable(false);
                             
                 
                 
                 jComboBox.removeAllItems();
-                jComboBox2.removeAllItems(); 
-                jComboBox3.removeAllItems(); 
+                jComboBox.setPrototypeDisplayValue("10");
                 //jComboBox3.setPreferredSize(dim);
-                jComboBox3.setPrototypeDisplayValue("10");
 
-                jComboBox.addItem("obronca");
-                jComboBox.addItem("palkarz");
-                jComboBox.addItem("scigajacy");
-                jComboBox.addItem("szukajacy");
+                jComboBox.addItem("TAK");
+                jComboBox.addItem("NIE");      
 
-                jComboBox2.addItem("K"); 
-                jComboBox2.addItem("M");         
-
-
-                try {
-
-                    ArrayList<Druzyna> listaDruzyn = Druzyna.getLista();
-                    Collections.sort(listaDruzyn, new Comparator<Druzyna>() {
-                        public int compare(Druzyna o1, Druzyna o2) {
-                            return o1.getNazwa().compareTo(o2.getNazwa());
-                            }
-                        });
-                    for(Druzyna st: listaDruzyn)
-                    {
-                        jComboBox3.addItem(st.getNazwa());
-                        
-                    }
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 wypelnijTabele();
 		
             }  
@@ -776,14 +637,16 @@ public class Zawodnicy extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Zawodnicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Stadiony.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Zawodnicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Stadiony.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Zawodnicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Stadiony.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Zawodnicy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Stadiony.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>        
+        //</editor-fold>        
         //</editor-fold>        
         //</editor-fold>        
         /* Create and display the form */
@@ -792,11 +655,11 @@ public class Zawodnicy extends javax.swing.JFrame {
             public void run() {
                 
                 try {
-                    new Zawodnicy().setVisible(true);
+                    new Stadiony().setVisible(true);
                     
                     //Ranking.rankTable.add("J","K","L","O");
                 } catch (SQLException ex) {
-                    Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Stadiony.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -811,15 +674,11 @@ public class Zawodnicy extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler3;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JComboBox<String> jComboBox;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private java.awt.Button jDodajButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;

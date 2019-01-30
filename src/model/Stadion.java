@@ -81,7 +81,18 @@ public class Stadion {
         this.pojemnosc = (pojemnosc == null) ? null : pojemnosc;
         this.parking = (parking == null) ? null : parking;
     }
-
+    
+    public static ArrayList<Stadion> wyszukaj(String szukane) throws SQLException {
+        listaStadion = new ArrayList<>();
+        Statement stmt= Quidditch.con.createStatement();  
+        ResultSet rs=stmt.executeQuery("select * from stadion where nazwa LIKE '%" + szukane + "%';");
+        while(rs.next())
+            listaStadion.add(new Stadion(rs.getInt("id_stadionu"),rs.getString("nazwa"),rs.getString("adres"),rs.getInt("pojemnosc"),rs.getString("parking")));
+                     
+        return listaStadion;
+    }
+    
+    
     public static ArrayList<Stadion> getLista() throws SQLException {
         listaStadion = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
@@ -96,7 +107,7 @@ public class Stadion {
         String query = "insert into stadion ( nazwa, adres, pojemnosc, parking) values (\""
                 + nazwa + "\",\""
                 + adres + "\","
-                + pojemnosc + ","
+                + pojemnosc + "\","
                 + parking
                 +");";
         Statement stmt= Quidditch.con.createStatement(); 

@@ -31,16 +31,16 @@ import model.*;
  *
  * @author Elater
  */
-public class Ranking extends javax.swing.JFrame {
+public class Miotly extends javax.swing.JFrame {
     
     Boolean pozycjaZaznaczona=false;
     Integer idZespolu;
-    Integer idStadionu;
+    Integer idZawodnika;
     Boolean wyszukiwanie=false;
     /**
      * Creates new form Ranking
      */
-    public Ranking() throws SQLException {
+    public Miotly() throws SQLException {
         initComponents();
         fillData();
         setVisible(true);
@@ -67,29 +67,31 @@ public class Ranking extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jComboBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         rankTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 40), new java.awt.Dimension(0, 40), new java.awt.Dimension(32767, 40));
-        jDodajButton = new java.awt.Button();
-        jUsunButton = new java.awt.Button();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30), new java.awt.Dimension(32767, 30));
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
-        jButtonZawodnicy = new javax.swing.JButton();
-        jButtonStadiony = new javax.swing.JButton();
-        jButtonPracownicy = new javax.swing.JButton();
         jObraz = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jWyszukajButton1 = new javax.swing.JToggleButton();
-        jModyfikujButton = new java.awt.Button();
         jSeparator1 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        jUsunButton = new java.awt.Button();
+        jModyfikujButton = new java.awt.Button();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox = new javax.swing.JComboBox<>();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jDodajButton = new java.awt.Button();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jRanking = new javax.swing.JMenu();
         jZawodnicy = new javax.swing.JMenu();
@@ -113,8 +115,6 @@ public class Ranking extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quidditch rank");
-
-        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         rankTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -144,23 +144,11 @@ public class Ranking extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(rankTable);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Nazwa:");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Narodowość:");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Stadion:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Punktacja:");
-
-        jDodajButton.setActionCommand("Dodaj");
-        jDodajButton.setLabel("Dodaj");
-        jDodajButton.addActionListener(new java.awt.event.ActionListener() {
+        jWyszukajButton1.setText("Wyszukaj");
+        jWyszukajButton1.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        jWyszukajButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jDodajButtonActionPerformed(evt);
+                jWyszukajButton1ActionPerformed(evt);
             }
         });
 
@@ -168,41 +156,6 @@ public class Ranking extends javax.swing.JFrame {
         jUsunButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jUsunButtonActionPerformed(evt);
-            }
-        });
-
-        jButtonZawodnicy.setText("Zawodnicy");
-        jButtonZawodnicy.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        jButtonZawodnicy.setName(""); // NOI18N
-        jButtonZawodnicy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonZawodnicyActionPerformed(evt);
-            }
-        });
-
-        jButtonStadiony.setText("Stadiony");
-        jButtonStadiony.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        jButtonStadiony.setName(""); // NOI18N
-        jButtonStadiony.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonStadionyActionPerformed(evt);
-            }
-        });
-
-        jButtonPracownicy.setText("Pracownicy");
-        jButtonPracownicy.setMargin(new java.awt.Insets(2, 5, 2, 5));
-        jButtonPracownicy.setName(""); // NOI18N
-        jButtonPracownicy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPracownicyActionPerformed(evt);
-            }
-        });
-
-        jWyszukajButton1.setText("Wyszukaj");
-        jWyszukajButton1.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        jWyszukajButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jWyszukajButton1ActionPerformed(evt);
             }
         });
 
@@ -214,6 +167,106 @@ public class Ranking extends javax.swing.JFrame {
                 jModyfikujButtonActionPerformed(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Tworzywo:");
+
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Model:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Prędkosć:");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Czyja:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Masa:");
+
+        jDodajButton.setActionCommand("Dodaj");
+        jDodajButton.setLabel("Dodaj");
+        jDodajButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDodajButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Kolor:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jDodajButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(190, 190, 190))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jModyfikujButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jUsunButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField1)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField4)
+                            .addComponent(jTextField5)
+                            .addComponent(jTextField6))))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(jTextField4))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jDodajButton, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(jModyfikujButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jUsunButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
 
         jRanking.setText("Ranking");
         jRanking.setBorderPainted(true);
@@ -301,53 +354,31 @@ public class Ranking extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jObraz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDodajButton, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                                    .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(196, 196, 196)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jModyfikujButton, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                                .addGap(24, 24, 24)
-                                .addComponent(jUsunButton, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 173, Short.MAX_VALUE)
-                            .addComponent(jTextField4))
-                        .addGap(16, 16, 16))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 263, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonZawodnicy, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonStadiony, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonPracownicy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jWyszukajButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jObraz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jWyszukajButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(4, 4, 4)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -357,48 +388,21 @@ public class Ranking extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                            .addComponent(jTextField1))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField4)))
+                                .addGap(200, 200, 200)
+                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jUsunButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDodajButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jModyfikujButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(21, 21, 21)
                         .addComponent(jObraz, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jWyszukajButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonZawodnicy, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonStadiony, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonPracownicy, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -414,12 +418,14 @@ public class Ranking extends javax.swing.JFrame {
         jTextField1.setText(rankTable.getValueAt(currentRow, 0).toString());
         jTextField2.setText(rankTable.getValueAt(currentRow, 1).toString());
         //jTextField3.setText(rankTable.getValueAt(currentRow, 2).toString());
-        //jTextField4.setText(rankTable.getValueAt(currentRow, 3).toString());
+        jTextField4.setText(rankTable.getValueAt(currentRow, 2).toString());
+        jTextField5.setText(rankTable.getValueAt(currentRow, 3).toString());
+        jTextField6.setText(rankTable.getValueAt(currentRow, 4).toString());
         //idZespolu= dr.getId_druzyny();
         pozycjaZaznaczona=true;
         
         
-        idStadionu  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 5).toString());
+        idZawodnika  =  Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 7).toString());
         
         
         jComboBox.removeAllItems();
@@ -427,71 +433,67 @@ public class Ranking extends javax.swing.JFrame {
         String stadion = rankTable.getValueAt(currentRow, 2).toString();
         jComboBox.addItem(stadion); 
         
-        Stadion s = new Stadion();
+        Zawodnik s = new Zawodnik();
         try {
-            ArrayList<Stadion> listaStadionow = s.getLista();
+            ArrayList<Zawodnik> listaZawodnikow = s.getLista();
             
-            Collections.sort(listaStadionow, new Comparator<Stadion>() {
-                public int compare(Stadion o1, Stadion o2) {
-                    return o1.getNazwa().compareTo(o2.getNazwa());
+            Collections.sort(listaZawodnikow, new Comparator<Zawodnik>() {
+                public int compare(Zawodnik o1, Zawodnik o2) {
+                    return o1.getNazwisko().compareTo(o2.getNazwisko());
                     }
                 });
             
-            for(Stadion st: listaStadionow)
+            for(Zawodnik st: listaZawodnikow)
             {
-                if(idStadionu!=st.getId_stadionu())
-                   jComboBox.addItem(st.getNazwa());
+                   jComboBox.addItem(st.getNazwisko() + "," + st.getId_zawodnika());
             }
                 
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_rankTableMouseClicked
 
     private void jDodajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDodajButtonActionPerformed
         if (!czyNazwaPusta())
         {
-            Druzyna druzyna = new Druzyna();
-            ArrayList<Druzyna> listaDruzyn = new ArrayList<>();
-            druzyna.setNazwa(jTextField1.getText());
+            Miotla miotla = new Miotla();
+            ArrayList<Miotla> listaMiotel = new ArrayList<>();
+            miotla.setModel(jTextField1.getText());
+            miotla.setPredkosc(Float.parseFloat(jTextField2.getText()));
+            miotla.setTworzywo(jTextField4.getText());
+            
+            miotla.setMasa(Float.parseFloat(jTextField5.getText()));
+            miotla.setKolor(jTextField6.getText());
 
             try {
-                listaDruzyn = druzyna.getLista();
+                listaMiotel = miotla.getLista();
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            for(Druzyna dr: listaDruzyn)
-            {
-                if(dr.getNazwa().equals(jTextField1.getText()))
-                {
-                    JOptionPane.showMessageDialog(new Frame(), "Drużyna z taką nazwą już istnieje!", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
-                    return;
-                }
-            }
-            druzyna.setNarodowosc(jTextField2.getText());
-
-            String nazwaStadionu =(String)jComboBox.getSelectedItem();
-
-            Stadion s = new Stadion();
-            ArrayList<Stadion> listaStadionow = new ArrayList<>();
-
+            
+            String nazwaZawodnika =(String)jComboBox.getSelectedItem();
+            String[] parts = nazwaZawodnika.split(",");
+            miotla.setZawodnik_id_zawodnika(Integer.parseInt(parts[1]));
+            
+//            Zawodnik s = new Zawodnik();
+//            ArrayList<Zawodnik> listaZawodnikow = new ArrayList<>();
+//
+//            try {
+//                listaZawodnikow = s.getLista();
+//
+//            for(Zawodnik st: listaZawodnikow)
+//            {
+//                if (parts[1].equals(st.getId_zawodnika()))
+//                {
+//                    miotla.setZawodnik_id_zawodnika(st.getId_zawodnika());
+//                    break;
+//                }
+//            }
             try {
-                listaStadionow = s.getLista();
-
-            for(Stadion st: listaStadionow)
-            {
-                if (nazwaStadionu.equals(st.getNazwa()))
-                {
-                    druzyna.setStadion_id_stadionu(st.getId_stadionu());
-                    break;
-                }
-            }
-
-            druzyna.addQuery();
+            miotla.addQuery();
 
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             DefaultTableModel model = (DefaultTableModel)rankTable.getModel();
@@ -503,7 +505,7 @@ public class Ranking extends javax.swing.JFrame {
             try {
                 wypelnijTabele();
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -514,35 +516,20 @@ public class Ranking extends javax.swing.JFrame {
             
             if(!pozycjaZaznaczona)
             {
-                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać drużynę z tabeli, którą chcesz zaktualizować.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać miotłę z tabeli, którą chcesz zaktualizować.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             int currentRow = rankTable.getSelectedRow();    
-            Druzyna druzyna = new Druzyna();
-            String nazwaStadionu =(String)jComboBox.getSelectedItem();
+            Miotla miotla = new Miotla();
+            String nazwaZawodnika =(String)jComboBox.getSelectedItem();
             
             
-            try {
-                if(!nazwaStadionu.equals(rankTable.getModel().getValueAt(currentRow, 2)))
-                {
-                    Stadion s = new Stadion();
-                    ArrayList<Stadion> listaStadionow = new ArrayList<>();
-                    listaStadionow = s.getLista();
-
-                    for(Stadion st: listaStadionow)
-                    {
-                        if (nazwaStadionu.equals(st.getNazwa()))
-                        {
-                            idStadionu=st.getId_stadionu();
-                            break;
-                        }
-                    }                    
-                }
-                
-                druzyna.updateQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString()), jTextField1.getText(), jTextField2.getText(), idStadionu);
+            try {                
+                miotla.updateQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString()), jTextField1.getText(), 
+                        Float.parseFloat(jTextField2.getText()), jTextField4.getText(), Float.parseFloat(jTextField5.getText()), jTextField6.getText(), idZawodnika);
                 
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
             }
  
 //            DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
@@ -553,59 +540,9 @@ public class Ranking extends javax.swing.JFrame {
             try {
                 wypelnijTabele();
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jModyfikujButtonActionPerformed
-
-    private void jButtonZawodnicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZawodnicyActionPerformed
-                               
-        if(pozycjaZaznaczona)
-        {
-            int currentRow = rankTable.getSelectedRow();
-            try {
-                Sklad sklad = new Sklad(rankTable.getModel().getValueAt(currentRow, 4).toString());
-            } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Nie można utworzyć klasy Skład\n");
-            }            
-        }
-        else
-            JOptionPane.showMessageDialog(new Frame(), "Wybierz z listy drużynę, której chcesz podejrzeć skład.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jButtonZawodnicyActionPerformed
-
-    private void jButtonStadionyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStadionyActionPerformed
-        
-        if(pozycjaZaznaczona)
-        {
-            int currentRow = rankTable.getSelectedRow();
-            try {
-                InfoStadion infoStadion = new InfoStadion(rankTable.getModel().getValueAt(currentRow, 5).toString());
-            } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Nie można utworzyć klasy Stadion\n");
-            }            
-        }
-        else
-            JOptionPane.showMessageDialog(new Frame(), "Wybierz z listy drużynę, której chcesz zobaczyć stadion.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
-
-    }//GEN-LAST:event_jButtonStadionyActionPerformed
-
-    private void jButtonPracownicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPracownicyActionPerformed
-        
-        if(pozycjaZaznaczona)
-        {
-            int currentRow = rankTable.getSelectedRow();
-            try {
-                InfoPracownicy infoPracownicy = new InfoPracownicy(rankTable.getModel().getValueAt(currentRow, 4).toString());
-            } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Nie można utworzyć klasy infoPracownicy\n");
-            }            
-        }
-        else
-            JOptionPane.showMessageDialog(new Frame(), "Wybierz z listy drużynę, której chcesz zobaczyć pracowników.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
-
-    }//GEN-LAST:event_jButtonPracownicyActionPerformed
 
     private void jUsunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsunButtonActionPerformed
         
@@ -620,7 +557,7 @@ public class Ranking extends javax.swing.JFrame {
                     "Czy na pewno chcesz nieodwracalnie usunąć zaznaczoną drużynę?", "Usunąć?",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                Druzyna d = new Druzyna();
+                Miotla d = new Miotla();
                 int czyUsunieto=-1;
                 
                     czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString()));
@@ -643,18 +580,18 @@ public class Ranking extends javax.swing.JFrame {
 //        rankTable.repaint();
             wypelnijTabele();
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jUsunButtonActionPerformed
 
     private void jWyszukajButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWyszukajButton1ActionPerformed
         try {
-            Druzyna d = new Druzyna();
+            Miotla d = new Miotla();
             wyszukiwanie=true;
             wypelnijTabele();
             
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jWyszukajButton1ActionPerformed
 
@@ -663,7 +600,7 @@ public class Ranking extends javax.swing.JFrame {
             Zawodnicy t = new Zawodnicy();
             this.dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jZawodnicyMouseClicked
 
@@ -671,7 +608,7 @@ public class Ranking extends javax.swing.JFrame {
         try {
             Stadiony t = new Stadiony();
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
       
@@ -681,7 +618,7 @@ public class Ranking extends javax.swing.JFrame {
         try {
             Miotly t = new Miotly();
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_jMiotlyMouseClicked
@@ -728,47 +665,54 @@ public class Ranking extends javax.swing.JFrame {
     {
         
         DefaultTableModel defaultTableModel = new DefaultTableModel();
-        defaultTableModel.addColumn("Nazwa");
-        defaultTableModel.addColumn("Narodowość");
-        defaultTableModel.addColumn("Stadion");
-        defaultTableModel.addColumn("Punkty");
-        defaultTableModel.addColumn("Id_druzyny");
-        defaultTableModel.addColumn("Id_stadionu");
+        defaultTableModel.addColumn("Model");
+        defaultTableModel.addColumn("Predkość");
+        defaultTableModel.addColumn("Tworzywo");
+        defaultTableModel.addColumn("Masa");
+        defaultTableModel.addColumn("Kolor");
+        defaultTableModel.addColumn("Właściciel");
+        defaultTableModel.addColumn("Id_miotly");
+        defaultTableModel.addColumn("Id_zawodnika");
 
-        Druzyna d = new Druzyna();
-        ArrayList<Druzyna> listaDruzyn = new ArrayList<>();
+        Miotla d = new Miotla();
+        ArrayList<Miotla> listaMiotel = new ArrayList<>();
         if(!wyszukiwanie)
-            listaDruzyn = d.getLista();
+            listaMiotel = d.getLista();
         else
-            listaDruzyn = d.wyszukaj(jTextField3.getText());
+            listaMiotel = d.wyszukaj(jTextField3.getText());
 
-         Collections.sort(listaDruzyn, new Comparator<Druzyna>() {
-            public int compare(Druzyna o1, Druzyna o2) {
-                return o1.getNazwa().compareTo(o2.getNazwa());
+         Collections.sort(listaMiotel, new Comparator<Miotla>() {
+            public int compare(Miotla o1, Miotla o2) {
+                return o1.getModel().compareTo(o2.getModel());
                 }
             });
 
          
-        Stadion s = new Stadion();
-        ArrayList<Stadion> listaStadionow = s.getLista();
+        Zawodnik s = new Zawodnik();
+        ArrayList<Zawodnik> listaZawodnikow = s.getLista();
                 
-        for(Druzyna dr: listaDruzyn)
+        for(Miotla dr: listaMiotel)
         {
-            String stadion=null;
-            for(Stadion st: listaStadionow)
+            String nazwisko=null;
+            String ID=null;
+            for(Zawodnik st: listaZawodnikow)
             {
-                if(dr.getStadion_id_stadionu()==st.getId_stadionu())
-                    stadion=st.getNazwa().toString();
+                if(dr.getZawodnik_id_zawodnika().equals(st.getId_zawodnika()))
+                {
+                    nazwisko=st.getNazwisko()+","+st.getId_zawodnika();
+                    ID=st.getId_zawodnika().toString();
+                    break;
+                }
             }
-            defaultTableModel.addRow(new Object[] {dr.getNazwa(),dr.getNarodowosc(),stadion, "0", dr.getId_druzyny().toString(), dr.getStadion_id_stadionu().toString()});
+            defaultTableModel.addRow(new Object[] {dr.getModel(),dr.getPredkosc().toString(),dr.getTworzywo(), dr.getMasa().toString(), dr.getKolor(), nazwisko, dr.getId_miotly(), ID});
         }
 
         rankTable.setModel(defaultTableModel);
         rankTable.getColumnModel().getColumn(3).setPreferredWidth(15);
 
 
-        rankTable.removeColumn(rankTable.getColumnModel().getColumn(5));
-        rankTable.removeColumn(rankTable.getColumnModel().getColumn(4));
+        rankTable.removeColumn(rankTable.getColumnModel().getColumn(7));
+        rankTable.removeColumn(rankTable.getColumnModel().getColumn(6));
                 
     }
     
@@ -788,26 +732,25 @@ public class Ranking extends javax.swing.JFrame {
 //                    Image newimg = image.getScaledInstance(271, 190,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 //                    img = new ImageIcon(newimg);
 //                    jObraz.setIcon(img);
-                    jObraz.setIcon(new ImageIcon(getClass().getResource("/img/puchar.png")));
+                    jObraz.setIcon(new ImageIcon(getClass().getResource("/img/miotla.png")));
                 }catch(Exception e){ System.out.println("Nie znaleziono zdjęcia\n");} 
                 setResizable(false);
                 
                 //uzupelnij comboBox
-                Stadion s = new Stadion();
-                ArrayList<Stadion> listaStadionow = s.getLista();
+                Zawodnik s = new Zawodnik();
+                ArrayList<Zawodnik> listaZawodnikow = s.getLista();
                 
-                Collections.sort(listaStadionow, new Comparator<Stadion>() {
-                    public int compare(Stadion o1, Stadion o2) {
-                        return o1.getNazwa().compareTo(o2.getNazwa());
+                Collections.sort(listaZawodnikow, new Comparator<Zawodnik>() {
+                    public int compare(Zawodnik o1, Zawodnik o2) {
+                        return o1.getNazwisko().compareTo(o2.getNazwisko());
                         }
                     });
             
                 jComboBox.removeAllItems();
-                jComboBox.setEnabled(true);
-                for(Stadion st: listaStadionow)
+                
+                for(Zawodnik st: listaZawodnikow)
                 {
-                    if(idStadionu!=st.getId_stadionu())
-                        jComboBox.addItem(st.getNazwa());
+                    jComboBox.addItem(st.getNazwisko() + "," + st.getId_zawodnika() );
                 }
                 //jComboBox.
                 wypelnijTabele();
@@ -834,14 +777,15 @@ public class Ranking extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Miotly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Miotly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Miotly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Miotly.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>        
         //</editor-fold>        
         /* Create and display the form */
         
@@ -849,11 +793,11 @@ public class Ranking extends javax.swing.JFrame {
             public void run() {
                 
                 try {
-                    new Ranking().setVisible(true);
+                    new Miotly().setVisible(true);
                     
                     //Ranking.rankTable.add("J","K","L","O");
                 } catch (SQLException ex) {
-                    Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Miotly.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -866,9 +810,6 @@ public class Ranking extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
-    private javax.swing.JButton jButtonPracownicy;
-    private javax.swing.JButton jButtonStadiony;
-    private javax.swing.JButton jButtonZawodnicy;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JComboBox<String> jComboBox;
     private java.awt.Button jDodajButton;
@@ -877,6 +818,8 @@ public class Ranking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
@@ -884,6 +827,7 @@ public class Ranking extends javax.swing.JFrame {
     private javax.swing.JMenu jMiotly;
     private java.awt.Button jModyfikujButton;
     private javax.swing.JLabel jObraz;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu jPracownicy;
     private javax.swing.JMenu jRanking;
     private javax.swing.JMenu jRozegrane;
@@ -895,6 +839,8 @@ public class Ranking extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private java.awt.Button jUsunButton;
     private javax.swing.JToggleButton jWyszukajButton1;
     private javax.swing.JMenu jZaplanowane;

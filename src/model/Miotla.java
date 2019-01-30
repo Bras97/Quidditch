@@ -48,6 +48,15 @@ public class Miotla {
         return listaMiotla;
     }
 
+    public static ArrayList<Miotla> wyszukaj(String szukane) throws SQLException {
+        listaMiotla = new ArrayList<>();
+        Statement stmt= Quidditch.con.createStatement();  
+        ResultSet rs=stmt.executeQuery("select * from miotla where model LIKE '%" + szukane + "%';");
+        while(rs.next())
+            listaMiotla.add(new Miotla(rs.getInt("id_miotly"),rs.getString("model"),rs.getFloat("predkosc"),rs.getString("tworzywo"),rs.getFloat("masa"),rs.getString("kolor"),rs.getInt("zawodnik_id_zawodnika")));
+        return listaMiotla;
+    }
+
     public void addQuery() throws SQLException {
         String query = "insert into miotla ( model, predkosc, tworzywo, masa, kolor, zawodnik_id_zawodnika) values (\""
                 + model + "\","
