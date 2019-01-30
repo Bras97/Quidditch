@@ -27,6 +27,7 @@ public class Zawodnik {
     private String dataString;
     private String plec;
     private Integer druzyna_id_druzyny;
+    private String  dataString;
     private static ArrayList<Zawodnik> listaZawodnik; 
     
     public Zawodnik() {
