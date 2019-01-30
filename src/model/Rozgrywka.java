@@ -31,6 +31,14 @@ public class Rozgrywka {
 
     public Rozgrywka() {
     }
+
+    public String getDataString() {
+        return dataString;
+    }
+
+    public void setDataString(String dataString) {
+        this.dataString = dataString;
+    }
     
     public Rozgrywka(Integer id_rozgrywki, String punkty_druzyna1, String punkty_druzyna2, Date data, Integer druzyna_id_druzyny, Integer druzyna_id_druzyny1, Integer znicz_id_znicza, Integer sedzia_id_sedzi, String dataString) {
         this.id_rozgrywki = (id_rozgrywki == null) ? null : id_rozgrywki;
@@ -43,11 +51,11 @@ public class Rozgrywka {
         this.znicz_id_znicza = (znicz_id_znicza == null) ? null : znicz_id_znicza;
         this.sedzia_id_sedzi = (sedzia_id_sedzi == null) ? null : sedzia_id_sedzi;
     }
-
+    
     public static ArrayList<Rozgrywka> getLista() throws SQLException {
         listaRozgrywka = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS fun from rozgrywka;");  
+        ResultSet rs=stmt.executeQuery("select *, dataString(data, \",\") AS fun from rozgrywka;");  
         while(rs.next())
             listaRozgrywka.add(new Rozgrywka(rs.getInt("id_rozgrywki"),rs.getString("punkty_druzyna1"),rs.getString("punkty_druzyna2"),rs.getDate("data"),rs.getInt("druzyna_id_druzyny1"),rs.getInt("druzyna_id_druzyny2"),rs.getInt("znicz_id_znicza"),rs.getInt("sedzia_id_sedzi"),rs.getString("fun")));
         return listaRozgrywka;
@@ -56,8 +64,8 @@ public class Rozgrywka {
     public void addQuery() throws SQLException {
         String query = "insert into rozgrywka ( punkty_druzyna1, punkty_druzyna2, data, druzyna_id_druzyny1, druzyna_id_druzyny2, znicz_id_znicza, sedzia_id_sedzi) values ("
                 + punkty_druzyna1 + ","
-                + punkty_druzyna2 + ","
-                + data + ","
+                + punkty_druzyna2 + ",\""
+                + data + "\","
                 + druzyna_id_druzyny + ","
                 + druzyna_id_druzyny1 + ","
                 + znicz_id_znicza + ","

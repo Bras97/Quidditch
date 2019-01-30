@@ -544,7 +544,18 @@ public class Zawodnicy extends javax.swing.JFrame {
             Zawodnik zawodnik = new Zawodnik();
             
             int ID=Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString());
-            int ID_DR=Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 7).toString());
+            
+            int ID_DR=0;
+            
+            try {
+                for(Druzyna st: Druzyna.getLista())
+                {
+                    if(st.getNazwa().equals(jComboBox3.getSelectedItem()))
+                        ID_DR=st.getId_druzyny();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
             java.sql.Date sqlDate = null;
@@ -670,7 +681,7 @@ public class Zawodnicy extends javax.swing.JFrame {
         if(!wyszukiwanie)
             listaZawodnikow = d.getLista();
         else
-            listaZawodnikow = d.wyszukaj(jTextField2.getText());
+            listaZawodnikow = d.wyszukaj(jTextField3.getText());
 
          Collections.sort(listaZawodnikow, new Comparator<Zawodnik>() {
             public int compare(Zawodnik o1, Zawodnik o2) {

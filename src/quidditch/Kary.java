@@ -186,6 +186,11 @@ public class Kary extends javax.swing.JFrame {
         jRanking.setText("Ranking");
         jRanking.setBorderPainted(true);
         jRanking.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jRanking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRankingMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jRanking);
 
         jZawodnicy.setText("Zawodnicy");
@@ -545,30 +550,57 @@ public class Kary extends javax.swing.JFrame {
     }//GEN-LAST:event_jPracownicyMouseClicked
 
     private void jSedziowieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSedziowieMouseClicked
-        
+         try {
+            Sedziowie t = new Sedziowie();
+        } catch (SQLException ex) {
+            Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }//GEN-LAST:event_jSedziowieMouseClicked
 
     private void jZniczeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZniczeMouseClicked
-        Kara t = new Kara();
+        try {
+            Znicze t = new Znicze();
+        } catch (SQLException ex) {
+            Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_jZniczeMouseClicked
 
     private void jKaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jKaryMouseClicked
-        Kara t = new Kara();
-        this.dispose();
+        
     }//GEN-LAST:event_jKaryMouseClicked
 
     private void jRozegraneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRozegraneMouseClicked
-        // TODO add your handling code here:
+        try {
+            Rozegrane t = new Rozegrane();
+        } catch (SQLException ex) {
+            Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }//GEN-LAST:event_jRozegraneMouseClicked
 
     private void jZaplanowaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZaplanowaneMouseClicked
-        // TODO add your handling code here:
+        try {
+            Zaplanowane t = new Zaplanowane();
+        } catch (SQLException ex) {
+            Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }//GEN-LAST:event_jZaplanowaneMouseClicked
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jRankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRankingMouseClicked
+         try {
+            Ranking t = new Ranking();
+        } catch (SQLException ex) {
+            Logger.getLogger(Kary.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_jRankingMouseClicked
 
     public Boolean czyNazwaPusta()
     {

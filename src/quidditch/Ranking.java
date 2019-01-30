@@ -76,10 +76,8 @@ public class Ranking extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 40), new java.awt.Dimension(0, 40), new java.awt.Dimension(32767, 40));
         jDodajButton = new java.awt.Button();
         jUsunButton = new java.awt.Button();
@@ -155,9 +153,6 @@ public class Ranking extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Stadion:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Punktacja:");
 
         jDodajButton.setActionCommand("Dodaj");
         jDodajButton.setLabel("Dodaj");
@@ -321,8 +316,7 @@ public class Ranking extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -331,8 +325,7 @@ public class Ranking extends javax.swing.JFrame {
                                 .addComponent(jUsunButton, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
                             .addComponent(jTextField1)
                             .addComponent(jTextField2)
-                            .addComponent(jComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 173, Short.MAX_VALUE)
-                            .addComponent(jTextField4))
+                            .addComponent(jComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 173, Short.MAX_VALUE))
                         .addGap(16, 16, 16))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -374,14 +367,7 @@ public class Ranking extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField4)))
-                        .addGap(18, 18, 18)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jUsunButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -726,11 +712,21 @@ public class Ranking extends javax.swing.JFrame {
     }//GEN-LAST:event_jKaryMouseClicked
 
     private void jRozegraneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRozegraneMouseClicked
-        // TODO add your handling code here:
+        try {
+            Rozegrane t = new Rozegrane();
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }//GEN-LAST:event_jRozegraneMouseClicked
 
     private void jZaplanowaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZaplanowaneMouseClicked
-        // TODO add your handling code here:
+        try {
+            Zaplanowane t = new Zaplanowane();
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }//GEN-LAST:event_jZaplanowaneMouseClicked
 
     public Boolean czyNazwaPusta()
@@ -763,7 +759,7 @@ public class Ranking extends javax.swing.JFrame {
 
          Collections.sort(listaDruzyn, new Comparator<Druzyna>() {
             public int compare(Druzyna o1, Druzyna o2) {
-                return o1.getNazwa().compareTo(o2.getNazwa());
+                    return -o1.getPunkty().compareTo(o2.getPunkty());
                 }
             });
 
@@ -895,7 +891,6 @@ public class Ranking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
@@ -913,7 +908,6 @@ public class Ranking extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private java.awt.Button jUsunButton;
     private javax.swing.JToggleButton jWyszukajButton1;
     private javax.swing.JMenu jZaplanowane;

@@ -656,31 +656,52 @@ public class Pracownicy extends javax.swing.JFrame {
     }//GEN-LAST:event_jMiotlyMouseClicked
 
     private void jPracownicyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPracownicyMouseClicked
-        Pracownik t = new Pracownik();
-        this.dispose();
+        
     }//GEN-LAST:event_jPracownicyMouseClicked
 
     private void jSedziowieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSedziowieMouseClicked
-        Sedzia t = new Sedzia();
+        try {
+            Sedziowie t = new Sedziowie();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pracownicy.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_jSedziowieMouseClicked
 
     private void jZniczeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZniczeMouseClicked
-        Znicz t = new Znicz();
+        try {
+            Znicze t = new Znicze();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pracownicy.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_jZniczeMouseClicked
 
     private void jKaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jKaryMouseClicked
-        Kara t = new Kara();
+        try {
+            Kary t = new Kary();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pracownicy.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_jKaryMouseClicked
 
     private void jRozegraneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRozegraneMouseClicked
-        // TODO add your handling code here:
+        try {
+            Rozegrane t = new Rozegrane();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pracownicy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }//GEN-LAST:event_jRozegraneMouseClicked
 
     private void jZaplanowaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZaplanowaneMouseClicked
-        // TODO add your handling code here:
+        try {
+            Zaplanowane t = new Zaplanowane();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pracownicy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }//GEN-LAST:event_jZaplanowaneMouseClicked
 
     private void jRankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRankingMouseClicked
