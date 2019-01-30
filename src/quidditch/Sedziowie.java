@@ -567,9 +567,8 @@ public class Sedziowie extends javax.swing.JFrame {
         rankTable.setModel(defaultTableModel);
         rankTable.getColumnModel().getColumn(3).setPreferredWidth(15);
 
-
-        rankTable.removeColumn(rankTable.getColumnModel().getColumn(5));
-        rankTable.removeColumn(rankTable.getColumnModel().getColumn(4));
+        
+        rankTable.removeColumn(rankTable.getColumnModel().getColumn(3));
                 
     }
     

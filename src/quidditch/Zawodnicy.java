@@ -455,7 +455,7 @@ public class Zawodnicy extends javax.swing.JFrame {
                 });
             for(Druzyna st: listaDruzyn)
             {
-                jComboBox.addItem(st.getNazwa());
+                jComboBox3.addItem(st.getNazwa());
             }
             
         } catch (SQLException ex) {
