@@ -31,7 +31,7 @@ import model.*;
  *
  * @author Elater
  */
-public class Ranking extends javax.swing.JFrame {
+public class Sedziowie extends javax.swing.JFrame {
     
     Boolean pozycjaZaznaczona=false;
     Integer idZespolu;
@@ -40,7 +40,7 @@ public class Ranking extends javax.swing.JFrame {
     /**
      * Creates new form Ranking
      */
-    public Ranking() throws SQLException {
+    public Sedziowie() throws SQLException {
         initComponents();
         fillData();
         setVisible(true);
@@ -444,7 +444,7 @@ public class Ranking extends javax.swing.JFrame {
             }
                 
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_rankTableMouseClicked
 
@@ -458,7 +458,7 @@ public class Ranking extends javax.swing.JFrame {
             try {
                 listaDruzyn = druzyna.getLista();
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             for(Druzyna dr: listaDruzyn)
@@ -491,7 +491,7 @@ public class Ranking extends javax.swing.JFrame {
             druzyna.addQuery();
 
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             DefaultTableModel model = (DefaultTableModel)rankTable.getModel();
@@ -503,7 +503,7 @@ public class Ranking extends javax.swing.JFrame {
             try {
                 wypelnijTabele();
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -542,7 +542,7 @@ public class Ranking extends javax.swing.JFrame {
                 druzyna.updateQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString()), jTextField1.getText(), jTextField2.getText(), idStadionu);
                 
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
             }
  
 //            DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
@@ -553,7 +553,7 @@ public class Ranking extends javax.swing.JFrame {
             try {
                 wypelnijTabele();
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jModyfikujButtonActionPerformed
 
@@ -565,7 +565,7 @@ public class Ranking extends javax.swing.JFrame {
             try {
                 Sklad sklad = new Sklad(rankTable.getModel().getValueAt(currentRow, 4).toString());
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Nie można utworzyć klasy Skład\n");
             }            
         }
@@ -581,7 +581,7 @@ public class Ranking extends javax.swing.JFrame {
             try {
                 InfoStadion infoStadion = new InfoStadion(rankTable.getModel().getValueAt(currentRow, 5).toString());
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Nie można utworzyć klasy Stadion\n");
             }            
         }
@@ -598,7 +598,7 @@ public class Ranking extends javax.swing.JFrame {
             try {
                 InfoPracownicy infoPracownicy = new InfoPracownicy(rankTable.getModel().getValueAt(currentRow, 4).toString());
             } catch (SQLException ex) {
-                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Nie można utworzyć klasy infoPracownicy\n");
             }            
         }
@@ -643,7 +643,7 @@ public class Ranking extends javax.swing.JFrame {
 //        rankTable.repaint();
             wypelnijTabele();
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jUsunButtonActionPerformed
 
@@ -654,7 +654,7 @@ public class Ranking extends javax.swing.JFrame {
             wypelnijTabele();
             
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jWyszukajButton1ActionPerformed
 
@@ -663,7 +663,7 @@ public class Ranking extends javax.swing.JFrame {
             Zawodnicy t = new Zawodnicy();
             this.dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jZawodnicyMouseClicked
 
@@ -671,7 +671,7 @@ public class Ranking extends javax.swing.JFrame {
         try {
             Stadiony t = new Stadiony();
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
       
@@ -681,7 +681,7 @@ public class Ranking extends javax.swing.JFrame {
         try {
             Miotly t = new Miotly();
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_jMiotlyMouseClicked
@@ -690,7 +690,7 @@ public class Ranking extends javax.swing.JFrame {
         try {
             Pracownicy t = new Pracownicy();
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_jPracownicyMouseClicked
@@ -699,7 +699,7 @@ public class Ranking extends javax.swing.JFrame {
         try {
             Sedziowie t = new Sedziowie();
         } catch (SQLException ex) {
-            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_jSedziowieMouseClicked
@@ -842,14 +842,15 @@ public class Ranking extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sedziowie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sedziowie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sedziowie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sedziowie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>        
         //</editor-fold>        
         /* Create and display the form */
         
@@ -857,11 +858,11 @@ public class Ranking extends javax.swing.JFrame {
             public void run() {
                 
                 try {
-                    new Ranking().setVisible(true);
+                    new Sedziowie().setVisible(true);
                     
                     //Ranking.rankTable.add("J","K","L","O");
                 } catch (SQLException ex) {
-                    Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
