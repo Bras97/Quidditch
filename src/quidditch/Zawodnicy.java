@@ -483,7 +483,7 @@ public class Zawodnicy extends javax.swing.JFrame {
             zawodnik.setPlec((String)jComboBox2.getSelectedItem());
             zawodnik.setDataString(jTextField4.getText());
             
-            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd");
+            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
             java.sql.Date sqlDate = null;
             try {
                 java.util.Date date = (java.util.Date) format.parse(jTextField4.getText());
@@ -546,7 +546,7 @@ public class Zawodnicy extends javax.swing.JFrame {
             int ID=Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString());
             int ID_DR=Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 7).toString());
             
-            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd");
+            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
             java.sql.Date sqlDate = null;
             try {
                 java.util.Date date = (java.util.Date) format.parse(jTextField4.getText());

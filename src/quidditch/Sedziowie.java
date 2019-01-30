@@ -374,7 +374,7 @@ public class Sedziowie extends javax.swing.JFrame {
             sedzia.setImie(jTextField1.getText());
             sedzia.setNazwisko(jTextField2.getText());
            
-            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd");
+            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
             java.sql.Date sqlDate = null;
             try {
                 java.util.Date date = (java.util.Date) format.parse(jTextField4.getText());
@@ -412,7 +412,7 @@ public class Sedziowie extends javax.swing.JFrame {
             int currentRow = rankTable.getSelectedRow();    
             Sedzia sedzia = new Sedzia();
             
-            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd");
+            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
             java.sql.Date sqlDate = null;
             try {
                 java.util.Date date = (java.util.Date) format.parse(jTextField4.getText());
