@@ -705,7 +705,11 @@ public class Ranking extends javax.swing.JFrame {
     }//GEN-LAST:event_jSedziowieMouseClicked
 
     private void jZniczeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZniczeMouseClicked
-        Znicz t = new Znicz();
+        try {
+            Znicze t = new Znicze();
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_jZniczeMouseClicked
 

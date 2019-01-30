@@ -34,6 +34,15 @@ public class Sedzia {
         this.data_urodzenia = (data_urodzenia == null) ? null : data_urodzenia;
     }
 
+    public static ArrayList<Sedzia> wyszukaj(String szukane) throws SQLException {
+        listaSedzia = new ArrayList<>();
+        Statement stmt= Quidditch.con.createStatement();  
+        ResultSet rs=stmt.executeQuery("select * from sedzia where nazwisko LIKE '%" + szukane + "%';");  
+        while(rs.next())
+            listaSedzia.add(new Sedzia(rs.getInt("id_sedzi"),rs.getString("imie"),rs.getString("nazwisko"),rs.getDate("data_urodzenia")));
+        return listaSedzia;
+    }
+
     public static ArrayList<Sedzia> getLista() throws SQLException {
         listaSedzia = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
@@ -68,7 +77,7 @@ public class Sedzia {
         for(Rozgrywka y: lista)
         {
             if(y.getSedzia_id_sedzi() == id)
-                return -1;
+                return -2;
         }
         String query = "delete from sedzia where id_sedzi = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);

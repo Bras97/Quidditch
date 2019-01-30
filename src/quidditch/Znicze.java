@@ -7,6 +7,7 @@ package quidditch;
 
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -19,19 +20,14 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import model.*;
 
 /**
  *
  * @author Elater
  */
-public class Sedziowie extends javax.swing.JFrame {
+public class Znicze extends javax.swing.JFrame {
     
     Boolean pozycjaZaznaczona=false;
     Integer idZespolu;
@@ -40,7 +36,7 @@ public class Sedziowie extends javax.swing.JFrame {
     /**
      * Creates new form Ranking
      */
-    public Sedziowie() throws SQLException {
+    public Znicze() throws SQLException {
         initComponents();
         fillData();
         setVisible(true);
@@ -85,6 +81,8 @@ public class Sedziowie extends javax.swing.JFrame {
         jWyszukajButton1 = new javax.swing.JToggleButton();
         jModyfikujButton = new java.awt.Button();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jRanking = new javax.swing.JMenu();
         jZawodnicy = new javax.swing.JMenu();
@@ -138,13 +136,19 @@ public class Sedziowie extends javax.swing.JFrame {
         jScrollPane1.setViewportView(rankTable);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Imię:");
+        jLabel1.setText("Nazwa:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Nazwisko:");
+        jLabel2.setText("Masa:");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("D. urodzenia:");
+        jLabel4.setText("Prędkość:");
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jDodajButton.setActionCommand("Dodaj");
         jDodajButton.setLabel("Dodaj");
@@ -177,6 +181,9 @@ public class Sedziowie extends javax.swing.JFrame {
                 jModyfikujButtonActionPerformed(evt);
             }
         });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Producent:");
 
         jRanking.setText("Ranking");
         jRanking.setBorderPainted(true);
@@ -277,21 +284,6 @@ public class Sedziowie extends javax.swing.JFrame {
                                     .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(196, 196, 196)))
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jModyfikujButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22)
-                                .addComponent(jUsunButton, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField4))
-                        .addGap(16, 16, 16))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -302,7 +294,31 @@ public class Sedziowie extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jModyfikujButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jUsunButton, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jTextField4))))))
+                        .addGap(16, 16, 16))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,13 +343,19 @@ public class Sedziowie extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTextField4))
-                        .addGap(21, 21, 21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jUsunButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDodajButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jModyfikujButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(21, 21, 21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jObraz, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,6 +380,7 @@ public class Sedziowie extends javax.swing.JFrame {
         jTextField1.setText(rankTable.getValueAt(currentRow, 0).toString());
         jTextField2.setText(rankTable.getValueAt(currentRow, 1).toString());
         jTextField4.setText(rankTable.getValueAt(currentRow, 2).toString());
+        jTextField5.setText(rankTable.getValueAt(currentRow, 3).toString());
         pozycjaZaznaczona=true;      
         
     }//GEN-LAST:event_rankTableMouseClicked
@@ -365,24 +388,25 @@ public class Sedziowie extends javax.swing.JFrame {
     private void jDodajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDodajButtonActionPerformed
         if (!czyNazwaPusta())
         {
-            Sedzia sedzia = new Sedzia();
-            ArrayList<Sedzia> listaSedziow = new ArrayList<>();
-            sedzia.setImie(jTextField1.getText());
-            sedzia.setNazwisko(jTextField2.getText());
-            sedzia.setData_urodzenia(jTextField4.getText());
+            Znicz znicz = new Znicz();
+            
+            znicz.setNazwa(jTextField1.getText());
+            znicz.setMasa(Float.parseFloat(jTextField2.getText()));
+            znicz.setPredkosc(Float.parseFloat(jTextField4.getText()));
+            znicz.setProducent(jTextField5.getText());
 
             try {
 
-            sedzia.addQuery();
+            znicz.addQuery();
 
             } catch (SQLException ex) {
-                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Znicze.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             try {
                 wypelnijTabele();
             } catch (SQLException ex) {
-                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Znicze.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -393,17 +417,17 @@ public class Sedziowie extends javax.swing.JFrame {
             
             if(!pozycjaZaznaczona)
             {
-                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać sędziego z tabeli, którego chcesz zaktualizować.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać znicz z tabeli, który chcesz zaktualizować.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             int currentRow = rankTable.getSelectedRow();    
-            Sedzia sedzia = new Sedzia();
+            Znicz znicz = new Znicz();
             try {
                 
-                sedzia.updateQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 3).toString()), jTextField1.getText(), jTextField2.getText(), jTextField4.getText());
+                znicz.updateQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString()), jTextField1.getText(), Float.parseFloat(jTextField2.getText()), Float.parseFloat(jTextField4.getText()), jTextField5.getText());
                 
             } catch (SQLException ex) {
-                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Znicze.class.getName()).log(Level.SEVERE, null, ex);
             }
  
 //            DefaultTableModel model = (DefaultTableModel) rankTable.getModel();
@@ -414,7 +438,7 @@ public class Sedziowie extends javax.swing.JFrame {
             try {
                 wypelnijTabele();
             } catch (SQLException ex) {
-                Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Znicze.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jModyfikujButtonActionPerformed
 
@@ -423,24 +447,24 @@ public class Sedziowie extends javax.swing.JFrame {
         try {
             if(!pozycjaZaznaczona)
             {
-                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać sędziego z tabeli, którego chcesz usunąć.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać znicz z tabeli, który chcesz usunąć.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             int currentRow = rankTable.getSelectedRow();
             if (JOptionPane.showConfirmDialog(null,
-                    "Czy na pewno chcesz nieodwracalnie usunąć zaznaczonego sędziego?", "Usunąć?",
+                    "Czy na pewno chcesz nieodwracalnie usunąć zaznaczony znicz?", "Usunąć?",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                Sedzia d = new Sedzia();
+                Znicz d = new Znicz();
                 int czyUsunieto=-1;
                 
-                    czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 3).toString()));
+                    czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 4).toString()));
                     
                 switch(czyUsunieto)
                 {
-                    case -2: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć sędziego, ponieważ istnieje rozgrywka w której brał udział.", "Usuń najpierw powiązane rozgrywki", JOptionPane.INFORMATION_MESSAGE);
+                    case -2: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć znicza, ponieważ istnieje rozgrywka w której brał udział.", "Usuń najpierw powiązane rozgrywki", JOptionPane.INFORMATION_MESSAGE);
                     break;
-                    case 1:  JOptionPane.showMessageDialog(new Frame(), "Pomyślnie usunięto sędziego.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
+                    case 1:  JOptionPane.showMessageDialog(new Frame(), "Pomyślnie usunięto znicz.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
                     break;
                     default: JOptionPane.showMessageDialog(new Frame(), "Coś poszło nie tak.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                     break;
@@ -452,18 +476,18 @@ public class Sedziowie extends javax.swing.JFrame {
 //        rankTable.repaint();
             wypelnijTabele();
         } catch (SQLException ex) {
-            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Znicze.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jUsunButtonActionPerformed
 
     private void jWyszukajButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWyszukajButton1ActionPerformed
         try {
-            Sedzia d = new Sedzia();
+            Znicz d = new Znicz();
             wyszukiwanie=true;
             wypelnijTabele();
             
         } catch (SQLException ex) {
-            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Znicze.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jWyszukajButton1ActionPerformed
 
@@ -472,7 +496,7 @@ public class Sedziowie extends javax.swing.JFrame {
             Zawodnicy t = new Zawodnicy();
             this.dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Znicze.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jZawodnicyMouseClicked
 
@@ -480,7 +504,7 @@ public class Sedziowie extends javax.swing.JFrame {
         try {
             Stadiony t = new Stadiony();
         } catch (SQLException ex) {
-            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Znicze.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
       
@@ -490,7 +514,7 @@ public class Sedziowie extends javax.swing.JFrame {
         try {
             Miotly t = new Miotly();
         } catch (SQLException ex) {
-            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Znicze.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_jMiotlyMouseClicked
@@ -499,7 +523,7 @@ public class Sedziowie extends javax.swing.JFrame {
         try {
             Pracownicy t = new Pracownicy();
         } catch (SQLException ex) {
-            Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Znicze.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_jPracownicyMouseClicked
@@ -526,6 +550,10 @@ public class Sedziowie extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jZaplanowaneMouseClicked
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
     public Boolean czyNazwaPusta()
     {
         if(jTextField2.getText().equals(""))
@@ -540,35 +568,36 @@ public class Sedziowie extends javax.swing.JFrame {
     {
         
         DefaultTableModel defaultTableModel = new DefaultTableModel();
-        defaultTableModel.addColumn("Imię");
-        defaultTableModel.addColumn("Nazwisko");
-        defaultTableModel.addColumn("Data urodzenia");
-        defaultTableModel.addColumn("Id_sedziego");
+        defaultTableModel.addColumn("Nazwa");
+        defaultTableModel.addColumn("Masa");
+        defaultTableModel.addColumn("Prędkość");
+        defaultTableModel.addColumn("Producent");
+        defaultTableModel.addColumn("Id_znicza");
 
-        Sedzia d = new Sedzia();
-        ArrayList<Sedzia> listaSedziow = new ArrayList<>();
+        Znicz d = new Znicz();
+        ArrayList<Znicz> listaZniczy = new ArrayList<>();
         if(!wyszukiwanie)
-            listaSedziow = d.getLista();
+            listaZniczy = d.getLista();
         else
-            listaSedziow = d.wyszukaj(jTextField3.getText());
+            listaZniczy = d.wyszukaj(jTextField3.getText());
 
-         Collections.sort(listaSedziow, new Comparator<Sedzia>() {
-            public int compare(Sedzia o1, Sedzia o2) {
-                return o1.getNazwisko().compareTo(o2.getNazwisko());
+         Collections.sort(listaZniczy, new Comparator<Znicz>() {
+            public int compare(Znicz o1, Znicz o2) {
+                return o1.getNazwa().compareTo(o2.getNazwa());
                 }
             });
 
          
-        for(Sedzia dr: Sedzia.getLista())
+        for(Znicz dr: listaZniczy)
         {
-            defaultTableModel.addRow(new Object[] {dr.getImie(),dr.getNazwisko(),dr.getData_urodzenia().toString(),dr.getId_sedzi()});
+            defaultTableModel.addRow(new Object[] {dr.getNazwa(),dr.getMasa().toString(),dr.getPredkosc().toString(),
+                dr.getProducent(),dr.getId_znicza().toString()});
         }
 
         rankTable.setModel(defaultTableModel);
         rankTable.getColumnModel().getColumn(3).setPreferredWidth(15);
 
 
-        rankTable.removeColumn(rankTable.getColumnModel().getColumn(5));
         rankTable.removeColumn(rankTable.getColumnModel().getColumn(4));
                 
     }
@@ -584,12 +613,12 @@ public class Sedziowie extends javax.swing.JFrame {
                 jTextField2.setColumns(10);
                 jTextField4.setColumns(10);
                 try{
-//                    ImageIcon img = new ImageIcon(getClass().getResource("/img/pracownicy.png"));
-//                    Image image = img.getImage(); // transform it 
-//                    Image newimg = image.getScaledInstance(271, 190,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-//                    img = new ImageIcon(newimg);
-//                    jObraz.setIcon(img);
-                    jObraz.setIcon(new ImageIcon(getClass().getResource("/img/sedzia.png")));
+                    ImageIcon img = new ImageIcon(getClass().getResource("/img/znicz.png"));
+                    Image image = img.getImage(); // transform it 
+                    Image newimg = image.getScaledInstance(271, 190,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+                    img = new ImageIcon(newimg);
+                    jObraz.setIcon(img);
+                    //jObraz.setIcon(new ImageIcon(getClass().getResource("/img/znicz.png")));
                 }catch(Exception e){ System.out.println("Nie znaleziono zdjęcia\n");} 
                 setResizable(false);
                 
@@ -620,14 +649,16 @@ public class Sedziowie extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sedziowie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Znicze.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sedziowie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Znicze.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sedziowie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Znicze.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sedziowie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Znicze.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>        
+        //</editor-fold>        
         //</editor-fold>        
         //</editor-fold>        
         /* Create and display the form */
@@ -636,11 +667,11 @@ public class Sedziowie extends javax.swing.JFrame {
             public void run() {
                 
                 try {
-                    new Sedziowie().setVisible(true);
+                    new Znicze().setVisible(true);
                     
                     //Ranking.rankTable.add("J","K","L","O");
                 } catch (SQLException ex) {
-                    Logger.getLogger(Sedziowie.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Znicze.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -659,6 +690,7 @@ public class Sedziowie extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
@@ -677,6 +709,7 @@ public class Sedziowie extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private java.awt.Button jUsunButton;
     private javax.swing.JToggleButton jWyszukajButton1;
     private javax.swing.JMenu jZaplanowane;

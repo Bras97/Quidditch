@@ -35,6 +35,16 @@ public class Znicz {
         this.producent = (producent == null) ? null : producent;
     }
 
+
+    public static ArrayList<Znicz> wyszukaj(String szukane) throws SQLException {
+        listaZnicz = new ArrayList<>();
+        Statement stmt= Quidditch.con.createStatement();  
+        ResultSet rs=stmt.executeQuery("select * from znicz where nazwa LIKE '%" + szukane + "%';");    
+        while(rs.next())
+            listaZnicz.add(new Znicz(rs.getInt("id_znicza"),rs.getString("nazwa"),rs.getFloat("masa"),rs.getFloat("predkosc"),rs.getString("producent")));
+        return listaZnicz;
+    }
+
     public static ArrayList<Znicz> getLista() throws SQLException {
         listaZnicz = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
@@ -71,7 +81,7 @@ public class Znicz {
         for(Rozgrywka y: lista)
         {
             if(y.getZnicz_id_znicza() == id)
-                return -1;
+                return -2;
         }
         String query = "delete from znicz where id_znicza = ?;";
         PreparedStatement preparedStmt = Quidditch.con.prepareStatement(query);
