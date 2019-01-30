@@ -24,6 +24,7 @@ public class Zawodnik {
     private String nazwisko;
     private String pozycja;
     private Date data_urodzenia;
+    private String dataString;
     private String plec;
     private Integer druzyna_id_druzyny;
     private static ArrayList<Zawodnik> listaZawodnik; 
@@ -71,6 +72,14 @@ public class Zawodnik {
         this.data_urodzenia = data_urodzenia;
     }
 
+    public String getDataString() {
+        return dataString;
+    }
+
+    public void setDataString(String dataString) {
+        this.dataString = dataString;
+    }
+
     public String getPlec() {
         return plec;
     }
@@ -95,7 +104,7 @@ public class Zawodnik {
         Zawodnik.listaZawodnik = listaZawodnik;
     }
     
-    public Zawodnik(Integer id_zawodnika, String imie, String nazwisko, String pozycja, Date data_urodzenia, String plec, Integer druzyna_id_druzyny) {
+    public Zawodnik(Integer id_zawodnika, String imie, String nazwisko, String pozycja, Date data_urodzenia, String plec, Integer druzyna_id_druzyny, String dataString) {
         this.id_zawodnika = (id_zawodnika == null) ? null : id_zawodnika;
         this.imie = (imie == null) ? null : imie;
         this.nazwisko = (nazwisko == null) ? null : nazwisko;
@@ -103,36 +112,48 @@ public class Zawodnik {
         this.data_urodzenia = (data_urodzenia == null) ? null : data_urodzenia;
         this.plec = (plec == null) ? null : plec;
         this.druzyna_id_druzyny = (druzyna_id_druzyny == null) ? null : druzyna_id_druzyny;
+        this.dataString = (data_urodzenia == null) ? null : dataString;
     }
 
+    
     public static ArrayList<Zawodnik> getLista() throws SQLException {
         listaZawodnik = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select * from zawodnik;");  
+        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS function from zawodnik;");  
         while(rs.next())
-            listaZawodnik.add(new Zawodnik(rs.getInt("id_zawodnika"),rs.getString("imie"),rs.getString("nazwisko"),rs.getString("pozycja"),rs.getDate("data_urodzenia"), rs.getString("plec"),rs.getInt("druzyna_id_druzyny")));
+            listaZawodnik.add(new Zawodnik(rs.getInt("id_zawodnika"),rs.getString("imie"),rs.getString("nazwisko"),rs.getString("pozycja"),rs.getDate("data_urodzenia"), rs.getString("plec"),rs.getInt("druzyna_id_druzyny"),rs.getString("function")));
         return listaZawodnik;
     }
-
+    
+    public static ArrayList<Zawodnik> wyszukaj(String szukane) throws SQLException {
+        listaZawodnik = new ArrayList<>();
+        Statement stmt= Quidditch.con.createStatement();  
+        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS function from zawodnik where nazwisko LIKE '%" + szukane + "%';");
+        while(rs.next())            
+            listaZawodnik.add(new Zawodnik(rs.getInt("id_zawodnika"),rs.getString("imie"),rs.getString("nazwisko"),rs.getString("pozycja"),rs.getDate("data_urodzenia"), rs.getString("plec"),rs.getInt("druzyna_id_druzyny"),rs.getString("function")));
+        return listaZawodnik;
+    }
+    
     public void addQuery() throws SQLException {
+        System.out.println(imie + " " + nazwisko + " " + pozycja + " " + data_urodzenia + " " + plec + " " + druzyna_id_druzyny);
         String query = "insert into zawodnik ( imie, nazwisko, pozycja, data_urodzenia, plec, druzyna_id_druzyny) values (\""
                 + imie + "\",\""
                 + nazwisko + "\",\""
                 + pozycja + "\","
-                + data_urodzenia + ","
-                + plec + ","
+                + data_urodzenia + ",\""
+                + plec + "\","
                 + druzyna_id_druzyny
                 +");";
         Statement stmt= Quidditch.con.createStatement(); 
         stmt.executeUpdate(query);
     }
     
-    public void updateQuery(Integer id, String imie, String nazwisko, String pozycja, Date data_urodzenia, String plec, Integer druzyna_id_druzyny) throws SQLException{
+    public void updateQuery(Integer id, String imie, String nazwisko, String pozycja, String data_urodzenia, String plec, Integer druzyna_id_druzyny) throws SQLException{
         PreparedStatement ps = Quidditch.con.prepareStatement("UPDATE zawodnik SET imie = ?, nazwisko = ?, pozycja = ?, data_urodzenia = ?, plec = ?, druzyna_id_druzyny = ? WHERE id_zawodnika = ?;");
         ps.setString(1,imie);
         ps.setString(2,nazwisko);
         ps.setString(3,pozycja);
-        ps.setDate(4,data_urodzenia);
+        ps.setString(4,data_urodzenia);
         ps.setString(5,plec);
         ps.setInt(6,druzyna_id_druzyny);
         ps.setInt(7,id);

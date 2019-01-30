@@ -88,19 +88,19 @@ public class Ranking extends javax.swing.JFrame {
         jObraz = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jWyszukajButton1 = new javax.swing.JToggleButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jModyfikujButton = new java.awt.Button();
+        jSeparator1 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
-        jMenu11 = new javax.swing.JMenu();
-        jMenu12 = new javax.swing.JMenu();
+        jRanking = new javax.swing.JMenu();
+        jZawodnicy = new javax.swing.JMenu();
+        jStadiony = new javax.swing.JMenu();
+        jMiotly = new javax.swing.JMenu();
+        jPracownicy = new javax.swing.JMenu();
+        jSedziowie = new javax.swing.JMenu();
+        jZnicze = new javax.swing.JMenu();
+        jKary = new javax.swing.JMenu();
+        jRozegrane = new javax.swing.JMenu();
+        jZaplanowane = new javax.swing.JMenu();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -215,37 +215,82 @@ public class Ranking extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Ranking");
-        jMenu1.setBorderPainted(true);
-        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuBar1.add(jMenu1);
+        jRanking.setText("Ranking");
+        jRanking.setBorderPainted(true);
+        jRanking.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuBar1.add(jRanking);
 
-        jMenu7.setText("Zawodnicy");
-        jMenuBar1.add(jMenu7);
+        jZawodnicy.setText("Zawodnicy");
+        jZawodnicy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jZawodnicyMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jZawodnicy);
 
-        jMenu2.setText("Stadiony");
-        jMenuBar1.add(jMenu2);
+        jStadiony.setText("Stadiony");
+        jStadiony.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jStadionyMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jStadiony);
 
-        jMenu6.setText("Miotly");
-        jMenuBar1.add(jMenu6);
+        jMiotly.setText("Miotly");
+        jMiotly.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMiotlyMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMiotly);
 
-        jMenu5.setText("Pracownicy");
-        jMenuBar1.add(jMenu5);
+        jPracownicy.setText("Pracownicy");
+        jPracownicy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPracownicyMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jPracownicy);
 
-        jMenu9.setText("Sędziowie");
-        jMenuBar1.add(jMenu9);
+        jSedziowie.setText("Sędziowie");
+        jSedziowie.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSedziowieMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jSedziowie);
 
-        jMenu10.setText("Znicze");
-        jMenuBar1.add(jMenu10);
+        jZnicze.setText("Znicze");
+        jZnicze.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jZniczeMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jZnicze);
 
-        jMenu8.setText("Kary");
-        jMenuBar1.add(jMenu8);
+        jKary.setText("Kary");
+        jKary.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jKaryMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jKary);
 
-        jMenu11.setText("Rozegrane");
-        jMenuBar1.add(jMenu11);
+        jRozegrane.setText("Rozegrane");
+        jRozegrane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRozegraneMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jRozegrane);
 
-        jMenu12.setText("Zaplanowane");
-        jMenuBar1.add(jMenu12);
+        jZaplanowane.setText("Zaplanowane");
+        jZaplanowane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jZaplanowaneMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jZaplanowane);
 
         setJMenuBar(jMenuBar1);
 
@@ -369,7 +414,7 @@ public class Ranking extends javax.swing.JFrame {
         jTextField1.setText(rankTable.getValueAt(currentRow, 0).toString());
         jTextField2.setText(rankTable.getValueAt(currentRow, 1).toString());
         //jTextField3.setText(rankTable.getValueAt(currentRow, 2).toString());
-        jTextField4.setText(rankTable.getValueAt(currentRow, 3).toString());
+        //jTextField4.setText(rankTable.getValueAt(currentRow, 3).toString());
         //idZespolu= dr.getId_druzyny();
         pozycjaZaznaczona=true;
         
@@ -613,6 +658,54 @@ public class Ranking extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jWyszukajButton1ActionPerformed
 
+    private void jZawodnicyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZawodnicyMouseClicked
+        try {
+            Zawodnicy t = new Zawodnicy();
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jZawodnicyMouseClicked
+
+    private void jStadionyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStadionyMouseClicked
+        Stadion t = new Stadion();
+        this.dispose();
+      
+    }//GEN-LAST:event_jStadionyMouseClicked
+
+    private void jMiotlyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMiotlyMouseClicked
+        Miotla t = new Miotla();
+        this.dispose();
+    }//GEN-LAST:event_jMiotlyMouseClicked
+
+    private void jPracownicyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPracownicyMouseClicked
+        Pracownik t = new Pracownik();
+        this.dispose();
+    }//GEN-LAST:event_jPracownicyMouseClicked
+
+    private void jSedziowieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSedziowieMouseClicked
+        Sedzia t = new Sedzia();
+        this.dispose();
+    }//GEN-LAST:event_jSedziowieMouseClicked
+
+    private void jZniczeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZniczeMouseClicked
+        Znicz t = new Znicz();
+        this.dispose();
+    }//GEN-LAST:event_jZniczeMouseClicked
+
+    private void jKaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jKaryMouseClicked
+        Kara t = new Kara();
+        this.dispose();
+    }//GEN-LAST:event_jKaryMouseClicked
+
+    private void jRozegraneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRozegraneMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRozegraneMouseClicked
+
+    private void jZaplanowaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZaplanowaneMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jZaplanowaneMouseClicked
+
     public Boolean czyNazwaPusta()
     {
         if(jTextField1.getText().equals(""))
@@ -680,7 +773,7 @@ public class Ranking extends javax.swing.JFrame {
         
                 jTextField1.setColumns(10);
                 jTextField2.setColumns(10);
-                jTextField4.setColumns(10);
+                //jTextField4.setColumns(10);
                 try{
 //                    ImageIcon img = new ImageIcon(getClass().getResource("/img/pracownicy.png"));
 //                    Image image = img.getImage(); // transform it 
@@ -771,34 +864,34 @@ public class Ranking extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JComboBox<String> jComboBox;
     private java.awt.Button jDodajButton;
+    private javax.swing.JMenu jKary;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu11;
-    private javax.swing.JMenu jMenu12;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenu jMiotly;
     private java.awt.Button jModyfikujButton;
     private javax.swing.JLabel jObraz;
+    private javax.swing.JMenu jPracownicy;
+    private javax.swing.JMenu jRanking;
+    private javax.swing.JMenu jRozegrane;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu jSedziowie;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JMenu jStadiony;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private java.awt.Button jUsunButton;
     private javax.swing.JToggleButton jWyszukajButton1;
+    private javax.swing.JMenu jZaplanowane;
+    private javax.swing.JMenu jZawodnicy;
+    private javax.swing.JMenu jZnicze;
     private javax.swing.JTable rankTable;
     // End of variables declaration//GEN-END:variables
 }
