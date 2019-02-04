@@ -100,12 +100,12 @@ public class Zawodnicy extends javax.swing.JFrame {
         jZawodnicy = new javax.swing.JMenu();
         jStadiony = new javax.swing.JMenu();
         jMiotly = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
-        jMenu11 = new javax.swing.JMenu();
-        jMenu12 = new javax.swing.JMenu();
+        jPracownicy = new javax.swing.JMenu();
+        jSedziowie = new javax.swing.JMenu();
+        jZnicze = new javax.swing.JMenu();
+        jKary = new javax.swing.JMenu();
+        jRozegrane = new javax.swing.JMenu();
+        jZaplanowane = new javax.swing.JMenu();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -326,25 +326,60 @@ public class Zawodnicy extends javax.swing.JFrame {
         jMenuBar1.add(jStadiony);
 
         jMiotly.setText("Miotly");
+        jMiotly.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMiotlyMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMiotly);
 
-        jMenu5.setText("Pracownicy");
-        jMenuBar1.add(jMenu5);
+        jPracownicy.setText("Pracownicy");
+        jPracownicy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPracownicyMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jPracownicy);
 
-        jMenu9.setText("Sędziowie");
-        jMenuBar1.add(jMenu9);
+        jSedziowie.setText("Sędziowie");
+        jSedziowie.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSedziowieMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jSedziowie);
 
-        jMenu10.setText("Znicze");
-        jMenuBar1.add(jMenu10);
+        jZnicze.setText("Znicze");
+        jZnicze.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jZniczeMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jZnicze);
 
-        jMenu8.setText("Kary");
-        jMenuBar1.add(jMenu8);
+        jKary.setText("Kary");
+        jKary.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jKaryMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jKary);
 
-        jMenu11.setText("Rozegrane");
-        jMenuBar1.add(jMenu11);
+        jRozegrane.setText("Rozegrane");
+        jRozegrane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRozegraneMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jRozegrane);
 
-        jMenu12.setText("Zaplanowane");
-        jMenuBar1.add(jMenu12);
+        jZaplanowane.setText("Zaplanowane");
+        jZaplanowane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jZaplanowaneMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jZaplanowane);
 
         setJMenuBar(jMenuBar1);
 
@@ -599,12 +634,12 @@ public class Zawodnicy extends javax.swing.JFrame {
         try {
             if(!pozycjaZaznaczona)
             {
-                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać drużynę z tabeli, którą chcesz usunąć.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać zawodnika z tabeli, którego chcesz usunąć.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             int currentRow = rankTable.getSelectedRow();
             if (JOptionPane.showConfirmDialog(null,
-                    "Czy na pewno chcesz nieodwracalnie usunąć zaznaczoną drużynę?", "Usunąć?",
+                    "Czy na pewno chcesz nieodwracalnie usunąć zaznaczonego zawodnika?", "Usunąć?",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
                 Zawodnik d = new Zawodnik();
@@ -614,11 +649,11 @@ public class Zawodnicy extends javax.swing.JFrame {
                     
                 switch(czyUsunieto)
                 {
-                    case -3: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć drużyny, ponieważ istnieje rozgrywka w której brała udział.", "Usuń najpierw powiązane rozgrywki", JOptionPane.INFORMATION_MESSAGE);
+                    case -3: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć zawodnika, ponieważ istnieje rozgrywka w której brała udział.", "Usuń najpierw powiązane rozgrywki", JOptionPane.INFORMATION_MESSAGE);
                     break;
-                    case -2: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć drużyny, ponieważ istnieją zawodnicy powiązani z tą drużyną.", "Usuń najpierw powiązanych zawodników", JOptionPane.INFORMATION_MESSAGE);
+                    case -2: JOptionPane.showMessageDialog(new Frame(), "Nie można usunąć zawodnika, ponieważ istnieją zawodnicy powiązani z tą drużyną.", "Usuń najpierw powiązanych zawodników", JOptionPane.INFORMATION_MESSAGE);
                     break;
-                    case 1:  JOptionPane.showMessageDialog(new Frame(), "Pomyślnie usunięto drużynę.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
+                    case 1:  JOptionPane.showMessageDialog(new Frame(), "Pomyślnie usunięto zawodnika.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
                     break;
                     default: JOptionPane.showMessageDialog(new Frame(), "Coś poszło nie tak.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
                     break;
@@ -656,12 +691,75 @@ public class Zawodnicy extends javax.swing.JFrame {
 
     private void jStadionyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStadionyMouseClicked
         try {
-            Stadiony stadiony = new Stadiony();
+            Stadiony t = new Stadiony();
             this.dispose();        // TODO add your handling code here:
         } catch (SQLException ex) {
             Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jStadionyMouseClicked
+
+    private void jZaplanowaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZaplanowaneMouseClicked
+        try {
+            Zaplanowane t = new Zaplanowane();
+            this.dispose();        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jZaplanowaneMouseClicked
+
+    private void jMiotlyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMiotlyMouseClicked
+        try {
+            Miotly t = new Miotly();
+            this.dispose();        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+        }// TODO add your handling code here:// TODO add your handling code here:
+    }//GEN-LAST:event_jMiotlyMouseClicked
+
+    private void jPracownicyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPracownicyMouseClicked
+        try {
+            Pracownicy t = new Pracownicy();
+            this.dispose();        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+        }// TODO add your handling code here:// TODO add your handling code here:
+    }//GEN-LAST:event_jPracownicyMouseClicked
+
+    private void jSedziowieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSedziowieMouseClicked
+        try {
+            Sedziowie t = new Sedziowie();
+            this.dispose();        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+        }// TODO add your handling code here:// TODO add your handling code here:
+    }//GEN-LAST:event_jSedziowieMouseClicked
+
+    private void jZniczeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZniczeMouseClicked
+        try {
+            Znicze t = new Znicze();
+            this.dispose();        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+        }// TODO add your handling code here:// TODO add your handling code here:
+    }//GEN-LAST:event_jZniczeMouseClicked
+
+    private void jKaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jKaryMouseClicked
+       try {
+            Kary t = new Kary();
+            this.dispose();        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+        }// TODO add your handling code here: // TODO add your handling code here:
+    }//GEN-LAST:event_jKaryMouseClicked
+
+    private void jRozegraneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRozegraneMouseClicked
+       try {
+            Rozegrane t = new Rozegrane();
+            this.dispose();        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+        }// TODO add your handling code here: // TODO add your handling code here:
+    }//GEN-LAST:event_jRozegraneMouseClicked
 
     public Boolean czyNazwaPusta()
     {
@@ -843,20 +941,15 @@ public class Zawodnicy extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private java.awt.Button jDodajButton;
+    private javax.swing.JMenu jKary;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu11;
-    private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu jMiotly;
@@ -864,8 +957,11 @@ public class Zawodnicy extends javax.swing.JFrame {
     private javax.swing.JLabel jObraz;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JMenu jPracownicy;
     private javax.swing.JMenu jRanking;
+    private javax.swing.JMenu jRozegrane;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu jSedziowie;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenu jStadiony;
     private javax.swing.JTextField jTextField1;
@@ -874,7 +970,9 @@ public class Zawodnicy extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private java.awt.Button jUsunButton;
     private javax.swing.JToggleButton jWyszukajButton1;
+    private javax.swing.JMenu jZaplanowane;
     private javax.swing.JMenu jZawodnicy;
+    private javax.swing.JMenu jZnicze;
     private javax.swing.JTable rankTable;
     // End of variables declaration//GEN-END:variables
 }

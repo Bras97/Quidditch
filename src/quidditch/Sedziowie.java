@@ -489,7 +489,6 @@ public class Sedziowie extends javax.swing.JFrame {
 
     private void jWyszukajButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWyszukajButton1ActionPerformed
         try {
-            Sedzia d = new Sedzia();
             wyszukiwanie=true;
             wypelnijTabele();
             
