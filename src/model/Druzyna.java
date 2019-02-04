@@ -113,13 +113,7 @@ public class Druzyna {
         CallableStatement stmt1;     
         ResultSet rs=stmt.executeQuery("select * from druzyna where nazwa LIKE '%" + szukane + "%';");  
         while(rs.next())
-            sql = "{call procedura(?, ?);}";
-            stmt1=Quidditch.con.prepareCall(sql);
-            stmt1.setInt(1, rs.getInt("id_druzyny"));  
-            stmt1.registerOutParameter(2, Types.INTEGER);
-            ResultSet rs1 = stmt1.executeQuery();
-            if(rs1.next())
-                listaDruzyna.add(new Druzyna(rs.getInt("id_druzyny"),rs.getString("nazwa"),rs.getString("narodowosc"),rs.getInt("stadion_id_stadionu"),stmt1.getInt(2)));
+            listaDruzyna.add(new Druzyna(rs.getInt("id_druzyny"),rs.getString("nazwa"),rs.getString("narodowosc"),rs.getInt("stadion_id_stadionu"),calculatePoints(rs.getInt("id_druzyny"))));
         return listaDruzyna;
     }
     
