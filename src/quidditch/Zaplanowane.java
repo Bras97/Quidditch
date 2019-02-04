@@ -197,7 +197,7 @@ public class Zaplanowane extends javax.swing.JFrame {
         jLabel2.setText("Pkt II drużyny:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("D. urodzenia:");
+        jLabel7.setText("Data:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Sędzia:");
@@ -809,11 +809,11 @@ public class Zaplanowane extends javax.swing.JFrame {
         Rozgrywka d = new Rozgrywka();
         ArrayList<Rozgrywka> listaRozgrywek = new ArrayList<>();
         
-        listaRozgrywek = d.getLista();
+        listaRozgrywek = d.getListaFromToday();
 
          Collections.sort(listaRozgrywek, new Comparator<Rozgrywka>() {
             public int compare(Rozgrywka o1, Rozgrywka o2) {
-                return -o1.getData().compareTo(o2.getData());
+                return o1.getData().compareTo(o2.getData());
                 }
             });
 

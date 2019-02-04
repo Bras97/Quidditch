@@ -27,6 +27,14 @@ public class Sedzia {
     
     public Sedzia() {
     }
+
+    public String getDataString() {
+        return dataString;
+    }
+
+    public void setDataString(String dataString) {
+        this.dataString = dataString;
+    }
     
     public Sedzia(Integer id_sedzi, String imie, String nazwisko, Date data_urodzenia, String dataString) {
         this.id_sedzi = (id_sedzi == null) ? null : id_sedzi;

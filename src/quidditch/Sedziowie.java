@@ -618,7 +618,7 @@ public class Sedziowie extends javax.swing.JFrame {
          
         for(Sedzia dr: Sedzia.getLista())
         {
-            defaultTableModel.addRow(new Object[] {dr.getImie(),dr.getNazwisko(),dr.getData_urodzenia().toString(),dr.getId_sedzi()});
+            defaultTableModel.addRow(new Object[] {dr.getImie(),dr.getNazwisko(),dr.getDataString(),dr.getId_sedzi()});
         }
 
         rankTable.setModel(defaultTableModel);
