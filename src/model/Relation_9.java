@@ -43,7 +43,7 @@ public class Relation_9 {
     public void addQuery() throws SQLException {
         String query = "insert into relation_9 ( pracownicy_id_pracownika, druzyna_id_druzyny) values (" 
                 + pracownicy_id_pracownika + ","
-                + druzyna_id_druzyny + ","
+                + druzyna_id_druzyny
                 +");";
         Statement stmt= Quidditch.con.createStatement(); 
         stmt.executeUpdate(query);
