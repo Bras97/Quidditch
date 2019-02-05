@@ -81,15 +81,11 @@ public class Zaplanowane extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
         jUsunButton = new java.awt.Button();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jComboBox = new javax.swing.JComboBox<>();
         jModyfikujButton = new java.awt.Button();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jDodajButton = new java.awt.Button();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -166,9 +162,6 @@ public class Zaplanowane extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Pkt I drużyny:");
-
         jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jModyfikujButton.setLabel("Modyfikuj");
@@ -193,9 +186,6 @@ public class Zaplanowane extends javax.swing.JFrame {
                 jDodajButtonActionPerformed(evt);
             }
         });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Pkt II drużyny:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Data:");
@@ -225,10 +215,7 @@ public class Zaplanowane extends javax.swing.JFrame {
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
                                         .addComponent(jDodajButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,12 +229,7 @@ public class Zaplanowane extends javax.swing.JFrame {
                                         .addGap(10, 10, 10))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addGap(8, 8, 8)
-                                        .addComponent(jComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jTextField2)))))
+                                        .addComponent(jComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -265,18 +247,7 @@ public class Zaplanowane extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -466,8 +437,8 @@ public class Zaplanowane extends javax.swing.JFrame {
     
     private void rankTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rankTableMouseClicked
         int currentRow = rankTable.getSelectedRow();
-        jTextField1.setText(rankTable.getValueAt(currentRow, 0).toString());
-        jTextField2.setText(rankTable.getValueAt(currentRow, 1).toString());
+//        jTextField1.setText(rankTable.getValueAt(currentRow, 0).toString());
+//        jTextField2.setText(rankTable.getValueAt(currentRow, 1).toString());
         jTextField4.setText(rankTable.getValueAt(currentRow, 4).toString());
         
         pozycjaZaznaczona=true;
@@ -512,79 +483,89 @@ public class Zaplanowane extends javax.swing.JFrame {
     }//GEN-LAST:event_rankTableMouseClicked
 
     private void jDodajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDodajButtonActionPerformed
-        if (!czyNazwaPusta())
-        {
-            Rozgrywka rozgrywka = new Rozgrywka();
-            ArrayList<Rozgrywka> listaRozgrywek = new ArrayList<>();
+        
+        Rozgrywka rozgrywka = new Rozgrywka();
+        ArrayList<Rozgrywka> listaRozgrywek = new ArrayList<>();
 
-            
-            Druzyna d1= new Druzyna();
-            Druzyna d2= new Druzyna();
-            Znicz znicz = new Znicz();
-            Sedzia sedzia = new Sedzia();
-            try {
-                for(Druzyna st: Druzyna.getLista())
-                {
-                    if(st.getNazwa().equals(jComboBox.getSelectedItem()))
-                        d1=st;
-                    if(st.getNazwa().equals(jComboBox2.getSelectedItem()))
-                        d2=st;
-                }
-                if(d1.getId_druzyny().equals(d2.getId_druzyny()))
-                {
-                    JOptionPane.showMessageDialog(new Frame(), "Drużyny muszą być różne.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
-                    return;
-                }
-                for(Znicz zn: Znicz.getLista())
-                {
-                    if (zn.getNazwa().equals(jComboBox3.getSelectedItem()))
-                    {
-                        znicz = zn;
-                        break;                        
-                    }
-                }
-                for(Sedzia se: Sedzia.getLista())
-                {
-                    if (jComboBox4.getSelectedItem().equals(se.getId_sedzi()+","+se.getNazwisko()))
-                    {
-                        sedzia = se;
-                        break;                        
-                    }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Zaplanowane.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            
-            DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
-            java.sql.Date sqlDate = null;
-            String tmpS = Quidditch.conv(jTextField4.getText());
-            try {
-                java.util.Date date = (java.util.Date) format.parse(tmpS);
-                sqlDate = new java.sql.Date(date.getTime());
-            } catch (ParseException ex) {
-                Logger.getLogger(Zaplanowane.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            rozgrywka.setPunkty_druzyna1(jTextField1.getText());
-            rozgrywka.setPunkty_druzyna2(jTextField2.getText());
-            rozgrywka.setDataString(jTextField4.getText());
-            rozgrywka.setDruzyna_id_druzyny(d1.getId_druzyny());
-            rozgrywka.setDruzyna_id_druzyny1(d2.getId_druzyny());
-            rozgrywka.setZnicz_id_znicza(znicz.getId_znicza());
-            rozgrywka.setSedzia_id_sedzi(sedzia.getId_sedzi());
 
-            rozgrywka.setData(sqlDate);
-                                  
-            try {
-
-            rozgrywka.addQuery();            
-            wypelnijTabele();
-            
-            } catch (SQLException ex) {
-                Logger.getLogger(Zaplanowane.class.getName()).log(Level.SEVERE, null, ex);
+        Druzyna d1= new Druzyna();
+        Druzyna d2= new Druzyna();
+        Znicz znicz = new Znicz();
+        Sedzia sedzia = new Sedzia();
+        try {
+            for(Druzyna st: Druzyna.getLista())
+            {
+                if(st.getNazwa().equals(jComboBox.getSelectedItem()))
+                    d1=st;
+                if(st.getNazwa().equals(jComboBox2.getSelectedItem()))
+                    d2=st;
             }
+            if(d1.getId_druzyny().equals(d2.getId_druzyny()))
+            {
+                JOptionPane.showMessageDialog(new Frame(), "Drużyny muszą być różne.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            for(Znicz zn: Znicz.getLista())
+            {
+                if (zn.getNazwa().equals(jComboBox3.getSelectedItem()))
+                {
+                    znicz = zn;
+                    break;                        
+                }
+            }
+            for(Sedzia se: Sedzia.getLista())
+            {
+                if (jComboBox4.getSelectedItem().equals(se.getId_sedzi()+","+se.getNazwisko()))
+                {
+                    sedzia = se;
+                    break;                        
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Zaplanowane.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+
+        DateFormat format = new SimpleDateFormat("yyyy, MMMMM, dd", Locale.ENGLISH);
+        java.sql.Date sqlDate = null;
+        String tmpS = Quidditch.conv(jTextField4.getText());
+        try {
+            java.util.Date date = (java.util.Date) format.parse(tmpS);
+            sqlDate = new java.sql.Date(date.getTime());
+        } catch (ParseException ex) {
+            Logger.getLogger(Zaplanowane.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new Frame(), "Proszę sprawdzić poprawność daty.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+//        if(jTextField1.getText()==null || jTextField1.getText()==null)
+//        {
+//            rozgrywka.setPunkty_druzyna1("0");
+//            rozgrywka.setPunkty_druzyna2("0");
+//
+//        }
+//        else
+//        {
+//            rozgrywka.setPunkty_druzyna1(jTextField1.getText());
+//            rozgrywka.setPunkty_druzyna2(jTextField2.getText());                
+//        }
+        rozgrywka.setDataString(jTextField4.getText());
+        rozgrywka.setDruzyna_id_druzyny(d1.getId_druzyny());
+        rozgrywka.setDruzyna_id_druzyny1(d2.getId_druzyny());
+        rozgrywka.setZnicz_id_znicza(znicz.getId_znicza());
+        rozgrywka.setSedzia_id_sedzi(sedzia.getId_sedzi());
+
+        rozgrywka.setData(sqlDate);
+
+        try {
+
+        rozgrywka.addQuery();            
+        wypelnijTabele();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Zaplanowane.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         
     }//GEN-LAST:event_jDodajButtonActionPerformed
@@ -649,11 +630,13 @@ public class Zaplanowane extends javax.swing.JFrame {
             try {
                 java.util.Date date = (java.util.Date) format.parse(tmpS);
                 sqlDate = new java.sql.Date(date.getTime()  + TimeUnit.DAYS.toMillis( 1 ));
+                JOptionPane.showMessageDialog(new Frame(), "Proszę sprawdzić poprawność daty.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+                return;
             } catch (ParseException ex) {
                 Logger.getLogger(Zaplanowane.class.getName()).log(Level.SEVERE, null, ex);
             }
         try { 
-            rozgrywka.updateQuery(ID_rozgrywki, Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()),
+            rozgrywka.updateQuery(ID_rozgrywki, 0,0,
                     sqlDate, d1.getId_druzyny(),d2.getId_druzyny(),znicz.getId_znicza(),sedzia.getId_sedzi());
         } catch (SQLException ex) {
             Logger.getLogger(Zaplanowane.class.getName()).log(Level.SEVERE, null, ex);
@@ -684,7 +667,7 @@ public class Zaplanowane extends javax.swing.JFrame {
                 Rozgrywka d = new Rozgrywka();
                 int czyUsunieto=-1;
                 
-                    czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString()));
+                    czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 7).toString()));
                     
                 switch(czyUsunieto)
                 {
@@ -781,28 +764,28 @@ public class Zaplanowane extends javax.swing.JFrame {
     }//GEN-LAST:event_jRozegraneMouseClicked
 
     private void jZaplanowaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZaplanowaneMouseClicked
-        try {
+        
+    }//GEN-LAST:event_jZaplanowaneMouseClicked
+
+    private void jZawodnicyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZawodnicyMouseClicked
+         try {
             Zawodnicy t = new Zawodnicy();
             this.dispose();        // TODO add your handling code here:
         } catch (SQLException ex) {
             Logger.getLogger(Zaplanowane.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jZaplanowaneMouseClicked
-
-    private void jZawodnicyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZawodnicyMouseClicked
-         // TODO add your handling code here:
+        }// TODO add your handling code here:
     }//GEN-LAST:event_jZawodnicyMouseClicked
-
-    public Boolean czyNazwaPusta()
-    {
-        if(jTextField1.getText().equals("") || jTextField2.getText().equals("") )
-        {
-            JOptionPane.showMessageDialog(new Frame(), "Nazwy drużyn nie mogą być puste!", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
-            return true;
-        }
-        return false;  
-    }
-    
+//
+//    public Boolean czyNazwaPusta()
+//    {
+//        if(jTextField1.getText().equals("") || jTextField2.getText().equals("") )
+//        {
+//            JOptionPane.showMessageDialog(new Frame(), "Nazwy drużyn nie mogą być puste!", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+//            return true;
+//        }
+//        return false;  
+//    }
+//    
     public void wypelnijTabele() throws SQLException
     {
         
@@ -870,7 +853,7 @@ public class Zaplanowane extends javax.swing.JFrame {
                 }
             }
             
-            defaultTableModel.addRow(new Object[] {druzyna1.getPunkty(),druzyna2.getPunkty(),druzyna1.getNazwa(),
+            defaultTableModel.addRow(new Object[] {"0","0",druzyna1.getNazwa(),
                 druzyna2.getNazwa(), za.getDataString(), znicz.getNazwa(), (sedzia.getId_sedzi()+","+sedzia.getNazwisko()), za.getId_rozgrywki(),druzyna1.getId_druzyny(),
                 druzyna2.getId_druzyny(),znicz.getId_znicza(),sedzia.getId_sedzi(),za.getData()});
         }
@@ -887,6 +870,8 @@ public class Zaplanowane extends javax.swing.JFrame {
         rankTable.removeColumn(rankTable.getColumnModel().getColumn(8));
         rankTable.removeColumn(rankTable.getColumnModel().getColumn(7));
                 
+//        rankTable.removeColumn(rankTable.getColumnModel().getColumn(1));
+//        rankTable.removeColumn(rankTable.getColumnModel().getColumn(0));
     }
     
     
@@ -896,8 +881,8 @@ public class Zaplanowane extends javax.swing.JFrame {
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
                 this.setLocation((dim.width-this.getSize().width)/2, (dim.height-this.getSize().height)/2); 
         
-                jTextField1.setColumns(10);
-                jTextField2.setColumns(10);
+//                jTextField1.setColumns(10);
+//                jTextField2.setColumns(10);
                 jTextField4.setColumns(10);
                 try{
                     ImageIcon img = new ImageIcon(getClass().getResource("/img/kalendarz.png"));
@@ -1024,8 +1009,6 @@ public class Zaplanowane extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox4;
     private java.awt.Button jDodajButton;
     private javax.swing.JMenu jKary;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1047,8 +1030,6 @@ public class Zaplanowane extends javax.swing.JFrame {
     private javax.swing.JMenu jSedziowie;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenu jStadiony;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private java.awt.Button jUsunButton;
     private javax.swing.JMenu jZaplanowane;

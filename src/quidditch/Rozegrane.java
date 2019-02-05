@@ -564,6 +564,8 @@ public class Rozegrane extends javax.swing.JFrame {
                 sqlDate = new java.sql.Date(date.getTime());
             } catch (ParseException ex) {
                 Logger.getLogger(Rozegrane.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new Frame(), "Proszę sprawdzić poprawność daty.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+            return;
             }
             
             rozgrywka.setPunkty_druzyna1(jTextField1.getText());
@@ -651,6 +653,8 @@ public class Rozegrane extends javax.swing.JFrame {
                 sqlDate = new java.sql.Date(date.getTime() + TimeUnit.DAYS.toMillis( 1 ));
             } catch (ParseException ex) {
                 Logger.getLogger(Rozegrane.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new Frame(), "Proszę sprawdzić poprawność daty.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+            return;
             }
         try { 
             rozgrywka.updateQuery(ID_rozgrywki, Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()),
@@ -684,7 +688,7 @@ public class Rozegrane extends javax.swing.JFrame {
                 Rozgrywka d = new Rozgrywka();
                 int czyUsunieto=-1;
                 
-                    czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 6).toString()));
+                    czyUsunieto = d.delQuery(Integer.parseInt(rankTable.getModel().getValueAt(currentRow, 7).toString()));
                     
                 switch(czyUsunieto)
                 {
@@ -797,7 +801,7 @@ public class Rozegrane extends javax.swing.JFrame {
     {
         if(jTextField1.getText().equals("") || jTextField2.getText().equals("") )
         {
-            JOptionPane.showMessageDialog(new Frame(), "Nazwy drużyn nie mogą być puste!", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(new Frame(), "Punkty drużyn nie mogą być puste!", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
             return true;
         }
         return false;  

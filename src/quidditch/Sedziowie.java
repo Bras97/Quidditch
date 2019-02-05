@@ -389,6 +389,8 @@ public class Sedziowie extends javax.swing.JFrame {
                 sqlDate = new java.sql.Date(date.getTime());
             } catch (ParseException ex) {
                 Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać sprawdzić poprawność daty.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+            return;
             }
             sedzia.setData_urodzenia(sqlDate);
             
@@ -428,6 +430,9 @@ public class Sedziowie extends javax.swing.JFrame {
                 sqlDate = new java.sql.Date(date.getTime() + TimeUnit.DAYS.toMillis( 1 ));
             } catch (ParseException ex) {
                 Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
+                
+            JOptionPane.showMessageDialog(new Frame(), "Proszę wybrać sprawdzić poprawność daty.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
+            return;
             }
             
             try {
