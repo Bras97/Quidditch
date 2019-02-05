@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -606,7 +607,7 @@ public class Zawodnicy extends javax.swing.JFrame {
             //
             try {
                 java.util.Date date = (java.util.Date) format.parse(tmpS);
-                sqlDate = new java.sql.Date(date.getTime());
+                sqlDate = new java.sql.Date(date.getTime() + TimeUnit.DAYS.toMillis( 1 ));
             } catch (ParseException ex) {
                 Logger.getLogger(Zawodnicy.class.getName()).log(Level.SEVERE, null, ex);
             }

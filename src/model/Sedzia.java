@@ -44,10 +44,18 @@ public class Sedzia {
         this.dataString = (data_urodzenia == null) ? null : dataString;
     }
 
+//    public static ArrayList<Sedzia> wyszukaj(String szukane) throws SQLException {
+//        listaSedzia = new ArrayList<>();
+//        Statement stmt= Quidditch.con.createStatement();  
+//        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS fun from sedzia where nazwisko LIKE '%" + szukane + "%';");  
+//        while(rs.next())
+//            listaSedzia.add(new Sedzia(rs.getInt("id_sedzi"),rs.getString("imie"),rs.getString("nazwisko"),rs.getDate("data_urodzenia"),rs.getString("fun")));
+//        return listaSedzia;
+//    }
     public static ArrayList<Sedzia> wyszukaj(String szukane) throws SQLException {
         listaSedzia = new ArrayList<>();
         Statement stmt= Quidditch.con.createStatement();  
-        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS fun from sedzia where nazwisko LIKE '%" + szukane + "%';");  
+        ResultSet rs=stmt.executeQuery("select *, dataString(data_urodzenia, \",\") AS fun from sedzia where nazwisko LIKE '%" + szukane + "%';");
         while(rs.next())
             listaSedzia.add(new Sedzia(rs.getInt("id_sedzi"),rs.getString("imie"),rs.getString("nazwisko"),rs.getDate("data_urodzenia"),rs.getString("fun")));
         return listaSedzia;
