@@ -331,6 +331,11 @@ public class Zaplanowane extends javax.swing.JFrame {
         jMenuBar1.add(jRanking);
 
         jZawodnicy.setText("Zawodnicy");
+        jZawodnicy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jZawodnicyMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jZawodnicy);
 
         jStadiony.setText("Stadiony");
@@ -775,8 +780,17 @@ public class Zaplanowane extends javax.swing.JFrame {
     }//GEN-LAST:event_jRozegraneMouseClicked
 
     private void jZaplanowaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZaplanowaneMouseClicked
-        
+        try {
+            Zawodnicy t = new Zawodnicy();
+            this.dispose();        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(Zaplanowane.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jZaplanowaneMouseClicked
+
+    private void jZawodnicyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jZawodnicyMouseClicked
+         // TODO add your handling code here:
+    }//GEN-LAST:event_jZawodnicyMouseClicked
 
     public Boolean czyNazwaPusta()
     {
