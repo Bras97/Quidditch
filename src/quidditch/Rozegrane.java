@@ -567,7 +567,7 @@ public class Rozegrane extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(new Frame(), "Proszę sprawdzić poprawność daty.", "BŁĄD", JOptionPane.INFORMATION_MESSAGE);
             return;
             }
-            
+            System.out.println(jTextField1.getText() + " " + jTextField2.getText());
             rozgrywka.setPunkty_druzyna1(jTextField1.getText());
             rozgrywka.setPunkty_druzyna2(jTextField2.getText());
             rozgrywka.setDataString(jTextField4.getText());
@@ -580,6 +580,7 @@ public class Rozegrane extends javax.swing.JFrame {
                                   
             try {
 
+            System.out.println(rozgrywka.getPunkty_druzyna1() + " " + rozgrywka.getPunkty_druzyna2());
             rozgrywka.addQuery();            
             wypelnijTabele();
             
@@ -657,6 +658,7 @@ public class Rozegrane extends javax.swing.JFrame {
             return;
             }
         try { 
+            System.out.println("\n " + Integer.parseInt(jTextField1.getText()) +  " " + Integer.parseInt(jTextField2.getText()) + "\n");
             rozgrywka.updateQuery(ID_rozgrywki, Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()),
                     sqlDate, d1.getId_druzyny(),d2.getId_druzyny(),znicz.getId_znicza(),sedzia.getId_sedzi());
         } catch (SQLException ex) {
@@ -873,7 +875,8 @@ public class Rozegrane extends javax.swing.JFrame {
                     break;
                 }
             }
-            defaultTableModel.addRow(new Object[] {druzyna1.getPunkty(),druzyna2.getPunkty(),druzyna1.getNazwa(),
+            
+            defaultTableModel.addRow(new Object[] {za.getPunkty_druzyna1(),za.getPunkty_druzyna2(),druzyna1.getNazwa(),
                 druzyna2.getNazwa(), za.getDataString(), znicz.getNazwa(), (sedzia.getId_sedzi()+","+sedzia.getNazwisko()), za.getId_rozgrywki(),druzyna1.getId_druzyny(),
                 druzyna2.getId_druzyny(),znicz.getId_znicza(),sedzia.getId_sedzi(),za.getData()});
         }
